@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Systems\Window.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\APIFuncs.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Program.cpp" />
+    <ClCompile Include="Systems\Input.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\Time.cpp" />
+    <ClCompile Include="Rect.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Systems\Window.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\APIFuncs.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Program.h" />
+    <ClInclude Include="Systems\Input.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Vector.h" />
+    <ClInclude Include="Systems\Time.h" />
+    <ClInclude Include="Rect.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Systems">
+      <UniqueIdentifier>{0bea6c48-2e5a-4251-b6a6-f45d358f6e2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{71165f97-3b2c-44ff-8be0-ffca044be090}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
