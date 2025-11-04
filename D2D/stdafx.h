@@ -82,7 +82,9 @@ extern float gWinHeight;
 
 #define INPUT Input::Get()
 #define TIME Time::Get()
-#define DELTA Time::Get()->GetDeltaTime()
+#define DELTA TIME->GetDeltaTime()
 #define GRAPHICS Graphics::Get()
+#define DEVICE GRAPHICS->GetDivece()
+#define DEVICECONTEXT GRAPHICS->GetDiveceConText()
 
 // Objects 파일 헤더

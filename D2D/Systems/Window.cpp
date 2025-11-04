@@ -2,7 +2,7 @@
 #include "Window.h"
 #include "Program.h"
 
-auto Window::program = make_unique<Program>();
+unique_ptr<Program> Window::program = nullptr;
 
 Window::Window(const WinDesc& initDesc)
 	: desc(initDesc)
@@ -81,6 +81,7 @@ ATOM Window::MyRegisterClass(const WinDesc& initDesc)
 WPARAM Window::Run()
 {
     MSG msg;
+    program = make_unique<Program>();
 
     // 기본 메시지 루프입니다:
     while (true)
