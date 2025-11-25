@@ -1,19 +1,26 @@
 #include "stdafx.h"
 #include "Program.h"
 
+
+
 Program::Program()
 {
 	// vertexData (삼각형모양으로 픽셀 지정하기)
 	{
-		vertices.assign(3, VertexColor());
+		vertices.assign(4, TextureData());
 		vertices[0].position = { -0.5f, -0.5f };
+		vertices[0].uv = { 0.0f, 1.0f };
 		vertices[1].position = { -0.5f, 0.5f };
+		vertices[1].uv = { 0.0f, 0.0f };
 		vertices[2].position = { 0.5f, -0.5f };
+		vertices[2].uv = { 1.0f, 1.0f };
+		vertices[3].position = { 0.5f, 0.5f };
+		vertices[3].uv = { 1.0f, 0.0f };
 	}
-	for (auto& vertex : vertices)
+	/*for (auto& vertex : vertices)
 	{
 		vertex.color = { 1.0f, 0.0f, 0.0f, 1.0f };
-	}
+	}*/
 
 	// vertexBuffer
 	{
@@ -31,11 +38,34 @@ Program::Program()
 		CHECK(hr);
 	}
 
+	// indexData
+	{
+		indices = { 0, 1, 2, 2, 1, 3 };
+	}
+
+	// indexBuffer
+	{
+		D3D11_BUFFER_DESC desc = { 0 };
+
+		desc.ByteWidth = sizeof(indices[0]) * UINT(indices.size());
+		desc.Usage = D3D11_USAGE_IMMUTABLE;
+		desc.BindFlags = D3D11_BIND_INDEX_BUFFER;
+		desc.CPUAccessFlags = 0;
+		desc.MiscFlags = 0;
+		desc.StructureByteStride = 0;
+
+		D3D11_SUBRESOURCE_DATA subData = { 0 };
+		subData.pSysMem = indices.data();
+
+		HRESULT hr = DEVICE->CreateBuffer(&desc, &subData, &indexBuffer);
+		CHECK(hr);
+	}
+
 	// vsBlob
 	{
 		HRESULT hr = D3DCompileFromFile
 		(
-			L"_Shaders/Color.hlsl",
+			L"_Shaders/Texture.hlsl",
 			nullptr,
 			nullptr,
 			"VS",
@@ -53,7 +83,7 @@ Program::Program()
 		vector<D3D11_INPUT_ELEMENT_DESC> layoutDesc
 		{
 			{ "POSITION", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-			{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 }
+			{ "TEXCORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 }
 		};
 
 		HRESULT hr = DEVICE->CreateInputLayout
@@ -83,7 +113,7 @@ Program::Program()
 	{
 		HRESULT hr = D3DCompileFromFile
 		(
-			L"_Shaders/Color.hlsl",
+			L"_Shaders/Texture.hlsl",
 			nullptr,
 			nullptr,
 			"PS",
@@ -104,16 +134,180 @@ Program::Program()
 		);
 		CHECK(hr);
 	}
+
+	//Local Position to World position
+	{
+		Matrix S, R, T;
+
+		S._11 = 300.f; //스케일 X 
+		S._22 = 200.f; //스케일 Y
+
+		constexpr float angle = XMConvertToRadians(170.f); //기울기 (각도에서 라디안 값으로)
+		R._11 = cosf(angle);
+		R._12 = sinf(angle);
+		R._21 = -sinf(angle);
+		R._22 = cosf(angle);
+
+		T._41 = 200.f; //월드상 위치값
+		T._42 = 100.f;
+
+		world = S * R * T; //오브젝트의 월드상에 크기, 위치, 기울기 값
+
+		view = XMMatrixLookAtLH(Vector3(0,0,0), Vector3(0, 0, 1), Vector3(0, 1, 0)); //카메라가 바라보는 위치, 방향, 위쪽 방향
+
+		projection = XMMatrixOrthographicLH(gWinWidth, gWinHeight, 0, 1);
+
+		world.Transpose(cpuBuffer.world);
+		view.Transpose(cpuBuffer.view);
+		projection.Transpose(cpuBuffer.projection);
+	}
+
+	// constant buffer 
+	{ 
+		D3D11_BUFFER_DESC desc = { 0 };
+
+		desc.ByteWidth = sizeof(cpuBuffer);
+		desc.Usage = D3D11_USAGE_DYNAMIC;
+		desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+		desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+		
+		D3D11_SUBRESOURCE_DATA subData = { 0 };
+		subData.pSysMem = &cpuBuffer;
+
+		HRESULT hr = DEVICE->CreateBuffer(&desc, &subData, &gpuBuffer);
+		CHECK(hr);
+	}
+
+	//RasterizerState
+	{
+		CD3D11_RASTERIZER_DESC desc(D3D11_DEFAULT);
+
+		desc.FillMode = D3D11_FILL_SOLID; //삼각형의 속을 채울지 여부
+		desc.CullMode = D3D11_CULL_BACK; //어떤면을 자를지 여부
+		desc.FrontCounterClockwise = FALSE; //앞면뒷면 반전
+
+		HRESULT hr = DEVICE->CreateRasterizerState(&desc, &RS);
+		CHECK(hr);
+	}
+
+	//Shader Resourece View
+	{
+		wstring path = L"_Textures/Tree.png";
+
+		ScratchImage image;
+
+		HRESULT hr = LoadFromWICFile(path.c_str(), WIC_FLAGS_NONE, nullptr, image);
+		CHECK(hr);
+
+		hr = CreateShaderResourceView(DEVICE.Get(), image.GetImages(), image.GetImageCount(), image.GetMetadata(), &SRV);
+		CHECK(hr);
+	}
+
+	//Sampler State
+	{
+		CD3D11_SAMPLER_DESC desc(D3D11_DEFAULT);
+
+		desc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR; //픽셀의 색상값을 평균을 내서(보간)출력할건지에 대한 여부
+		desc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP; //만약 이미지의 크기 너머의 uv 색상을 가져오려 할경우
+		desc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;
+		desc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
+		desc.ComparisonFunc = D3D11_COMPARISON_ALWAYS;
+		desc.BorderColor[0] = 1.0f;
+		desc.BorderColor[1] = 1.0f;
+		desc.BorderColor[2] = 1.0f;
+		desc.BorderColor[3] = 1.0f;
+
+		HRESULT hr = DEVICE->CreateSamplerState(&desc, &samplerState);
+		CHECK(hr);
+	}
+
+	//Blend State
+	{
+		CD3D11_BLEND_DESC desc(D3D11_DEFAULT);
+
+		desc.RenderTarget[0].BlendEnable = true;
+		desc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA; //섞을 비율을 픽셀의 alpha값을 따라가도록
+		desc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA; //소스 픽셀 alpha의 반전값으로
+		desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+		desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+
+		HRESULT hr = DEVICE->CreateBlendState(&desc, &blendState);
+		CHECK(hr);
+	}
 }
 
 Program::~Program()
 {
-
+	
 }
 
+float angle = 0.f;
 void Program::Update()
 {
-	
+	float speed = 200.0f * DELTA;
+
+	struct Vector
+	{
+		int x = 0;
+		int y = 0;
+	};
+
+	Vector vector;
+
+	if (INPUT->isDown('W'))
+	{
+		vector.y += 1;
+	}
+	if (INPUT->isDown('S'))
+	{
+		vector.y += -1;
+	}
+	if (INPUT->isDown('A'))
+	{
+		vector.x += -1;
+	}
+	if (INPUT->isDown('D'))
+	{
+		vector.x += 1;
+	}
+
+	if (vector.x * vector.y != 0) //대각으로 이동할때
+	{
+		float normalize = speed / sqrtf(pow(speed, 2) * 2); //정규화
+		cpuBuffer.world._14 += vector.x * normalize * speed;
+		cpuBuffer.world._24 += vector.y * normalize * speed;
+	}
+	else if (vector.y == 1 || vector.y == -1) //위(아래)로 이동할때
+	{
+		cpuBuffer.world._24 += vector.y * speed;
+	}
+	else if (vector.x == 1 || vector.x == -1) //왼(오른)쪽으로 이동할때
+	{
+		//cpuBuffer.world._14 += vector.x * speed;
+		cpuBuffer.world -= XMMatrixTranslation(speed, 0, 0);
+	}
+
+	//회전
+	if (INPUT->isDown('Q'))
+	{
+		cpuBuffer.world *= XMMatrixRotationZ(-0.03f);
+	}
+	if (INPUT->isDown('E'))
+	{
+		cpuBuffer.world *= XMMatrixRotationZ(0.03f);
+	}
+
+	D3D11_MAPPED_SUBRESOURCE mappedSubResource;
+	DEVICECONTEXT->Map
+	(
+		gpuBuffer.Get(),
+		0,
+		D3D11_MAP_WRITE_DISCARD,
+		0,
+		&mappedSubResource
+	);
+	memcpy(mappedSubResource.pData, &cpuBuffer, sizeof(cpuBuffer));
+	DEVICECONTEXT->Unmap(gpuBuffer.Get(), 0);
 }
 
 void Program::Render()
@@ -123,14 +317,28 @@ void Program::Render()
 
 	//IA
 	DEVICECONTEXT->IASetVertexBuffers(0, 1, vertexBuffer.GetAddressOf(), &stride, &offset);
+	DEVICECONTEXT->IASetIndexBuffer(indexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
 	DEVICECONTEXT->IASetInputLayout(inputLayout.Get());
 	DEVICECONTEXT->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+	//cBuffer
+	DEVICECONTEXT->VSSetConstantBuffers(0, 1, gpuBuffer.GetAddressOf());
 
 	//VS
 	DEVICECONTEXT->VSSetShader(vertexShader.Get(), nullptr, 0);
 
+	//RS
+	DEVICECONTEXT->RSSetState(RS.Get());
+
 	//PS
 	DEVICECONTEXT->PSSetShader(pixelShader.Get(), nullptr, 0);
+	DEVICECONTEXT->PSSetShaderResources(0, 1, SRV.GetAddressOf());
+	DEVICECONTEXT->PSSetSamplers(0, 1, samplerState.GetAddressOf());
 
-	DEVICECONTEXT->Draw(UINT(vertices.size()), 0);
+	//OM
+	DEVICECONTEXT->OMSetBlendState(blendState.Get(), nullptr, 0xFFFFFFFF);
+
+
+	//DEVICECONTEXT->Draw(UINT(vertices.size()), 0);
+	DEVICECONTEXT->DrawIndexed(UINT(indices.size()), 0, 0);
 }

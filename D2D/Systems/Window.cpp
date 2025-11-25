@@ -4,6 +4,7 @@
 
 unique_ptr<Program> Window::program = nullptr;
 
+
 Window::Window(const WinDesc& initDesc)
 	: desc(initDesc)
 {

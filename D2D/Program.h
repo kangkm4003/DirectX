@@ -1,9 +1,9 @@
 #pragma once
-
-struct VertexColor
+struct TransformData
 {
-	Vector2 position;
-	Color color;
+	Matrix world;
+	Matrix view;
+	Matrix projection;
 };
 
 class Program
@@ -17,8 +17,11 @@ public:
 	void Render();
 
 private:
-	vector<VertexColor> vertices;
+	vector<TextureData> vertices;
 	ComPtr<ID3D11Buffer> vertexBuffer;
+
+	vector<UINT> indices;
+	ComPtr<ID3D11Buffer> indexBuffer;
 
 	ComPtr<ID3DBlob> vsBlob;
 	ComPtr<ID3D11InputLayout> inputLayout;
@@ -26,4 +29,18 @@ private:
 
 	ComPtr<ID3DBlob> psBlob;
 	ComPtr<ID3D11PixelShader> pixelShader;
+
+	Matrix world;
+	Matrix view;
+	Matrix projection;
+
+	TransformData cpuBuffer;
+	ComPtr<ID3D11Buffer> gpuBuffer;
+
+	ComPtr<ID3D11RasterizerState> RS;
+
+	ComPtr<ID3D11ShaderResourceView> SRV;
+	ComPtr<ID3D11SamplerState> samplerState;
+
+	ComPtr<ID3D11BlendState> blendState;
 };

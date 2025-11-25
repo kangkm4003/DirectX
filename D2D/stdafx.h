@@ -42,6 +42,9 @@ using namespace WRL;
 using namespace DirectX;
 using namespace SimpleMath;
 
+//DirectXTex stuff
+#include <DirectXTex.h>
+
 using namespace std;
 
 
@@ -88,3 +91,6 @@ extern float gWinHeight;
 #define DEVICECONTEXT GRAPHICS->GetDiveceConText()
 
 // Objects 파일 헤더
+// Headers
+#include "Renders/Resources/VertexType.h"
+#include "Renders/IA/VertexBuffer.h"
