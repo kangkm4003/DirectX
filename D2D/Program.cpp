@@ -30,8 +30,8 @@ Program::Program()
 		HRESULT hr = DEVICE->CreateBuffer(&desc, &subData,&vertexBuffer);
 		CHECK(hr);
 	}
-
 	// vsBlob
+
 	{
 		HRESULT hr = D3DCompileFromFile
 		(
