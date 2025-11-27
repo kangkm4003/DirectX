@@ -8,11 +8,6 @@
     <ClCompile Include="Systems\Window.cpp" />
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="Systems\Graphics.cpp" />
-    <ClCompile Include="Renders\IA\VertexBuffer.cpp" />
-    <ClCompile Include="Renders\Resoures\VertexType.cpp" />
-    <ClCompile Include="Renders\IA\indexBuffer.cpp" />
-    <ClCompile Include="Renders\Shaders\VertexShader.cpp" />
-    <ClCompile Include="Renders\Shaders\소스.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -22,10 +17,6 @@
     <ClInclude Include="Program.h" />
     <ClInclude Include="_Libraries\DXToolKit\SimpleMath.h" />
     <ClInclude Include="Systems\Graphics.h" />
-    <ClInclude Include="Renders\IA\VertexBuffer.h" />
-    <ClInclude Include="Renders\Resoures\VertexType.h" />
-    <ClInclude Include="Renders\IA\indexBuffer.h" />
-    <ClInclude Include="Renders\Shaders\VertexShader.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Utilities">

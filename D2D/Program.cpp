@@ -142,24 +142,24 @@ Program::Program()
 		S._11 = 300.f; //스케일 X 
 		S._22 = 200.f; //스케일 Y
 
-		constexpr float angle = XMConvertToRadians(170.f); //기울기 (각도에서 라디안 값으로)
+		constexpr float angle = XMConvertToRadians(0); //기울기 (각도에서 라디안 값으로)
 		R._11 = cosf(angle);
 		R._12 = sinf(angle);
 		R._21 = -sinf(angle);
 		R._22 = cosf(angle);
 
-		T._41 = 200.f; //월드상 위치값
-		T._42 = 100.f;
+		T._41 = 0.f; //월드상 위치값
+		T._42 = 0.f;
 
-		world = S * R * T; //오브젝트의 월드상에 크기, 위치, 기울기 값
+		cS = S;
+		cR = R;
+		cT = T;
 
-		view = XMMatrixLookAtLH(Vector3(0,0,0), Vector3(0, 0, 1), Vector3(0, 1, 0)); //카메라가 바라보는 위치, 방향, 위쪽 방향
+		cpuBuffer.world = S * R * T; //오브젝트의 월드상에 크기, 위치, 기울기 값
 
-		projection = XMMatrixOrthographicLH(gWinWidth, gWinHeight, 0, 1);
+		cpuBuffer.view = XMMatrixLookAtLH(Vector3(0,0,0), Vector3(0, 0, 1), Vector3(0, 1, 0)); //카메라가 바라보는 위치, 방향, 위쪽 방향
 
-		world.Transpose(cpuBuffer.world);
-		view.Transpose(cpuBuffer.view);
-		projection.Transpose(cpuBuffer.projection);
+		cpuBuffer.projection = XMMatrixOrthographicLH(gWinWidth, gWinHeight, 0, 1);
 	}
 
 	// constant buffer 
@@ -241,61 +241,14 @@ Program::~Program()
 	
 }
 
-float angle = 0.f;
 void Program::Update()
 {
-	float speed = 200.0f * DELTA;
+	float moveSpeed = 200.0f * DELTA;
 
-	struct Vector
-	{
-		int x = 0;
-		int y = 0;
-	};
-
-	Vector vector;
-
-	if (INPUT->isDown('W'))
-	{
-		vector.y += 1;
-	}
-	if (INPUT->isDown('S'))
-	{
-		vector.y += -1;
-	}
-	if (INPUT->isDown('A'))
-	{
-		vector.x += -1;
-	}
-	if (INPUT->isDown('D'))
-	{
-		vector.x += 1;
-	}
-
-	if (vector.x * vector.y != 0) //대각으로 이동할때
-	{
-		float normalize = speed / sqrtf(pow(speed, 2) * 2); //정규화
-		cpuBuffer.world._14 += vector.x * normalize * speed;
-		cpuBuffer.world._24 += vector.y * normalize * speed;
-	}
-	else if (vector.y == 1 || vector.y == -1) //위(아래)로 이동할때
-	{
-		cpuBuffer.world._24 += vector.y * speed;
-	}
-	else if (vector.x == 1 || vector.x == -1) //왼(오른)쪽으로 이동할때
-	{
-		//cpuBuffer.world._14 += vector.x * speed;
-		cpuBuffer.world -= XMMatrixTranslation(speed, 0, 0);
-	}
-
-	//회전
-	if (INPUT->isDown('Q'))
-	{
-		cpuBuffer.world *= XMMatrixRotationZ(-0.03f);
-	}
-	if (INPUT->isDown('E'))
-	{
-		cpuBuffer.world *= XMMatrixRotationZ(0.03f);
-	}
+	cS *= XMMatrixScaling(1, 1, 0);
+	cR *= XMMatrixRotationZ(0.f);
+	cT *= XMMatrixTranslation(moveSpeed, moveSpeed, 0);
+	cpuBuffer.world = cS * cR * cT;
 
 	D3D11_MAPPED_SUBRESOURCE mappedSubResource;
 	DEVICECONTEXT->Map

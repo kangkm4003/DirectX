@@ -4,7 +4,7 @@
 
 #pragma once
 
-#ifdef _DEBUG //디버그 빌드 일때 콘솔창 열기
+#ifdef NDEBUG //디버그 빌드 일때 콘솔창 열기
 #pragma comment (linker, "/entry:wWinMainCRTStartup /subsystem:console")
 #endif
 
@@ -89,8 +89,3 @@ extern float gWinHeight;
 #define GRAPHICS Graphics::Get()
 #define DEVICE GRAPHICS->GetDivece()
 #define DEVICECONTEXT GRAPHICS->GetDiveceConText()
-
-// Objects 파일 헤더
-// Headers
-#include "Renders/Resources/VertexType.h"
-#include "Renders/IA/VertexBuffer.h"

@@ -133,10 +133,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Renders\IA\VertexBuffer.h" />
-    <ClInclude Include="Renders\IA\indexBuffer.h" />
-    <ClInclude Include="Renders\Resoures\VertexType.h" />
-    <ClInclude Include="Renders\Shaders\VertexShader.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Systems\Window.h" />
     <ClInclude Include="Systems\Input.h" />
@@ -147,11 +143,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Renders\IA\indexBuffer.cpp" />
-    <ClCompile Include="Renders\IA\VertexBuffer.cpp" />
-    <ClCompile Include="Renders\Resoures\VertexType.cpp" />
-    <ClCompile Include="Renders\Shaders\VertexShader.cpp" />
-    <ClCompile Include="Renders\Shaders\소스.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">./;../;</AdditionalIncludeDirectories>
