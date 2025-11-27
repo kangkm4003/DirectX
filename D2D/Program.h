@@ -34,6 +34,12 @@ struct TransformData
 	Matrix projection;
 };
 
+struct moveVector
+{
+	int x = 1;
+	int y = 1;
+};
+
 class Program
 {
 public:
@@ -45,7 +51,7 @@ public:
 	void Render();
 
 private:
-
+	moveVector moveVector;
 	vector<TextureData> vertices;
 	ComPtr<ID3D11Buffer> vertexBuffer;
 

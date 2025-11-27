@@ -2,14 +2,14 @@ Package: vcpkg-cmake-config
 Version: 2024-05-23
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 0713026f4facd43f5aa220d87f8416feef17faf0b864183c87ba496a9c4de393
+Abi: f536d4605c73c466b9c52c4405f17f6a4fb5ff2de8ea1afa7afa3e5b68e7aab7
 Status: install ok installed
 
 Package: vcpkg-cmake
 Version: 2024-04-23
 Architecture: x64-windows
 Multi-Arch: same
-Abi: a9b7dddceee6203bc615ecdc4134c6a9af3bb4588a46b60f0cd8284d72652a6f
+Abi: 7aed8e75122d71266def79b8c5939b31af4084053dc908e661a56dd8d21dd5ac
 Status: install ok installed
 
 Package: directxmath
@@ -17,7 +17,7 @@ Version: 2025-04-03
 Depends: vcpkg-cmake, vcpkg-cmake-config
 Architecture: x64-windows
 Multi-Arch: same
-Abi: e5187b22b40f3d3c44b1d5653a92dddb0962bf77a9c6b6c2aa0b546c5ea50d7f
+Abi: 72c79a7eb9deff08485a1d5b322067380e4e65653a2b02aa15fe37fcd58b8c2d
 Description: DirectXMath SIMD C++ math library
 Status: install ok installed
 
@@ -26,7 +26,7 @@ Version: 2025-10-27
 Depends: directxmath, vcpkg-cmake, vcpkg-cmake-config
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 41ef4123796807702f4946328292a0e961fe2674933c271d1096425d8585a989
+Abi: a04ea97f77f25fc2a6d10d35faab4d805bb97ab4aec6b549a1e0aef4a2050f8b
 Description: DirectXTex texture processing library
 Default-Features: dx11
 Status: install ok installed
@@ -43,7 +43,7 @@ Version: 2025-10-27
 Depends: directxmath, vcpkg-cmake, vcpkg-cmake-config
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 3dc3f347977d9f39f69688e186b5c390df2acc762e49d6a6ba9c0bc3cd84a51b
+Abi: 007d580883908cbdab2c34cc06d4ecb230478c960626788f0b26aa0a9346c001
 Description: A collection of helper classes for writing DirectX 11.x code in C++.
 Status: install ok installed
 

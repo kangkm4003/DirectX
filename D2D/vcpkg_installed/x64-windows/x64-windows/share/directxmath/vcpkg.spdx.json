@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/directxmath-x64-windows-2025-04-03-e93cbe34-3f1c-4ff1-83f2-068f42d0320a",
-  "name": "directxmath:x64-windows@2025-04-03 e5187b22b40f3d3c44b1d5653a92dddb0962bf77a9c6b6c2aa0b546c5ea50d7f",
+  "documentNamespace": "https://spdx.org/spdxdocs/directxmath-x64-windows-2025-04-03-ae990d0d-43bb-4b6e-9571-7ad696bbb203",
+  "name": "directxmath:x64-windows@2025-04-03 72c79a7eb9deff08485a1d5b322067380e4e65653a2b02aa15fe37fcd58b8c2d",
   "creationInfo": {
     "creators": [
-      "Tool: vcpkg-2025-10-16-71538f2694db93da4668782d094768ba74c45991"
+      "Tool: vcpkg-2025-11-19-da1f056dc0775ac651bea7e3fbbf4066146a55f3"
     ],
-    "created": "2025-11-12T10:05:36Z"
+    "created": "2025-11-27T06:16:29Z"
   },
   "relationships": [
     {
@@ -159,7 +159,7 @@
     {
       "name": "directxmath:x64-windows",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "e5187b22b40f3d3c44b1d5653a92dddb0962bf77a9c6b6c2aa0b546c5ea50d7f",
+      "versionInfo": "72c79a7eb9deff08485a1d5b322067380e4e65653a2b02aa15fe37fcd58b8c2d",
       "downloadLocation": "NONE",
       "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",

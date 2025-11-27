@@ -246,8 +246,13 @@ void Program::Update()
 	float moveSpeed = 200.0f * DELTA;
 
 	cS *= XMMatrixScaling(1, 1, 0);
-	cR *= XMMatrixRotationZ(0.f);
-	cT *= XMMatrixTranslation(moveSpeed, moveSpeed, 0);
+	cR *= XMMatrixRotationZ(0.03f);
+	if (cT._41 >= WIN_DEFAULT_WIDTH / 2 || cT._41 <= -WIN_DEFAULT_WIDTH / 2)
+		moveVector.x = moveVector.x * -1;
+	if (cT._42 >= WIN_DEFAULT_HEIGHT / 2 || cT._42 <= -WIN_DEFAULT_HEIGHT / 2)
+		moveVector.y = moveVector.y * -1;
+
+	cT *= XMMatrixTranslation(moveSpeed * moveVector.x, moveSpeed * moveVector.y, 0);
 	cpuBuffer.world = cS * cR * cT;
 
 	D3D11_MAPPED_SUBRESOURCE mappedSubResource;
