@@ -1,29 +1,20 @@
 #pragma once
 
-struct VertexColor
-{
-	Vector2 position;
-	Color color;
-};
-
 class Program
 {
 public:
 	Program();
 	~Program();
 
+	void SetGlobalBuffers();
 
 	void Update();
 	void Render();
 
 private:
-	vector<VertexColor> vertices;
-	ComPtr<ID3D11Buffer> vertexBuffer;
+	unique_ptr<ViewProjectionBuffer> VPBuffer;
 
-	ComPtr<ID3DBlob> vsBlob;
-	ComPtr<ID3D11InputLayout> inputLayout;
-	ComPtr<ID3D11VertexShader> vertexShader;
+	Matrix view, projection;
 
-	ComPtr<ID3DBlob> psBlob;
-	ComPtr<ID3D11PixelShader> pixelShader;
+	unique_ptr<ColorRect> rect;
 };

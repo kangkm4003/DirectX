@@ -87,4 +87,15 @@ extern float gWinHeight;
 #define DEVICE GRAPHICS->GetDivece()
 #define DEVICECONTEXT GRAPHICS->GetDiveceConText()
 
-// Objects 파일 헤더
+// Headers
+#include "Renders/Resources/VertexType.h"
+#include "Renders/IA/VertexBuffer.h"
+#include "Renders/IA/IndexBuffer.h"
+#include "Renders/Shaders/Shader.h"
+#include "Renders/Shaders/VertexShader.h"
+#include "Renders/IA/InputLayout.h"
+#include "Renders/Resources/ConstantBuffer.h"
+#include "Renders/Resources/GlobalBuffers.h"
+
+// Objects
+#include "Objects/ColorRect.h"

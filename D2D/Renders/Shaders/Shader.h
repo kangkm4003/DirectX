@@ -12,10 +12,10 @@ public:
 protected:
 	void CompileShader(const wstring& path, const string& entryName, const string& profile, ID3DBlob** blob);
 
+private:
+	void CheckShaderError(HRESULT hr, const ComPtr<ID3DBlob>& error);
+
+protected:
 	wstring path = L"";
 	string entryName = "";
-
-
-private:
-	void CheckShaderError(HRESULT hr, ComPtr<ID3DBlob> error);
 };

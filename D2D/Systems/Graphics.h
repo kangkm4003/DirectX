@@ -11,8 +11,8 @@ public:
 	void Begin();
 	void End();
 
-	ComPtr<ID3D11Device> GetDivece() const { return device; }
-	ComPtr<ID3D11DeviceContext> GetDiveceConText() const { return deviceContext; }
+	ID3D11Device* GetDivece() const { return device.Get(); }
+	ID3D11DeviceContext* GetDiveceConText() const { return deviceContext.Get(); }
 
 private:
 	ComPtr<ID3D11Device> device; //작성하지 않아도 기본적으로  nullptr로 정의된다.

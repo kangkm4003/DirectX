@@ -16,9 +16,19 @@ void Shader::CompileShader(const wstring& path, const string& entryName, const s
 		blob,
 		&error
 	);
+	CheckShaderError(hr, error);
 }
 
-void Shader::CheckShaderError(HRESULT hr, ComPtr<ID3DBlob> error)
+void Shader::CheckShaderError(HRESULT hr, const ComPtr<ID3DBlob>& error)
 {
+	if (FAILED(hr))
+	{
+		if (error.Get())
+		{
+			const string& str = (const char*)error->GetBufferPointer();
+			MessageBoxA(nullptr, str.c_str(), "Shader Compile Error", MB_OK);
+		}
 
+		assert(false);
+	}
 }
