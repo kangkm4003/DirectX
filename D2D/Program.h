@@ -16,5 +16,7 @@ private:
 
 	Matrix view, projection;
 
+	ConstantBuffers< ViewProjectionBuffer> constanBuffer;
+
 	unique_ptr<ColorRect> rect;
 };

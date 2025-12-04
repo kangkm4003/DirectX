@@ -36,5 +36,5 @@ void IndexBuffer::Create(const vector<UINT>& indicies, D3D11_USAGE usage)
 
 void IndexBuffer::SetIA()
 {
-	DC->IASetIndexBuffer(buffer.Get(), DXGI_FORMAT_R32_UINT, 0);
+	DEVICECONTEXT->IASetIndexBuffer(buffer.Get(), DXGI_FORMAT_R32_UINT, 0);
 }

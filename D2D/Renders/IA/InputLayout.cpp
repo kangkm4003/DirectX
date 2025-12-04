@@ -7,7 +7,7 @@ void InputLayout::Create(const vector<D3D11_INPUT_ELEMENT_DESC>& descs, const Co
 
 	HRESULT hr = DEVICE->CreateInputLayout
 	(
-		descs..data(),
+		descs.data(),
 		UINT(descs.size()),
 		blob->GetBufferPointer(),
 		blob->GetBufferSize(),

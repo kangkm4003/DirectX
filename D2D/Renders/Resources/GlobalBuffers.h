@@ -1,13 +1,13 @@
 #pragma once
 
-#include "ConstantBuffer.h"
+#include "ConstantBuffers.h"
 
 struct WorldData
 {
 	Matrix world;
 };
 
-class WorldBuffer : public ConstantBuffer<WorldData>
+class WorldBuffer : public ConstantBuffers<WorldData>
 {
 public:
 	void SetWorld(const Matrix& matrix)
@@ -31,7 +31,7 @@ struct VPData
 	Matrix projection;
 };
 
-class ViewProjectionBuffer : public ConstantBuffer<VPData>
+class ViewProjectionBuffer : public ConstantBuffers<VPData>
 {
 public:
 	void SetView(const Matrix& view)
@@ -50,4 +50,5 @@ public:
 		SetVS(slot);
 	}
 private:
+	VPData data;
 };

@@ -6,7 +6,7 @@ template <typename T>
 class ConstantBuffers
 {
 public:
-	ConstantBuffer()
+	ConstantBuffers()
 	{
 		D3D11_BUFFER_DESC desc{};
 		desc.ByteWidth = sizeof(T);
@@ -17,8 +17,6 @@ public:
 		HRESULT hr = DEVICE->CreateBuffer(&desc, nullptr, &buffer);
 		CHECK(hr);
 	}
-
-	~ConstantBuffer() = default;
 
 	void Update(const T& data)
 	{
@@ -33,12 +31,12 @@ public:
 
 	void SetVS(UINT slot)
 	{
-		DC->VSSetConstantBuffers(slot, 1, buffer.GetAddressOf());
+		DEVICECONTEXT->VSSetConstantBuffers(slot, 1, buffer.GetAddressOf());
 	}
 
 	void SetPS(UINT slot)
 	{
-		DC->PSSetConstantBuffers(slot, 1, buffer.GetAddressOf());
+		DEVICECONTEXT->PSSetConstantBuffers(slot, 1, buffer.GetAddressOf());
 	}
 
 private:

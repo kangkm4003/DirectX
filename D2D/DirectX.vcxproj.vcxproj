@@ -130,11 +130,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Objects\ColorRect.h" />
     <ClInclude Include="Renders\IA\IndexBuffer.h" />
     <ClInclude Include="Renders\IA\InputLayout.h" />
     <ClInclude Include="Renders\IA\VertexBuffer.h" />
     <ClInclude Include="Renders\Resources\VertexType.h" />
-    <ClInclude Include="Renders\Resources\constantBuffer.h" />
+    <ClInclude Include="Renders\Resources\ConstantBuffers.h" />
+    <ClInclude Include="Renders\Resources\GlobalBuffers.h" />
     <ClInclude Include="Renders\Shaders\Shader.h" />
     <ClInclude Include="Renders\Shaders\VertexShader.h" />
     <ClInclude Include="Renders\Shaders\PixelShader.h" />
@@ -148,11 +150,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Objects\ColorRect.cpp" />
     <ClCompile Include="Renders\IA\IndexBuffer.cpp" />
     <ClCompile Include="Renders\IA\InputLayout.cpp" />
     <ClCompile Include="Renders\IA\VertexBuffer.cpp" />
     <ClCompile Include="Renders\Resources\VertexType.cpp" />
-    <ClCompile Include="Renders\Resources\constantBuffer.cpp" />
     <ClCompile Include="Renders\Shaders\Shader.cpp" />
     <ClCompile Include="Renders\Shaders\VertexShader.cpp" />
     <ClCompile Include="Renders\Shaders\PixelShader.cpp" />
