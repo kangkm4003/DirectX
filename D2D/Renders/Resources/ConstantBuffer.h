@@ -3,10 +3,10 @@
 #include "stdafx.h"
 
 template <typename T>
-class ConstantBuffers
+class ConstantBuffer
 {
 public:
-	ConstantBuffers()
+	ConstantBuffer()
 	{
 		D3D11_BUFFER_DESC desc{};
 		desc.ByteWidth = sizeof(T);

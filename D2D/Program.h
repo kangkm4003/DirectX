@@ -12,11 +12,7 @@ public:
 	void Render();
 
 private:
-	unique_ptr<ViewProjectionBuffer> VPBuffer;
+	ViewProjectionBuffer VPBuffer;
 
-	Matrix view, projection;
-
-	ConstantBuffers< ViewProjectionBuffer> constanBuffer;
-
-	unique_ptr<ColorRect> rect;
+	ColorRect rect;
 };

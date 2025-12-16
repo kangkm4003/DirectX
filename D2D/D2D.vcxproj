@@ -24,7 +24,7 @@
     <ProjectGuid>{4654F949-ED84-4E15-B1ED-26E6F58D6E16}</ProjectGuid>
     <RootNamespace>WindowsProject1</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>DirectX</ProjectName>
+    <ProjectName>D2D</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -134,11 +134,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Objects\ColorRect.h" />
+    <ClInclude Include="Objects\Rect.h" />
     <ClInclude Include="Renders\IA\IndexBuffer.h" />
     <ClInclude Include="Renders\IA\InputLayout.h" />
     <ClInclude Include="Renders\IA\VertexBuffer.h" />
     <ClInclude Include="Renders\Resources\VertexType.h" />
-    <ClInclude Include="Renders\Resources\ConstantBuffers.h" />
+    <ClInclude Include="Renders\Resources\ConstantBuffer.h" />
     <ClInclude Include="Renders\Resources\GlobalBuffers.h" />
     <ClInclude Include="Renders\Shaders\Shader.h" />
     <ClInclude Include="Renders\Shaders\VertexShader.h" />
@@ -149,11 +150,11 @@
     <ClInclude Include="Systems\Time.h" />
     <ClInclude Include="Program.h" />
     <ClInclude Include="Systems\Graphics.h" />
-    <ClInclude Include="_Libraries\DXToolKit\SimpleMath.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Objects\ColorRect.cpp" />
+    <ClCompile Include="Objects\Rect.cpp" />
     <ClCompile Include="Renders\IA\IndexBuffer.cpp" />
     <ClCompile Include="Renders\IA\InputLayout.cpp" />
     <ClCompile Include="Renders\IA\VertexBuffer.cpp" />
@@ -174,10 +175,6 @@
     </ClCompile>
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="Systems\Graphics.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="vcpkg.json" />
-    <None Include="_Libraries\DXToolKit\SimpleMath.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -68,12 +68,16 @@ static CLASS_NAME* Get()									\
 	return &instance;										\
 }
 
+
+
+
 //GROBAL var
 extern HWND gHandle;
 extern float gWinWidth;
 extern float gWinHeight;
 
 // Utilities 파일 헤더
+#include "DirectXTex.h"
 
 // Systems 파일 헤더
 #include "Systems/Input.h"
@@ -95,7 +99,7 @@ extern float gWinHeight;
 #include "Renders/Shaders/VertexShader.h"
 #include "Renders/Shaders/PixelShader.h"
 #include "Renders/IA/InputLayout.h"
-#include "Renders/Resources/ConstantBuffers.h"
+#include "Renders/Resources/ConstantBuffer.h"
 #include "Renders/Resources/GlobalBuffers.h"
 
 // Objects

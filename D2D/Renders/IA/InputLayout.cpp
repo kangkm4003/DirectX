@@ -18,5 +18,5 @@ void InputLayout::Create(const vector<D3D11_INPUT_ELEMENT_DESC>& descs, const Co
 
 void InputLayout::SetIA()
 {
-
+	DEVICECONTEXT->IASetInputLayout(inputLayout.Get());
 }

@@ -1,21 +1,25 @@
 struct VertexInput
 {
     float4 position : POSITION0;
-    float2 uv : TEXCORD0;
+    float2 uv : TEXCOORD0;
 };
 
 struct PixelInput
 {
     float4 position : SV_POSITION0;
-    float2 uv : TEXCORD0;
+    float2 uv : TEXCOORD0;
 };
 
-cbuffer TransformBuffer : register(b0)
+cbuffer WorldBuffer : register(b0)
 {
-    row_major matrix _world;
-    row_major matrix _view;
-    row_major matrix _projection;
-};
+	matrix _world;
+}
+
+cbuffer ViewPorjBuffer : register(b1)
+{
+	matrix _view;
+	matrix _proj;
+}
 
 PixelInput VS(VertexInput input)
 {
@@ -23,7 +27,7 @@ PixelInput VS(VertexInput input)
 	
     output.position = mul(input.position, _world);
     output.position = mul(output.position, _view);
-    output.position = mul(output.position, _projection);
+    output.position = mul(output.position, _proj);
     output.uv = input.uv;
 	
     return output;

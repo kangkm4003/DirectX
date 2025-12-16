@@ -25,3 +25,21 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     return int(wParam);
 }
+
+class Parents
+{
+public:
+};
+
+class Child : public Parents
+{
+public:
+};
+
+void function()
+{
+    //Child* pChild = (Child*)new Parents();
+
+    Child* pChild = new Child;
+    Parents* pParent = (Parents*)new Child;
+}
