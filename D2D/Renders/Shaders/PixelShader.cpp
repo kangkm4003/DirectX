@@ -24,5 +24,5 @@ void PixelShader::Clear()
 
 void PixelShader::SetShader()
 {
-	DEVICECONTEXT->PSSetShader(shader.Get(), nullptr, 0);
+	DC->PSSetShader(shader.Get(), nullptr, 0);
 }

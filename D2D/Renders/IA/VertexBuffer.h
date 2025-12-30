@@ -8,6 +8,8 @@ public:
 
 	void SetIA();
 
+	UINT GetCount() const { return count; }
+	
 private:
 	ComPtr<ID3D11Buffer> buffer;
 	UINT stride = 0;

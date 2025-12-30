@@ -5,7 +5,7 @@ void VertexShader::Create(const wstring& path, const string& entryName)
 {
 	this->path = path;
 	this->entryName = entryName;
-
+	
 	CompileShader(this->path, this->entryName, "vs_5_0", &blob);
 	HRESULT hr = DEVICE->CreateVertexShader(
 		blob->GetBufferPointer(),
@@ -24,5 +24,5 @@ void VertexShader::Clear()
 
 void VertexShader::SetShader()
 {
-	DEVICECONTEXT->VSSetShader(shader.Get(), nullptr, 0);
+	DC->VSSetShader(shader.Get(), nullptr, 0);
 }

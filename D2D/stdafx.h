@@ -4,15 +4,16 @@
 
 #pragma once
 
-#ifdef _DEBUG //디버그 빌드 일때 콘솔창 열기
+#ifdef _DEBUG
 #pragma comment (linker, "/entry:wWinMainCRTStartup /subsystem:console")
 #endif
 
-
+#include "targetver.h"
 #define WIN32_LEAN_AND_MEAN             // 거의 사용되지 않는 내용을 Windows 헤더에서 제외합니다.
 // Windows 헤더 파일
 #include <windows.h>
 #include <windowsx.h>
+
 // C 런타임 헤더 파일입니다.
 #include <cassert>
 
@@ -23,9 +24,9 @@
 #include <chrono>
 #include <iostream>
 #include <vector>
+#include <unordered_map>
 
-
-//DirectX D3D11
+// DirectX D3D11
 #include <d3d11.h>
 #include <d3dcompiler.h>
 #pragma comment (lib, "dxgi.lib")
@@ -34,52 +35,64 @@
 
 // WRL
 #include <wrl.h>
-using namespace Microsoft;
-using namespace WRL;
+using Microsoft::WRL::ComPtr;
 
-//DirectXToolKit stuff
-#include "_Libraries/DXToolKit/SimpleMath.h"
+// DirectXTK
+#include "_Libraries/DirectXTK/SimpleMath.h"
 using namespace DirectX;
 using namespace SimpleMath;
 
+// DirectXTex
+#include <DirectXTex.h>
+
 using namespace std;
 
-
-//define
+// Macros
 #define WIN_DEFAULT_WIDTH 1280.0f
 #define WIN_DEFAULT_HEIGHT 720.0f
+
 #define CHECK(hr) { assert(SUCCEEDED(hr)); }
 
-#define CENTER Vec2(WIN_DEFAULT_WIDTH / 2, WIN_DEFAULT_HEIGHT / 2)
+#define CENTER (Vector2(WIN_DEFAULT_WIDTH * 0.5f, WIN_DEFAULT_HEIGHT * 0.5f))
+#define CENTER_X (WIN_DEFAULT_WIDTH * 0.5f)
+#define CENTER_Y (WIN_DEFAULT_HEIGHT * 0.5f)
 
-#define DECLEAR_SINGLETON(CLASS_NAME) 						\
-private:	/*인수로 넣은 클래스의 생성자와 소멸자를 private로 지정하여 외부에서 객체생성을 막는다*/\
+#define SUPER __super
+
+#define DECLARE_SINGLETON(CLASS_NAME)						\
+private:													\
 CLASS_NAME();												\
 ~CLASS_NAME();												\
 public:														\
-CLASS_NAME(const CLASS_NAME& other) = delete;	/*복사 생성 막기*/\
+CLASS_NAME(const CLASS_NAME& other) = delete;				\
 CLASS_NAME& operator=(const CLASS_NAME& other) = delete;	\
 CLASS_NAME(const CLASS_NAME&& other) = delete;				\
 CLASS_NAME& operator=(const CLASS_NAME&& other) = delete;	\
-															\
+public:														\
 static CLASS_NAME* Get()									\
 {															\
 	static CLASS_NAME instance;								\
 	return &instance;										\
 }
 
-
-
-
-//GROBAL var
+// ExternGlobals
 extern HWND gHandle;
 extern float gWinWidth;
 extern float gWinHeight;
 
-// Utilities 파일 헤더
-#include "DirectXTex.h"
+// ColorMacros
+#define RED Color(1, 0, 0, 1)
+#define GREEN Color(0, 1, 0, 1)
+#define BLUE Color(0, 0, 1, 1)
+#define YELLOW Color(1, 1, 0, 1)
+#define MAGENTA Color(1, 0, 1, 1)
+#define CYAN Color(0, 1, 1, 1)
+#define WHITE Color(1, 1, 1, 1)
+#define BLACK Color(0, 0, 0, 1)
 
-// Systems 파일 헤더
+// Utilities
+
+// Systems
 #include "Systems/Input.h"
 #include "Systems/Time.h"
 #include "Systems/Graphics.h"
@@ -88,8 +101,8 @@ extern float gWinHeight;
 #define TIME Time::Get()
 #define DELTA TIME->GetDeltaTime()
 #define GRAPHICS Graphics::Get()
-#define DEVICE GRAPHICS->GetDivece()
-#define DEVICECONTEXT GRAPHICS->GetDiveceConText()
+#define DEVICE GRAPHICS->GetDevice()
+#define DC GRAPHICS->GetDC()
 
 // Headers
 #include "Renders/Resources/VertexType.h"
@@ -97,10 +110,7 @@ extern float gWinHeight;
 #include "Renders/IA/IndexBuffer.h"
 #include "Renders/Shaders/Shader.h"
 #include "Renders/Shaders/VertexShader.h"
-#include "Renders/Shaders/PixelShader.h"
 #include "Renders/IA/InputLayout.h"
+#include "Renders/Shaders/PixelShader.h"
 #include "Renders/Resources/ConstantBuffer.h"
 #include "Renders/Resources/GlobalBuffers.h"
-
-// Objects
-#include "Objects/ColorRect.h"

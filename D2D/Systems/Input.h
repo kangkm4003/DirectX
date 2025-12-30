@@ -4,35 +4,36 @@
 
 class Input
 {
-	DECLEAR_SINGLETON(Input)
+	DECLARE_SINGLETON(Input)
 
 	enum
 	{
-		NONE,
-		DOWN,
-		UP,
-		PRESS
+		KEY_INPUT_STATUS_NONE = 0,
+		KEY_INPUT_STATUS_DOWN,
+		KEY_INPUT_STATUS_UP,
+		KEY_INPUT_STATUS_PRESS,
 	};
 
 public:
 	void Update();
 
-	void InputProc(UINT msg, LPARAM lParam);
+	void InputProc(UINT message, LPARAM lParam);
 
-	bool isDown(DWORD key) const { return keyCurState[key] == DOWN; }
-	bool isUp(DWORD key) const { return keyCurState[key] == UP; }
-	bool isPress(DWORD key) const { return keyCurState[key] == PRESS; }
+public:
+	bool Down(DWORD key) const { return keyMap[key] == KEY_INPUT_STATUS_DOWN; }
+	bool Up(DWORD key) const { return keyMap[key] == KEY_INPUT_STATUS_UP; }
+	bool Press(DWORD key) const { return keyMap[key] == KEY_INPUT_STATUS_PRESS; }
 
 	Vector2 GetMousePos() const { return mousePos; }
-
-	bool IsDoubleClk() const { return isDoubleClk; }
+	
+	bool IsDblClk() const { return isDblClk; }
 
 private:
 	array<unsigned char, MAX_INPUT_KEY> keyState = { 0 };
-	array<unsigned char, MAX_INPUT_KEY> keyPrevState = { 0 };
-	array<unsigned char, MAX_INPUT_KEY> keyCurState = { 0 };
-	
-	Vector2 mousePos;
+	array<unsigned char, MAX_INPUT_KEY> keyOldState = { 0 };
+	array<unsigned char, MAX_INPUT_KEY> keyMap = { 0 };
 
-	bool isDoubleClk = false;
+	Vector2 mousePos;
+	
+	bool isDblClk = false;
 };

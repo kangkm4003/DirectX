@@ -3,24 +3,27 @@
 class ColorRect
 {
 public:
-	void Create();
+	ColorRect(Vector2 position, Vector2 scale, float rotation, Color color = RED);
+
 	void Update();
 	void Render();
 
-	WorldBuffer worldBuffer;
 private:
-	vector<VertexTexture> vertices;
-	VertexBuffer vertexBuffer;
+	unique_ptr<VertexBuffer> VB;
 
-	vector<UINT> indices;
-	IndexBuffer indexBuffer;
+	unique_ptr<IndexBuffer> IB;
 
-	InputLayout inputLayout;
-	VertexShader vertexShader;
-	PixelShader pixelShader;
-	
-	ComPtr<ID3D11RasterizerState> RS;
-	ComPtr<ID3D11ShaderResourceView> SRV;
-	ComPtr<ID3D11SamplerState> samplerState;
-	ComPtr<ID3D11BlendState> blendState;
+	unique_ptr<VertexShader> VS;
+
+	unique_ptr<InputLayout> IL;
+
+	unique_ptr<PixelShader> PS;
+
+	Vector2 position, scale;
+	float rotation = 0.0f;
+
+	Matrix world;
+	unique_ptr<WorldBuffer> WB;
+
+	Color color;
 };

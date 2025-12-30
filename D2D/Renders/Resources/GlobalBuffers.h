@@ -14,15 +14,6 @@ public:
 	{
 		data.world = XMMatrixTranspose(matrix);
 	}
-
-	void SetVSBuffer(UINT slot)
-	{
-		Update(data);
-		SetVS(slot);
-	}
-
-private:
-	WorldData data;
 };
 
 struct VPData
@@ -43,12 +34,4 @@ public:
 	{
 		data.projection = XMMatrixTranspose(projection);
 	}
-
-	void SetVSBuffer(UINT slot)
-	{
-		Update(data);
-		SetVS(slot);
-	}
-private:
-	VPData data;
 };

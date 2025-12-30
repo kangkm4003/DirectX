@@ -17,12 +17,10 @@ public:
 
 	ATOM MyRegisterClass(const WinDesc& initDesc);
 	WPARAM Run();
-
 private:
-	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM IParas);
+	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 	WinDesc desc;
 
 	static unique_ptr<class Program> program;
 };
-

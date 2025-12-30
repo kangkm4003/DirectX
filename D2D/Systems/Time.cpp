@@ -3,30 +3,32 @@
 
 Time::Time()
 {
-	curTime = chrono::steady_clock::now();
-	prevTime = curTime;
+	currentTime = chrono::steady_clock::now();
+	lastTime = currentTime;
 }
 
-Time::~Time()
-{
-
-}
+Time::~Time() {}
 
 void Time::Update()
 {
-	prevTime = curTime;
-	curTime = chrono::steady_clock::now();
+	lastTime = currentTime;
 
-	chrono::duration<double> delta = curTime - prevTime;
-	elapsed = delta.count();
+	currentTime = chrono::steady_clock::now();
 
-	frameCount++;
-	fpsElapsed += elapsed;
-	if (fpsElapsed >= 1)
+	chrono::duration<double> delta = currentTime - lastTime;
+	deltaTime = delta.count();
+
+	worldTime += deltaTime;
+
+	fpsTimeElapsed += deltaTime;
+	++frameCount;
+
+	if (fpsTimeElapsed >= 1.0)
 	{
 		fps = frameCount;
 		frameCount = 0;
-		fpsElapsed = 0;
+		fpsTimeElapsed = 0.0;
+
 		CheckTime();
 	}
 }

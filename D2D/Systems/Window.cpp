@@ -46,16 +46,17 @@ Window::Window(const WinDesc& initDesc)
         winHeight,
         true
     );
+
     ShowWindow(desc.handle, SW_SHOWNORMAL); //윈도우 창의 보여지는 방식 지정
     UpdateWindow(desc.handle);
 
-    ShowCursor(true);
+	ShowCursor(true);
 }
 
 Window::~Window()
 {
-    DestroyWindow(desc.handle);
-    UnregisterClassW(desc.appName.c_str(), desc.instance);
+	DestroyWindow(desc.handle);
+	UnregisterClassW(desc.appName.c_str(), desc.instance);
 }
 
 ATOM Window::MyRegisterClass(const WinDesc& initDesc)
@@ -80,50 +81,50 @@ ATOM Window::MyRegisterClass(const WinDesc& initDesc)
 
 WPARAM Window::Run()
 {
+	program = make_unique<Program>();
+
     MSG msg;
-    program = make_unique<Program>();
-
+	
     // 기본 메시지 루프입니다:
-    while (true)
-    {
-        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
-        {
-            if (msg.message == WM_QUIT)
-                break;
+	while (true)
+	{
+		if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
+		{
+			if (msg.message == WM_QUIT)
+				break;
 
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
-        }
-        else
-        {
-            program->Update();
-            INPUT->Update();
-            TIME->Update();
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
+		else
+		{
+			INPUT->Update();
+			TIME->Update();
 
-            GRAPHICS->Begin();
-            {
-                program->Render();
-            }
-            GRAPHICS->End();
-        }
-    }
+			program->Update();
+
+			GRAPHICS->Begin();
+			{
+				program->Render();
+			}
+			GRAPHICS->End();
+		}
+	}
+
 	return msg.wParam;
 }
 
 LRESULT Window::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    INPUT->InputProc(message, lParam);
+	INPUT->InputProc(message, lParam);
 
-    switch (message)
-    {
-    case WM_CLOSE:
-        if (MessageBox(hWnd, L"test text", L"WinAPI", MB_OKCANCEL) == IDOK)
-        {
-            PostQuitMessage(0);
-            return 0;
-        }
-        else return 0;
-    }
-    return DefWindowProc(hWnd, message, wParam, lParam);
+	switch (message)
+	{
+	case WM_CLOSE:
+		PostQuitMessage(0);
+
+		return 0;
+	}
+
+	return DefWindowProc(hWnd, message, wParam, lParam);
 }
-

@@ -5,8 +5,7 @@ void InputLayout::Create(const vector<D3D11_INPUT_ELEMENT_DESC>& descs, const Co
 {
 	assert(!descs.empty() && blob.Get());
 
-	HRESULT hr = DEVICE->CreateInputLayout
-	(
+	HRESULT hr = DEVICE->CreateInputLayout(
 		descs.data(),
 		UINT(descs.size()),
 		blob->GetBufferPointer(),
@@ -18,5 +17,5 @@ void InputLayout::Create(const vector<D3D11_INPUT_ELEMENT_DESC>& descs, const Co
 
 void InputLayout::SetIA()
 {
-	DEVICECONTEXT->IASetInputLayout(inputLayout.Get());
+	DC->IASetInputLayout(inputLayout.Get());
 }

@@ -1,10 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClInclude Include="targetver.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="Systems\Graphics.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
     <ClInclude Include="Systems\Window.h">
       <Filter>Systems</Filter>
     </ClInclude>
@@ -15,47 +13,55 @@
     <ClInclude Include="Systems\Time.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="Systems\Graphics.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
     <ClInclude Include="Renders\Resources\VertexType.h">
       <Filter>Renders\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="Renders\Shaders\PixelShader.h">
-      <Filter>Renders\Shaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Renders\Shaders\VertexShader.h">
-      <Filter>Renders\Shaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Renders\IA\IndexBuffer.h">
-      <Filter>Renders\IA</Filter>
-    </ClInclude>
-    <ClInclude Include="Renders\IA\InputLayout.h">
-      <Filter>Renders\IA</Filter>
     </ClInclude>
     <ClInclude Include="Renders\IA\VertexBuffer.h">
       <Filter>Renders\IA</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\ColorRect.h">
-      <Filter>Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Renders\Resources\GlobalBuffers.h">
-      <Filter>Renders\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="Renders\Resources\ConstantBuffer.h">
-      <Filter>Renders\Resources</Filter>
+    <ClInclude Include="Renders\IA\IndexBuffer.h">
+      <Filter>Renders\IA</Filter>
     </ClInclude>
     <ClInclude Include="Renders\Shaders\Shader.h">
       <Filter>Renders\Shaders</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Rect.h" />
+    <ClInclude Include="Renders\Shaders\PixelShader.h">
+      <Filter>Renders\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\IA\InputLayout.h">
+      <Filter>Renders\IA</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\Shaders\VertexShader.h">
+      <Filter>Renders\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\Resources\ConstantBuffer.h">
+      <Filter>Renders\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\Resources\GlobalBuffers.h">
+      <Filter>Renders\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\ColorRect.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Object.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Component.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Drawable.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Systems\Graphics.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
     <ClCompile Include="Systems\Window.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
-    <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="Systems\Input.cpp">
       <Filter>Systems</Filter>
@@ -63,59 +69,64 @@
     <ClCompile Include="Systems\Time.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="Systems\Graphics.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
     <ClCompile Include="Renders\Resources\VertexType.cpp">
       <Filter>Renders\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="Renders\Shaders\PixelShader.cpp">
-      <Filter>Renders\Shaders</Filter>
-    </ClCompile>
-    <ClCompile Include="Renders\Shaders\VertexShader.cpp">
-      <Filter>Renders\Shaders</Filter>
-    </ClCompile>
-    <ClCompile Include="Renders\IA\IndexBuffer.cpp">
-      <Filter>Renders\IA</Filter>
-    </ClCompile>
-    <ClCompile Include="Renders\IA\InputLayout.cpp">
-      <Filter>Renders\IA</Filter>
     </ClCompile>
     <ClCompile Include="Renders\IA\VertexBuffer.cpp">
       <Filter>Renders\IA</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\ColorRect.cpp">
-      <Filter>Objects</Filter>
+    <ClCompile Include="Renders\IA\IndexBuffer.cpp">
+      <Filter>Renders\IA</Filter>
     </ClCompile>
     <ClCompile Include="Renders\Shaders\Shader.cpp">
       <Filter>Renders\Shaders</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Rect.cpp" />
+    <ClCompile Include="Renders\Shaders\PixelShader.cpp">
+      <Filter>Renders\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Renders\IA\InputLayout.cpp">
+      <Filter>Renders\IA</Filter>
+    </ClCompile>
+    <ClCompile Include="Renders\Shaders\VertexShader.cpp">
+      <Filter>Renders\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\ColorRect.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Object.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Drawable.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
-      <UniqueIdentifier>{3c7cc8f4-9737-4456-a441-df81f33d6626}</UniqueIdentifier>
+      <UniqueIdentifier>{95c6c686-1a45-44d0-aec0-2a37e186c2d9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Utilities">
-      <UniqueIdentifier>{9d6bc13e-d43f-453f-8ca8-6fa757d1e1b6}</UniqueIdentifier>
+      <UniqueIdentifier>{da10b982-c1fe-4ec0-ab09-2d5eeb9504cc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Renders">
-      <UniqueIdentifier>{4623410f-c218-4289-9665-2116a1d79fef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Renders\IA">
-      <UniqueIdentifier>{1a9cd6f2-95c6-4a5f-b15d-297f4e8643aa}</UniqueIdentifier>
+      <UniqueIdentifier>{adbeb3c7-41f4-4b44-8e78-e80c35451e2a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Renders\Resources">
-      <UniqueIdentifier>{2079591b-5732-41a2-bb84-60f1ea1a940d}</UniqueIdentifier>
+      <UniqueIdentifier>{83b45c93-a5d1-41d3-a01e-743b815ef8af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renders\IA">
+      <UniqueIdentifier>{c5db67f0-8f70-49bf-b8c2-2627d8f88e8c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Renders\Shaders">
-      <UniqueIdentifier>{1834084e-9819-4609-8c8a-6a83a948a698}</UniqueIdentifier>
+      <UniqueIdentifier>{7c220b9a-731a-4a33-bac9-6edb742d695e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Objects">
-      <UniqueIdentifier>{eaded2e2-076b-4a6a-8770-d72b44a7ecc8}</UniqueIdentifier>
+      <UniqueIdentifier>{37d55177-ceac-4738-9d33-e7b857938ae2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Components">
-      <UniqueIdentifier>{d36850fc-532b-42d5-9a17-8d396b85309f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scenes">
-      <UniqueIdentifier>{ebd8f658-d159-469b-919c-9f4c8960f2ff}</UniqueIdentifier>
+      <UniqueIdentifier>{cd3cc95c-0d43-4192-8832-5c9cffd8321b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

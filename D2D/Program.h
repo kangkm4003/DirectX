@@ -1,5 +1,7 @@
 #pragma once
 
+class ColorRect;
+
 class Program
 {
 public:
@@ -12,7 +14,9 @@ public:
 	void Render();
 
 private:
-	ViewProjectionBuffer VPBuffer;
+	unique_ptr<ViewProjectionBuffer> VPBuffer;
 
-	ColorRect rect;
+	Matrix view, projection;
+
+	unique_ptr<ColorRect> rect;
 };

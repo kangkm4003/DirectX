@@ -1,20 +1,24 @@
 struct VertexInput
 {
 	float4 position : POSITION0;
-	float2 uv : TEXCOORD0;
+	float4 color : COLOR0;
 };
 
 struct PixelInput
 {
 	float4 position : SV_POSITION0;
-	float2 uv : TEXCOORD0;
+	float4 color : COLOR0;
 };
 
-cbuffer TransformBuffer : register(b0)
+cbuffer World : register(b0)
 {
-	row_major matrix _world;
-	row_major matrix _view;
-	row_major matrix _proj;
+	matrix _world;
+}
+
+cbuffer ViewProj : register(b1)
+{
+	matrix _view;
+	matrix _proj;
 }
 
 PixelInput VS(VertexInput input)
@@ -25,18 +29,12 @@ PixelInput VS(VertexInput input)
 	output.position = mul(output.position, _view);
 	output.position = mul(output.position, _proj);
 	
-	output.uv = input.uv;
+	output.color = input.color;
 	
 	return output;
 }
 
-Texture2D sourceTex : register(t0);
-
-SamplerState samp : register(s0);
-
 float4 PS(PixelInput input) : SV_Target0
 {
-	float4 color = sourceTex.Sample(samp, input.uv);
-	
-	return color;
+	return input.color;
 }

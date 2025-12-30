@@ -1,35 +1,39 @@
 #include "stdafx.h"
 #include "Program.h"
+#include "Objects/ColorRect.h"
 
 Program::Program()
 {
+	VPBuffer = make_unique<ViewProjectionBuffer>();
+
 	SetGlobalBuffers();
-	rect.Create();
+
+	rect = make_unique<ColorRect>(CENTER, Vector2(100, 100), 20.0f, BLUE);
 }
 
 Program::~Program()
 {
-	
+
 }
 
 void Program::SetGlobalBuffers()
 {
-	{
+	view = XMMatrixLookAtLH(Vector3(0, 0, 0), Vector3(0, 0, 1), Vector3(0, 1, 0));
+	projection = XMMatrixOrthographicOffCenterLH(0, gWinWidth, 0, gWinHeight, 0, 1);
 
-	}
-	{
-		VPBuffer.SetView(XMMatrixLookAtLH(Vector3(0, 0, 0), Vector3(0, 0, 1), Vector3(0, 1, 0))); //카메라가 바라보는 위치, 방향, 위쪽 방향
-		VPBuffer.SetProjection(XMMatrixOrthographicLH(gWinWidth, gWinHeight, 0, 1));
-	}
+	VPBuffer->SetView(view);
+	VPBuffer->SetProjection(projection);
 }
 
 void Program::Update()
 {
-	rect.Update();
+	rect->Update();
 }
 
 void Program::Render()
 {
-	VPBuffer.SetVSBuffer(1);
-	rect.Render();
+	VPBuffer->Update();
+	VPBuffer->SetVSBuffer(1);
+
+	rect->Render();
 }
