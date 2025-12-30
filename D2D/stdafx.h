@@ -80,6 +80,8 @@ extern HWND gHandle;
 extern float gWinWidth;
 extern float gWinHeight;
 
+constexpr float epsilon = 1e-5f;
+
 // ColorMacros
 #define RED Color(1, 0, 0, 1)
 #define GREEN Color(0, 1, 0, 1)

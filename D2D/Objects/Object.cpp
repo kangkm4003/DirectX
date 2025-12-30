@@ -1,11 +1,18 @@
 #include "stdafx.h"
 #include "Object.h"
 #include "Components/Component.h"
+#include "Components/Transform.h"
 
 Object::Object(const string& name, Vector2 position, Vector2 scale, float rotation)
-	: name(name), position(position), scale(scale), rotation(rotation)
+	: name(name)
 {
-	WB = make_unique<WorldBuffer>();
+	transform = make_shared<Transform>();
+
+	transform->SetScale(scale);
+	transform->SetRotationFromDegree(rotation);
+	transform->SetPosition(position);
+
+	AddComponent(transform);
 }
 
 void Object::AddComponent(const shared_ptr<Component>& component)
@@ -15,34 +22,29 @@ void Object::AddComponent(const shared_ptr<Component>& component)
 	if (result.second)
 	{
 		component->SetOwner(this);
+		components_Update_Order.push_back(component);
 	}
 }
 
 void Object::Awake()
 {
-	for (const auto& comp : components)
-		comp.second->Awake();
+	for (const auto& comp : components_Update_Order)
+		comp->Awake();
+
 }
 
 void Object::Update()
 {
-	for (const auto& comp : components)
-		comp.second->Update();
+	for (const auto& comp : components_Update_Order)
+		comp->Update();
 
-	Matrix S = XMMatrixScalingFromVector(scale);
-	Matrix R = XMMatrixRotationZ(-rotation);
-	Matrix T = XMMatrixTranslationFromVector(position);
-
-	world = S * R * T;
-
-	WB->SetWorld(world);
-	WB->Update();
+	transform->Update();
 }
 
 void Object::Render()
 {
-	for (const auto& comp : components)
-		comp.second->Render();
+	for (const auto& comp : components_Update_Order)
+		comp->Render();
 
-	WB->SetVSBuffer(0);
+	transform->Render();
 }

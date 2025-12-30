@@ -1,6 +1,7 @@
 #pragma once
 
 class Component;
+class Transform;
 
 class Object
 {
@@ -19,6 +20,8 @@ public:
 		return nullptr;
 	}
 
+	shared_ptr<Transform> GetTransFrom() { return transform; }
+
 	virtual void Awake();
 	virtual void Update();
 	virtual void Render();
@@ -26,11 +29,7 @@ public:
 protected:
 	string name = "";
 
-	Vector2 position, scale;
-	float rotation = 0.0f;
-
-	Matrix world;
-	unique_ptr<WorldBuffer> WB;
-
+	shared_ptr<Transform> transform;
 	unordered_map<string, shared_ptr<Component>> components;
+	vector<shared_ptr<Component>> components_Update_Order;
 };
