@@ -11,7 +11,7 @@ public:
 	void Update() override;
 	void Render() override;
 
-	void DrawCall(D3D11_PRIMITIVE_TOPOLOGY topology, bool indexed);
+	void DrawCall(D3D11_PRIMITIVE_TOPOLOGY topology, bool indexed = true);
 
 protected:
 	unique_ptr<VertexBuffer> VB;
