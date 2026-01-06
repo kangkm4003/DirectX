@@ -35,3 +35,17 @@ public:
 		data.projection = XMMatrixTranspose(projection);
 	}
 };
+
+struct ColorData
+{
+	Color color;
+};
+
+class ColorBuffer : public ConstantBuffer<ColorData>
+{
+public:
+	void SetColor(Color color)
+	{
+		data.color = color;
+	}
+};

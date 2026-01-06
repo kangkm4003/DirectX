@@ -2,7 +2,7 @@
 #include "ColorRect.h"
 
 ColorRect::ColorRect(Vector2 position, Vector2 scale, float rotation, Color color)
-	: Drawable("ColorRect", position, scale, rotation, L"_Shaders/VertexColor.hlsl"), color(color)
+	: Drawable("ColorRect", position, scale, rotation, L"_Shaders/Verteㅌ.hlsl"), color(color)
 {
 	vector<VertexColor> vertices(4);
 	vertices[0].position = { -0.5f, -0.5f };
@@ -10,8 +10,12 @@ ColorRect::ColorRect(Vector2 position, Vector2 scale, float rotation, Color colo
 	vertices[2].position = { 0.5f, -0.5f };
 	vertices[3].position = { 0.5f, 0.5f };
 
-	for (auto& v : vertices)
-		v.color = this->color;
+	//for (auto& v : vertices)
+	//	v.color = this->color;
+
+	CB = make_unique<ColorBuffer>();
+	CB->SetColor(color);
+	CB->Update();
 
 	VB->Create(vertices, D3D11_USAGE_IMMUTABLE);
 

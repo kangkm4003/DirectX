@@ -1,5 +1,17 @@
 #pragma once
 
+struct Vertex
+{
+	VertexColor() = default;
+	VertexColor(const Vector2& position)
+		: position(position)
+	{}
+
+	Vector2 position;
+
+	static vector<D3D11_INPUT_ELEMENT_DESC> descs;
+};
+
 struct VertexColor
 {
 	VertexColor() = default;
