@@ -155,6 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Systems\ShaderManager.cpp" />
     <ClInclude Include="Components\Component.h" />
     <ClInclude Include="Components\MeshRenderer.h" />
     <ClInclude Include="Objects\ColorRect.h" />
@@ -175,6 +176,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Systems\Input.h" />
     <ClInclude Include="Systems\Time.h" />
+    <ClInclude Include="Systems\ShaderManager.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Systems\Window.h" />
     <ClCompile Include="Components\Transform.cpp" />

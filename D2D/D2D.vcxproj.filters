@@ -58,6 +58,7 @@
     <ClInclude Include="Components\Transform.h" />
     <ClInclude Include="Components\MeshRenderer.h" />
     <ClInclude Include="Renders\Resources\Mesh.h" />
+    <ClInclude Include="Systems\ShaderManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -108,6 +109,7 @@
     <ClCompile Include="Components\MeshRenderer.cpp" />
     <ClCompile Include="Renders\Resources\Mesh.cpp" />
     <ClCompile Include="Components\Transform.cpp" />
+    <ClCompile Include="Systems\ShaderManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
