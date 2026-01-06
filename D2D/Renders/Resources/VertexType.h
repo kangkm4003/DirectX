@@ -2,8 +2,8 @@
 
 struct Vertex
 {
-	VertexColor() = default;
-	VertexColor(const Vector2& position)
+	Vertex() = default;
+	Vertex(const Vector2& position)
 		: position(position)
 	{}
 

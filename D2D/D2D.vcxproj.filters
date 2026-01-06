@@ -55,6 +55,10 @@
     <ClInclude Include="Objects\Drawable.h">
       <Filter>Objects</Filter>
     </ClInclude>
+    <ClInclude Include="Components\Transform.cpp" />
+    <ClInclude Include="Components\Transform.h" />
+    <ClInclude Include="Components\MeshRenderer.h" />
+    <ClInclude Include="Renders\Resources\Mesh.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -102,6 +106,8 @@
     <ClCompile Include="Objects\Drawable.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Components\MeshRenderer.cpp" />
+    <ClCompile Include="Renders\Resources\Mesh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">

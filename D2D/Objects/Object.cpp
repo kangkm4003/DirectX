@@ -9,7 +9,7 @@ Object::Object(const string& name, Vector2 position, Vector2 scale, float rotati
 	transform = make_shared<Transform>();
 
 	transform->SetScale(scale);
-	transform->SetRotationFromDegree(rotation);
+	transform->SetRotationDegree(rotation);
 	transform->SetPosition(position);
 
 	AddComponent(transform);

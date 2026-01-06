@@ -10,5 +10,6 @@ public:
 	void Render();
 
 private:
-	Color color;
+	//Color color;
+	unique_ptr<class ColorBuffer> CB;
 };

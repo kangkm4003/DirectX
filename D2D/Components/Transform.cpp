@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "Transform.h"
 
-//defines object's transform (scale rotation position)
-
 Transform::Transform(const string& name)
 	: Component(name)
 {
@@ -11,6 +9,8 @@ Transform::Transform(const string& name)
 
 void Transform::Update()
 {
+	if (bDirty == false) return;
+
 	Matrix S = XMMatrixScalingFromVector(scale);
 	Matrix R = XMMatrixRotationZ(-rotation);
 	Matrix T = XMMatrixTranslationFromVector(position);
@@ -19,6 +19,8 @@ void Transform::Update()
 
 	WB->SetWorld(world);
 	WB->Update();
+
+	bDirty = false;
 }
 
 void Transform::Render()

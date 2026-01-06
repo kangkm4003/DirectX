@@ -10,40 +10,12 @@ public:
 	void Update() override;
 	void Render() override;
 
-	Vector2 GetScale() const { return scale; }
-	float GetRotationFromDegree() const { return XMConvertToRadians(rotation); }
-	float GetRotationFromRadian() const { return rotation; }
 	Vector2 GetPosition() const { return position; }
+	Vector2 GetScale() const { return scale; }
+	float GetRotationDegree() const { return XMConvertToDegrees(rotation); }
+	float GetRotationRadian() const { return rotation; }
 
 	const Matrix& GetWorld() const { return world; }
-
-	void SetScale(Vector2 scale)
-	{
-		if (this->scale != scale)
-		{
-			this->scale = scale;
-			bDirty = true;
-		}
-	}
-
-	void SetRotationFromDegree(float degree)
-	{
-		float radian = XMConvertToRadians(degree);
-		if (this->rotation != radian)
-		{
-			this->rotation = radian;
-			bDirty = true;
-		}
-	}
-
-	void SetRotationFromRadian(float radian)
-	{
-		if (this->rotation != radian)
-		{
-			this->rotation = radian;
-			bDirty = true;
-		}
-	}
 
 	void SetPosition(Vector2 position)
 	{
@@ -54,7 +26,16 @@ public:
 		}
 	}
 
-	void SetRotationFromDegree(float degree)
+	void SetScale(Vector2 scale)
+	{
+		if (this->scale != scale)
+		{
+			this->scale = scale;
+			bDirty = true;
+		}
+	}
+
+	void SetRotationDegree(float degree)
 	{
 		float radian = XMConvertToRadians(degree);
 		if (this->rotation != radian)
@@ -64,7 +45,7 @@ public:
 		}
 	}
 
-	void SetRotationFromRadian(float radian)
+	void SetRotationRadian(float radian)
 	{
 		if (this->rotation != radian)
 		{
@@ -73,7 +54,7 @@ public:
 		}
 	}
 
-	void MovePositoin(Vector2 value)
+	void Move(Vector2 value)
 	{
 		if (value.LengthSquared() < epsilon) return;
 		position += value;
@@ -87,7 +68,7 @@ public:
 		bDirty = true;
 	}
 
-	void AddRotateFromDegree(float degree)
+	void RotateDegree(float degree)
 	{
 		if (abs(degree) < epsilon) return;
 		float radian = XMConvertToRadians(degree);
@@ -95,7 +76,7 @@ public:
 		bDirty = true;
 	}
 
-	void AddRotateFromRadian(float radian)
+	void RotateRadian(float radian)
 	{
 		if (abs(radian) < epsilon) return;
 		rotation += radian;

@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "ColorRect.h"
+#include "Renders/Resources/GlobalBuffers.h"
 
 ColorRect::ColorRect(Vector2 position, Vector2 scale, float rotation, Color color)
-	: Drawable("ColorRect", position, scale, rotation, L"_Shaders/Verteㅌ.hlsl"), color(color)
+	: Drawable("ColorRect", position, scale, rotation, L"_Shaders/Vertex.hlsl")
 {
 	vector<VertexColor> vertices(4);
 	vertices[0].position = { -0.5f, -0.5f };
@@ -34,6 +35,8 @@ void ColorRect::Update()
 void ColorRect::Render()
 {
 	SUPER::Render();
+
+	CB->SetPSBuffer(0);
 
 	DrawCall(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 }

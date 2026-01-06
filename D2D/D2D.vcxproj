@@ -156,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Components\Component.h" />
+    <ClInclude Include="Components\MeshRenderer.h" />
     <ClInclude Include="Objects\ColorRect.h" />
     <ClInclude Include="Objects\Drawable.h" />
     <ClInclude Include="Objects\Object.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="Renders\IA\VertexBuffer.h" />
     <ClInclude Include="Renders\Resources\ConstantBuffer.h" />
     <ClInclude Include="Renders\Resources\GlobalBuffers.h" />
+    <ClInclude Include="Renders\Resources\Mesh.h" />
     <ClInclude Include="Renders\Shaders\PixelShader.h" />
     <ClInclude Include="Renders\Shaders\Shader.h" />
     <ClInclude Include="Renders\Resources\VertexType.h" />
@@ -179,6 +181,7 @@
     <ClInclude Include="Components\Transform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Components\MeshRenderer.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Objects\ColorRect.cpp" />
     <ClCompile Include="Objects\Drawable.cpp" />
@@ -187,6 +190,7 @@
     <ClCompile Include="Renders\IA\IndexBuffer.cpp" />
     <ClCompile Include="Renders\IA\InputLayout.cpp" />
     <ClCompile Include="Renders\IA\VertexBuffer.cpp" />
+    <ClCompile Include="Renders\Resources\Mesh.cpp" />
     <ClCompile Include="Renders\Resources\VertexType.cpp" />
     <ClCompile Include="Renders\Shaders\PixelShader.cpp" />
     <ClCompile Include="Renders\Shaders\Shader.cpp" />
