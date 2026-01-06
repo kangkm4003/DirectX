@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/directxmath-x64-windows-2025-04-03-aa89aa38-6eaf-4fe5-bd5a-93c4eaecc26a",
-  "name": "directxmath:x64-windows@2025-04-03 03832638aab4f9a1e90b0ee6b728afbe5d446e1ebcee8c0ab8f7784867350cfa",
+  "documentNamespace": "https://spdx.org/spdxdocs/directxmath-x86-windows-2025-04-03-5fb067fe-33f4-4a9c-857d-31b72dea1575",
+  "name": "directxmath:x86-windows@2025-04-03 fe9044ee712dc1c57132019597e2e9d519971daa01e571bf3bd2b6d23ecce336",
   "creationInfo": {
     "creators": [
       "Tool: vcpkg-2025-10-16-71538f2694db93da4668782d094768ba74c45991"
     ],
-    "created": "2026-01-06T07:34:44Z"
+    "created": "2026-01-06T07:32:07Z"
   },
   "relationships": [
     {
@@ -157,9 +157,9 @@
       "comment": "This is the port (recipe) consumed by vcpkg."
     },
     {
-      "name": "directxmath:x64-windows",
+      "name": "directxmath:x86-windows",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "03832638aab4f9a1e90b0ee6b728afbe5d446e1ebcee8c0ab8f7784867350cfa",
+      "versionInfo": "fe9044ee712dc1c57132019597e2e9d519971daa01e571bf3bd2b6d23ecce336",
       "downloadLocation": "NONE",
       "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
