@@ -1,41 +1,41 @@
 struct VertexInput
 {
-	float4 position : POSITION0;
+    float4 position : POSITION0;
 };
 
 struct PixelInput
 {
-	float4 position : SV_POSITION0;
+    float4 position : SV_POSITION0;
 };
 
 cbuffer World : register(b0)
 {
-	matrix _world;
+    matrix _world;
 }
 
 cbuffer ViewProj : register(b1)
 {
-	matrix _view;
-	matrix _proj;
+    matrix _view;
+    matrix _proj;
 }
 
 PixelInput VS(VertexInput input)
 {
-	PixelInput output;
+    PixelInput output;
 	
-	output.position = mul(input.position, _world);
-	output.position = mul(output.position, _view);
-	output.position = mul(output.position, _proj);
+    output.position = mul(input.position, _world);
+    output.position = mul(output.position, _view);
+    output.position = mul(output.position, _proj);
 	
-	return output;
+    return output;
 }
 
 cbuffer ColorBuffer : register(b0)
 {
-	float4 _color;
+    float4 _color;
 }
 
 float4 PS(PixelInput input) : SV_Target0
 {
-	return _color;
+    return _color;
 }

@@ -177,7 +177,7 @@
     <ClInclude Include="Systems\Time.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Systems\Window.h" />
-    <ClInclude Include="Components\Transform.cpp" />
+    <ClCompile Include="Components\Transform.cpp" />
     <ClInclude Include="Components\Transform.h" />
   </ItemGroup>
   <ItemGroup>

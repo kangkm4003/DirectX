@@ -8,9 +8,9 @@ Object::Object(const string& name, Vector2 position, Vector2 scale, float rotati
 {
 	transform = make_shared<Transform>();
 
+	transform->SetPosition(position);
 	transform->SetScale(scale);
 	transform->SetRotationDegree(rotation);
-	transform->SetPosition(position);
 
 	AddComponent(transform);
 }
@@ -22,20 +22,20 @@ void Object::AddComponent(const shared_ptr<Component>& component)
 	if (result.second)
 	{
 		component->SetOwner(this);
-		components_Update_Order.push_back(component);
+		if (component != transform)
+			updateList.push_back(component);
 	}
 }
 
 void Object::Awake()
 {
-	for (const auto& comp : components_Update_Order)
+	for (const auto& comp : updateList)
 		comp->Awake();
-
 }
 
 void Object::Update()
 {
-	for (const auto& comp : components_Update_Order)
+	for (const auto& comp : updateList)
 		comp->Update();
 
 	transform->Update();
@@ -43,8 +43,8 @@ void Object::Update()
 
 void Object::Render()
 {
-	for (const auto& comp : components_Update_Order)
-		comp->Render();
-
 	transform->Render();
+
+	for (const auto& comp : updateList)
+		comp->Render();
 }

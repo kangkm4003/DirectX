@@ -20,7 +20,7 @@ public:
 		return nullptr;
 	}
 
-	shared_ptr<Transform> GetTransFrom() { return transform; }
+	shared_ptr<Transform> GetTransform() { return transform; }
 
 	virtual void Awake();
 	virtual void Update();
@@ -30,6 +30,7 @@ protected:
 	string name = "";
 
 	shared_ptr<Transform> transform;
+
 	unordered_map<string, shared_ptr<Component>> components;
-	vector<shared_ptr<Component>> components_Update_Order;
+	vector<shared_ptr<Component>> updateList;
 };
