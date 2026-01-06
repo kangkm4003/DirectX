@@ -156,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Systems\ShaderManager.cpp" />
+    <ClCompile Include="Utilities\GeometryHelper.cpp" />
     <ClInclude Include="Components\Component.h" />
     <ClInclude Include="Components\MeshRenderer.h" />
     <ClInclude Include="Objects\ColorRect.h" />
@@ -181,6 +182,7 @@
     <ClInclude Include="Systems\Window.h" />
     <ClCompile Include="Components\Transform.cpp" />
     <ClInclude Include="Components\Transform.h" />
+    <ClInclude Include="Utilities\GeometryHelper.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Components\MeshRenderer.cpp" />

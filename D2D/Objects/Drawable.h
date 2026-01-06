@@ -16,4 +16,10 @@ public:
 protected:
 	unique_ptr<VertexBuffer> VB;
 	unique_ptr<IndexBuffer> IB;
+
+	unique_ptr<VertexShader> VS;
+
+	unique_ptr<InputLayout> IL;
+
+	unique_ptr<PixelShader> PS;
 };

@@ -98,6 +98,7 @@ constexpr float epsilon = 1e-5f;
 #include "Systems/Input.h"
 #include "Systems/Time.h"
 #include "Systems/Graphics.h"
+#include "Systems/ShaderManager.h"
 
 #define INPUT Input::Get()
 #define TIME Time::Get()
@@ -105,6 +106,7 @@ constexpr float epsilon = 1e-5f;
 #define GRAPHICS Graphics::Get()
 #define DEVICE GRAPHICS->GetDevice()
 #define DC GRAPHICS->GetDC()
+#define SHADERS ShaderManager::Get()
 
 // Headers
 #include "Renders/Resources/VertexType.h"
