@@ -156,14 +156,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Components\Material.cpp" />
+    <ClCompile Include="Objects\Circle.cpp" />
     <ClCompile Include="Systems\ShaderManager.cpp" />
     <ClCompile Include="Utilities\GeometryHelper.cpp" />
     <ClInclude Include="Components\Component.h" />
     <ClInclude Include="Components\MeshRenderer.h" />
     <ClInclude Include="Components\Material.h" />
     <ClInclude Include="Objects\ColorRect.h" />
-    <ClInclude Include="Objects\Drawable.h" />
     <ClInclude Include="Objects\Object.h" />
+    <ClInclude Include="Objects\Circle.h" />
     <ClInclude Include="Renders\IA\IndexBuffer.h" />
     <ClInclude Include="Renders\IA\InputLayout.h" />
     <ClInclude Include="Renders\IA\VertexBuffer.h" />
@@ -190,7 +191,6 @@
     <ClCompile Include="Components\MeshRenderer.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Objects\ColorRect.cpp" />
-    <ClCompile Include="Objects\Drawable.cpp" />
     <ClCompile Include="Objects\Object.cpp" />
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="Renders\IA\IndexBuffer.cpp" />

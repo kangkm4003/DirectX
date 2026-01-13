@@ -24,4 +24,26 @@ namespace GeometryHelper
 
 		return mesh;
 	}
+
+	shared_ptr<Mesh> CreateColorCircle(const int quality)
+	{
+		static shared_ptr<Mesh> mesh = nullptr;
+		
+		if (mesh == nullptr || quality != 0 || quality == NULL)
+		{
+			vector<Vertex> vertices(quality);
+			vector<UINT> indices;
+
+			for (int i = quality; i < quality; i++)
+			{
+
+			}
+
+			mesh = make_shared<Mesh>();
+			mesh->Create(vertices, indices);
+
+		}
+
+		return mesh;
+	}
 }

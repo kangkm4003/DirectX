@@ -52,15 +52,13 @@
     <ClInclude Include="Components\Component.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Drawable.h">
-      <Filter>Objects</Filter>
-    </ClInclude>
     <ClInclude Include="Components\Transform.h" />
     <ClInclude Include="Components\MeshRenderer.h" />
     <ClInclude Include="Renders\Resources\Mesh.h" />
     <ClInclude Include="Systems\ShaderManager.h" />
     <ClInclude Include="Utilities\GeometryHelper.h" />
     <ClInclude Include="Components\Material.h" />
+    <ClInclude Include="Objects\Circle.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -105,15 +103,13 @@
     <ClCompile Include="Objects\Object.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Drawable.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
     <ClCompile Include="Components\MeshRenderer.cpp" />
     <ClCompile Include="Renders\Resources\Mesh.cpp" />
     <ClCompile Include="Components\Transform.cpp" />
     <ClCompile Include="Systems\ShaderManager.cpp" />
     <ClCompile Include="Utilities\GeometryHelper.cpp" />
     <ClCompile Include="Components\Material.cpp" />
+    <ClCompile Include="Objects\Circle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
