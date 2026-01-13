@@ -14,12 +14,16 @@ ColorRect::ColorRect(Vector2 position, Vector2 scale, float rotation, Color colo
 	shared_ptr<Material> marterial = make_shared<Material>(color, 0);
 	shared_ptr<MeshRenderer> meshRenderer = make_shared<MeshRenderer>();
 
-	meshRenderer->SetMesh(GeometryHelper::CreateRectangle());
-
-	meshRenderer->SetShaderSet(SHADERS->GetShader(L"./_Shaders/Vertex.hlsl", Vertex::descs));
-
 	AddComponent(marterial);
 	AddComponent(meshRenderer);
+
+	meshRenderer->SetMesh(GeometryHelper::CreateRectangle());
+
+	ShaderSet setShader = (SHADERS->GetShader(L"./_Shaders/Vertex.hlsl", Vertex::descs));
+	meshRenderer->SetShaderSet(setShader);
+
+	AddComponent(make_shared<Material>(color, 0));
+	AddComponent(make_shared<MeshRenderer>());
 }
 
 void ColorRect::Update()

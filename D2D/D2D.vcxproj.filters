@@ -59,6 +59,7 @@
     <ClInclude Include="Utilities\GeometryHelper.h" />
     <ClInclude Include="Components\Material.h" />
     <ClInclude Include="Objects\Circle.h" />
+    <ClInclude Include="Scenes\Scene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />

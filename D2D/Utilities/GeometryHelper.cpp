@@ -25,18 +25,24 @@ namespace GeometryHelper
 		return mesh;
 	}
 
-	shared_ptr<Mesh> CreateColorCircle(const int quality)
+	shared_ptr<Mesh> CreateColorCircle(UINT quality)
 	{
 		static shared_ptr<Mesh> mesh = nullptr;
-		
 		if (mesh == nullptr || quality != 0 || quality == NULL)
 		{
+			if (quality > 3)
+				return;
+
+			FLOAT theta = 2 * XM_PI / quality;
 			vector<Vertex> vertices(quality);
-			vector<UINT> indices;
+			vector<UINT> indices(quality);
 
-			for (int i = quality; i < quality; i++)
+			for (UINT i = 1; i < quality; i * 3)
 			{
+				vertices[i].position = Vector2((sinf(theta / i), cosf(theta / i)));
 
+				indices[i] = 0;
+					
 			}
 
 			mesh = make_shared<Mesh>();
@@ -45,5 +51,9 @@ namespace GeometryHelper
 		}
 
 		return mesh;
+	}
+	shared_ptr<Mesh> CreateSolidColorCircle(UINT quality)
+	{
+		return shared_ptr<Mesh>();
 	}
 }
