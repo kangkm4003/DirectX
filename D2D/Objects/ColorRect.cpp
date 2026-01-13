@@ -1,30 +1,25 @@
 #include "stdafx.h"
 #include "ColorRect.h"
 #include "Renders/Resources/GlobalBuffers.h"
+#include "Utilities/GeometryHelper.h"
+#include "Systems/ShaderManager.h"
+
+#include "Components/Material.h"
+#include "Components/MeshRenderer.h"
+
 
 ColorRect::ColorRect(Vector2 position, Vector2 scale, float rotation, Color color)
-	: Drawable("ColorRect", position, scale, rotation, L"_Shaders/Vertex.hlsl")
+	: Object(name, position, scale, rotation)
 {
-	vector<VertexColor> vertices(4);
-	vertices[0].position = { -0.5f, -0.5f };
-	vertices[1].position = { -0.5f, 0.5f };
-	vertices[2].position = { 0.5f, -0.5f };
-	vertices[3].position = { 0.5f, 0.5f };
+	shared_ptr<Material> marterial = make_shared<Material>(color, 0);
+	shared_ptr<MeshRenderer> meshRenderer = make_shared<MeshRenderer>();
 
-	//for (auto& v : vertices)
-	//	v.color = this->color;
+	meshRenderer->SetMesh(GeometryHelper::CreateRectangle());
 
-	CB = make_unique<ColorBuffer>();
-	CB->SetColor(color);
-	CB->Update();
+	meshRenderer->SetShaderSet(SHADERS->GetShader(L"./_Shaders/Vertex.hlsl", Vertex::descs));
 
-	VB->Create(vertices, D3D11_USAGE_IMMUTABLE);
-
-	vector<UINT> indices = { 0, 1, 2, 2, 1, 3 };
-
-	IB->Create(indices, D3D11_USAGE_IMMUTABLE);
-
-	IL->Create(VertexColor::descs, VS->GetBlob());
+	AddComponent(marterial);
+	AddComponent(meshRenderer);
 }
 
 void ColorRect::Update()
@@ -35,8 +30,4 @@ void ColorRect::Update()
 void ColorRect::Render()
 {
 	SUPER::Render();
-
-	CB->SetPSBuffer(0);
-
-	DrawCall(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 }

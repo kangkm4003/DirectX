@@ -1,15 +1,12 @@
 #pragma once
-#include "Drawable.h"
+#include "Object.h"
 
-class ColorRect : public Drawable
+class ColorRect : public Object
 {
 public:
 	ColorRect(Vector2 position, Vector2 scale, float rotation, Color color = RED);
 
 	void Update();
 	void Render();
-
 private:
-	//Color color;
-	unique_ptr<class ColorBuffer> CB;
 };

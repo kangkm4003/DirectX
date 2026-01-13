@@ -155,10 +155,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Components\Material.cpp" />
     <ClCompile Include="Systems\ShaderManager.cpp" />
     <ClCompile Include="Utilities\GeometryHelper.cpp" />
     <ClInclude Include="Components\Component.h" />
     <ClInclude Include="Components\MeshRenderer.h" />
+    <ClInclude Include="Components\Material.h" />
     <ClInclude Include="Objects\ColorRect.h" />
     <ClInclude Include="Objects\Drawable.h" />
     <ClInclude Include="Objects\Object.h" />

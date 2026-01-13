@@ -60,6 +60,7 @@
     <ClInclude Include="Renders\Resources\Mesh.h" />
     <ClInclude Include="Systems\ShaderManager.h" />
     <ClInclude Include="Utilities\GeometryHelper.h" />
+    <ClInclude Include="Components\Material.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -112,6 +113,7 @@
     <ClCompile Include="Components\Transform.cpp" />
     <ClCompile Include="Systems\ShaderManager.cpp" />
     <ClCompile Include="Utilities\GeometryHelper.cpp" />
+    <ClCompile Include="Components\Material.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
