@@ -1,6 +1,7 @@
 #pragma once
 
 class ColorRect;
+class Circle;
 
 class Program
 {
@@ -18,5 +19,6 @@ private:
 
 	Matrix view, projection;
 
-	unique_ptr<ColorRect> rect;
+	//unique_ptr<ColorRect> rect;
+	unique_ptr<Circle> circle;
 };

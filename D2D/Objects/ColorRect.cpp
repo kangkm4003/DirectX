@@ -21,9 +21,6 @@ ColorRect::ColorRect(Vector2 position, Vector2 scale, float rotation, Color colo
 
 	ShaderSet setShader = (SHADERS->GetShader(L"./_Shaders/Vertex.hlsl", Vertex::descs));
 	meshRenderer->SetShaderSet(setShader);
-
-	AddComponent(make_shared<Material>(color, 0));
-	AddComponent(make_shared<MeshRenderer>());
 }
 
 void ColorRect::Update()

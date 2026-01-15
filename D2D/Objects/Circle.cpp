@@ -13,7 +13,7 @@ Circle::Circle(Vector2 position, Vector2 scale, float rotation, Color color)
 	shared_ptr<Material> marterial = make_shared<Material>(color, 0);
 	shared_ptr<MeshRenderer> meshRenderer = make_shared<MeshRenderer>();
 
-	meshRenderer->SetMesh(GeometryHelper::CreateCircle());
+	meshRenderer->SetMesh(GeometryHelper::CreateColorCircle(10));
 
 	meshRenderer->SetShaderSet(SHADERS->GetShader(L"./_Shaders/Vertex.hlsl", Vertex::descs));
 

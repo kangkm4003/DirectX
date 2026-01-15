@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Program.h"
 #include "Objects/ColorRect.h"
+#include "Objects/Circle.h"
 
 Program::Program()
 {
@@ -8,7 +9,8 @@ Program::Program()
 
 	SetGlobalBuffers();
 
-	rect = make_unique<ColorRect>(CENTER, Vector2(100, 100), 20.0f, BLUE);
+	//rect = make_unique<ColorRect>(CENTER, Vector2(100, 100), 20.0f, BLUE);
+	circle = make_unique<Circle>(CENTER, Vector2(50, 50), 0);
 }
 
 Program::~Program()
@@ -27,7 +29,7 @@ void Program::SetGlobalBuffers()
 
 void Program::Update()
 {
-	rect->Update();
+	circle->Update();
 }
 
 void Program::Render()
@@ -35,5 +37,5 @@ void Program::Render()
 	VPBuffer->Update();
 	VPBuffer->SetVSBuffer(1);
 
-	rect->Render();
+	circle->Render();
 }

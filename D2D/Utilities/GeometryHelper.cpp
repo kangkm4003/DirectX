@@ -28,22 +28,19 @@ namespace GeometryHelper
 	shared_ptr<Mesh> CreateColorCircle(UINT quality)
 	{
 		static shared_ptr<Mesh> mesh = nullptr;
-		if (mesh == nullptr || quality != 0 || quality == NULL)
+		if (mesh == nullptr)
 		{
-			if (quality > 3)
-				return;
 
 			FLOAT theta = 2 * XM_PI / quality;
 			vector<Vertex> vertices(quality);
-			vector<UINT> indices(quality);
 
-			for (UINT i = 1; i < quality; i * 3)
+			vertices[0].position = Vector2(0.f, 0.f);
+			for (UINT i = 1; i < quality; i++)
 			{
 				vertices[i].position = Vector2((sinf(theta / i), cosf(theta / i)));
 
-				indices[i] = 0;
-					
 			}
+			vector<UINT> indices = { 0, 1, 2, 0, 2, 3, 0, 3, 4 };
 
 			mesh = make_shared<Mesh>();
 			mesh->Create(vertices, indices);
