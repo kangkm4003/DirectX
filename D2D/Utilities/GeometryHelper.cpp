@@ -2,6 +2,8 @@
 #include "GeometryHelper.h"
 #include "Renders/Resources/Mesh.h"
 
+//Todo : 속이 빈 원, 직선
+
 namespace GeometryHelper
 {
 	shared_ptr<Mesh> CreateRectangle()
@@ -37,12 +39,19 @@ namespace GeometryHelper
 			vertices[0].position = Vector2(0.f, 0.f);
 			for (UINT i = 1; i < quality + 1; i++)
 			{
-				vertices[i].position = Vector2((sinf(theta * (i - 1)), cosf(theta * (i - 1)))) * 0.5; //로컬좌표를 -1 ~ 1 까지로 축소
+				vertices[i].position = { sinf(theta * (i - 1)) *0.5f, cosf(theta * (i - 1)) * 0.5f }; //로컬좌표를 -1 ~ 1 까지로 축소
 
-				indices.push_back(0);
-				indices.push_back(i);
-				indices.push_back(i+1);
+
+
 			}
+
+			for (UINT i = 0; i < quality; i++)
+			{
+				indices[i * 3] = 0;
+				indices[i * 3 + 1] = i + 1;
+				indices[i * 3 + 2] = i + 2;
+			}
+			indices[(quality-1) * 3 + 2] = indices[1];
 
 			mesh = make_shared<Mesh>();
 			mesh->Create(vertices, indices);

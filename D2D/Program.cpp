@@ -10,7 +10,7 @@ Program::Program()
 	SetGlobalBuffers();
 
 	//rect = make_unique<ColorRect>(CENTER, Vector2(100, 100), 20.0f, BLUE);
-	circle = make_unique<Circle>(CENTER, Vector2(50, 50), 0);
+	circle = make_unique<Circle>(CENTER, Vector2(200, 200), 0);
 }
 
 Program::~Program()
