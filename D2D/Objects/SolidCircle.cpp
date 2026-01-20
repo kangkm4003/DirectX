@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Circle.h"
+#include "SolidCircle.h"
 #include "Renders/Resources/GlobalBuffers.h"
 #include "Utilities/GeometryHelper.h"
 #include "Systems/ShaderManager.h"
@@ -7,14 +7,14 @@
 #include "Components/Material.h"
 #include "Components/MeshRenderer.h"
 
-Circle::Circle(Vector2 position, Vector2 scale, float rotation, Color color)
+SolidCircle::SolidCircle(Vector2 position, Vector2 scale, float rotation, Color color)
 	: Object(name, position, scale, rotation)
 {
 	shared_ptr<Material> marterial = make_shared<Material>(color, 0);
 	shared_ptr<MeshRenderer> meshRenderer = make_shared<MeshRenderer>();
 
-	//meshRenderer->SetTopology(D3D11_PRIMITIVE_TOPOLOGY_LINELIST);
-	meshRenderer->SetMesh(GeometryHelper::CreateColorCircle(50));
+	meshRenderer->SetTopology(D3D11_PRIMITIVE_TOPOLOGY_LINELIST);
+	meshRenderer->SetMesh(GeometryHelper::CreateSolidColorCircle(50));
 
 	meshRenderer->SetShaderSet(SHADERS->GetShader(L"./_Shaders/Vertex.hlsl", Vertex::descs));
 
@@ -22,12 +22,12 @@ Circle::Circle(Vector2 position, Vector2 scale, float rotation, Color color)
 	AddComponent(meshRenderer);
 }
 
-void Circle::Update()
+void SolidCircle::Update()
 {
 	SUPER::Update();
 }
 
-void Circle::Render()
+void SolidCircle::Render()
 {
 	SUPER::Render();
 }

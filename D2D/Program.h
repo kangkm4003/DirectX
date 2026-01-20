@@ -2,6 +2,7 @@
 
 class ColorRect;
 class Circle;
+class SolidCircle;
 
 class Program
 {
@@ -19,6 +20,5 @@ private:
 
 	Matrix view, projection;
 
-	//unique_ptr<ColorRect> rect;
-	unique_ptr<Circle> circle;
+	unique_ptr<SolidCircle> circle;
 };

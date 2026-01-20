@@ -62,6 +62,32 @@ namespace GeometryHelper
 	}
 	shared_ptr<Mesh> CreateSolidColorCircle(UINT quality)
 	{
-		return shared_ptr<Mesh>();
+		static shared_ptr<Mesh> mesh = nullptr;
+		if (mesh == nullptr)
+		{
+
+			FLOAT theta = 2 * XM_PI / quality;
+			vector<Vertex> vertices(quality); //인덱스 0번은 원의 중점
+			vector<UINT> indices(quality * 2); // 삼각형을 quality만큼 그린다
+			for (UINT i = 0; i < quality; i++)
+			{
+				vertices[i].position = { sinf(theta * (i)) * 0.5f, cosf(theta * (i)) * 0.5f }; //로컬좌표를 -1 ~ 1 까지로 축소
+			}
+
+			indices[0] = 0;
+			INT iter = 1;
+			for (UINT i = 1; i < quality * 2 - 1; i += 2)
+			{
+				indices[i] = iter;
+				indices[i + 1] = iter;
+				iter += 1;
+			}
+
+			mesh = make_shared<Mesh>();
+			mesh->Create(vertices, indices);
+
+		}
+
+		return mesh;
 	}
 }

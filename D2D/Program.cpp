@@ -2,6 +2,7 @@
 #include "Program.h"
 #include "Objects/ColorRect.h"
 #include "Objects/Circle.h"
+#include "Objects/SolidCircle.h"
 
 Program::Program()
 {
@@ -10,7 +11,7 @@ Program::Program()
 	SetGlobalBuffers();
 
 	//rect = make_unique<ColorRect>(CENTER, Vector2(100, 100), 20.0f, BLUE);
-	circle = make_unique<Circle>(CENTER, Vector2(200, 200), 0);
+	circle = make_unique<SolidCircle>(CENTER, Vector2(200, 200), 0);
 }
 
 Program::~Program()

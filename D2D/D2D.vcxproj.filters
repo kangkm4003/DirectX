@@ -60,6 +60,7 @@
     <ClInclude Include="Components\Material.h" />
     <ClInclude Include="Objects\Circle.h" />
     <ClInclude Include="Scenes\Scene.h" />
+    <ClInclude Include="Objects\SolidCircle.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -111,6 +112,7 @@
     <ClCompile Include="Utilities\GeometryHelper.cpp" />
     <ClCompile Include="Components\Material.cpp" />
     <ClCompile Include="Objects\Circle.cpp" />
+    <ClCompile Include="Objects\SolidCircle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
