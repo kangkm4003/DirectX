@@ -60,6 +60,7 @@ namespace GeometryHelper
 		
 		return mesh;
 	}
+
 	shared_ptr<Mesh> CreateSolidColorCircle(UINT quality)
 	{
 		static shared_ptr<Mesh> mesh = nullptr;
@@ -82,6 +83,26 @@ namespace GeometryHelper
 				indices[i + 1] = iter;
 				iter += 1;
 			}
+
+			mesh = make_shared<Mesh>();
+			mesh->Create(vertices, indices);
+
+		}
+
+		return mesh;
+	}
+
+	shared_ptr<Mesh> CreateLine()
+	{
+		static shared_ptr<Mesh> mesh = nullptr;
+		if (mesh == nullptr)
+		{
+
+			vector<Vertex> vertices(2);
+			vertices[0].position = Vector2(0.f, -0.5f);
+			vertices[1].position = Vector2(0.f, 0.5f);
+
+			vector<UINT> indices = { 0, 1};
 
 			mesh = make_shared<Mesh>();
 			mesh->Create(vertices, indices);

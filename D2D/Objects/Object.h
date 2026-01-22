@@ -3,7 +3,7 @@
 class Component;
 class Transform;
 
-class Object
+class Object : public enable_shared_from_this<Object>
 {
 public:
 	Object(const string& name, Vector2 position, Vector2 scale = { 1, 1 }, float rotation = 0.0f);

@@ -158,6 +158,7 @@
     <ClCompile Include="Components\Material.cpp" />
     <ClCompile Include="Objects\Circle.cpp" />
     <ClCompile Include="Objects\SolidCircle.cpp" />
+    <ClCompile Include="Objects\Line.cpp" />
     <ClCompile Include="Systems\ShaderManager.cpp" />
     <ClCompile Include="Utilities\GeometryHelper.cpp" />
     <ClInclude Include="Components\Component.h" />
@@ -167,6 +168,7 @@
     <ClInclude Include="Objects\Object.h" />
     <ClInclude Include="Objects\Circle.h" />
     <ClInclude Include="Objects\SolidCircle.h" />
+    <ClInclude Include="Objects\Line.h" />
     <ClInclude Include="Renders\IA\IndexBuffer.h" />
     <ClInclude Include="Renders\IA\InputLayout.h" />
     <ClInclude Include="Renders\IA\VertexBuffer.h" />

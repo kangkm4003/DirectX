@@ -3,6 +3,7 @@
 #include "Objects/ColorRect.h"
 #include "Objects/Circle.h"
 #include "Objects/SolidCircle.h"
+#include "Objects/Line.h"
 
 Program::Program()
 {
@@ -11,7 +12,7 @@ Program::Program()
 	SetGlobalBuffers();
 
 	//rect = make_unique<ColorRect>(CENTER, Vector2(100, 100), 20.0f, BLUE);
-	circle = make_unique<SolidCircle>(CENTER, Vector2(200, 200), 0);
+	line = make_unique<Line>(CENTER, Vector2(200, 200), 0);
 }
 
 Program::~Program()
@@ -30,7 +31,7 @@ void Program::SetGlobalBuffers()
 
 void Program::Update()
 {
-	circle->Update();
+	line->Update();
 }
 
 void Program::Render()
@@ -38,5 +39,5 @@ void Program::Render()
 	VPBuffer->Update();
 	VPBuffer->SetVSBuffer(1);
 
-	circle->Render();
+	line->Render();
 }
