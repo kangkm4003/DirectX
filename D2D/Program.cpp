@@ -1,18 +1,12 @@
 #include "stdafx.h"
 #include "Program.h"
-#include "Objects/ColorRect.h"
-#include "Objects/Circle.h"
-#include "Objects/SolidCircle.h"
-#include "Objects/Line.h"
+#include "Scenes/SceneList.h"
 
 Program::Program()
 {
 	VPBuffer = make_unique<ViewProjectionBuffer>();
 
 	SetGlobalBuffers();
-
-	//rect = make_unique<ColorRect>(CENTER, Vector2(100, 100), 20.0f, BLUE);
-	line = make_unique<Line>(CENTER, Vector2(200, 200), 0);
 }
 
 Program::~Program()
@@ -29,9 +23,17 @@ void Program::SetGlobalBuffers()
 	VPBuffer->SetProjection(projection);
 }
 
+void Program::Init()
+{
+	sceneList.push_back(make_shared<Scene1>());
+
+	currentScene = sceneList[0];
+	currentScene->Init();
+}
+
 void Program::Update()
 {
-	line->Update();
+	currentScene->Update();
 }
 
 void Program::Render()
@@ -39,5 +41,5 @@ void Program::Render()
 	VPBuffer->Update();
 	VPBuffer->SetVSBuffer(1);
 
-	line->Render();
+	currentScene->Render();
 }

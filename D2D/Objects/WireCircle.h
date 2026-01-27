@@ -1,0 +1,12 @@
+#pragma once
+#include "Object.h"
+
+class WireCircle : public Object
+{
+public:
+	WireCircle(Vector2 position, Vector2 scale, float rotation, Color color = RED);
+
+	void Update();
+	void Render();
+private:
+};

@@ -21,7 +21,7 @@ void Object::AddComponent(const shared_ptr<Component>& component)
 
 	if (result.second)
 	{
-		component->SetOwner(shared_from_this());
+		component->SetOwner(this);
 		if (component != transform)
 			updateList.push_back(component);
 	}

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -156,18 +156,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Components\Material.cpp" />
-    <ClCompile Include="Objects\Circle.cpp" />
-    <ClCompile Include="Objects\SolidCircle.cpp" />
+    <ClCompile Include="Components\PlayerController.cpp" />
+    <ClCompile Include="Objects\ColorCircle.cpp" />
+    <ClCompile Include="Objects\WireCircle.cpp" />
     <ClCompile Include="Objects\Line.cpp" />
+    <ClCompile Include="Scenes\Scene1_Geometry.cpp" />
     <ClCompile Include="Systems\ShaderManager.cpp" />
     <ClCompile Include="Utilities\GeometryHelper.cpp" />
     <ClInclude Include="Components\Component.h" />
     <ClInclude Include="Components\MeshRenderer.h" />
     <ClInclude Include="Components\Material.h" />
+    <ClInclude Include="Components\PlayerController.h" />
     <ClInclude Include="Objects\ColorRect.h" />
     <ClInclude Include="Objects\Object.h" />
-    <ClInclude Include="Objects\Circle.h" />
-    <ClInclude Include="Objects\SolidCircle.h" />
+    <ClInclude Include="Objects\ColorCircle.h" />
+    <ClInclude Include="Objects\WireCircle.h" />
     <ClInclude Include="Objects\Line.h" />
     <ClInclude Include="Renders\IA\IndexBuffer.h" />
     <ClInclude Include="Renders\IA\InputLayout.h" />
@@ -180,6 +183,8 @@
     <ClInclude Include="Renders\Resources\VertexType.h" />
     <ClInclude Include="Renders\Shaders\VertexShader.h" />
     <ClInclude Include="Scenes\Scene.h" />
+    <ClInclude Include="Scenes\Scene1_Geometry.h" />
+    <ClInclude Include="Scenes\SceneList.h" />
     <ClInclude Include="Systems\Graphics.h" />
     <ClInclude Include="Program.h" />
     <ClInclude Include="stdafx.h" />

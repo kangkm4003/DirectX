@@ -10,8 +10,11 @@ class Scene
 public:
 	virtual ~Scene() = default;
 
-	virtual void InitScene() = 0; // 생성자() = 0 뜻: 순수 가상 함수 선언
-	virtual void Destroy() = 0;
+	virtual void Init() = 0; // 생성자() = 0 뜻: 순수 가상 함수 선언
+	virtual void Destroy()
+	{
+		objects.clear();
+	}
 
 	virtual void Update()
 	{
@@ -38,6 +41,6 @@ public:
 	AddObject(rect);
 	*/
 
-private:
+protected:
 	vector<shared_ptr<Object>> objects;
 };

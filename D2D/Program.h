@@ -1,10 +1,5 @@
 #pragma once
 
-class ColorRect;
-class Circle;
-class SolidCircle;
-class Line;
-
 //namespace SharedPtr
 //{
 //	class Object;
@@ -30,6 +25,9 @@ class Line;
 //		}
 //	};
 //};
+
+class Scene;
+
 class Program
 {
 public:
@@ -38,6 +36,7 @@ public:
 
 	void SetGlobalBuffers();
 
+	void Init();
 	void Update();
 	void Render();
 
@@ -46,5 +45,6 @@ private:
 
 	Matrix view, projection;
 
-	unique_ptr<Line> line;
+	vector<shared_ptr<Scene>> sceneList;
+	shared_ptr<Scene> currentScene;
 };

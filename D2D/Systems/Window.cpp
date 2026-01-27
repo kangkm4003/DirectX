@@ -82,7 +82,7 @@ ATOM Window::MyRegisterClass(const WinDesc& initDesc)
 WPARAM Window::Run()
 {
 	program = make_unique<Program>();
-
+    program->Init();
     MSG msg;
 	
     // 기본 메시지 루프입니다:

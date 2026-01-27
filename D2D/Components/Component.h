@@ -13,11 +13,11 @@ public:
 	virtual void Render() {}
 
 	string GetName() const { return name; }
-	shared_ptr<Object> GetOwner() const { return owner; }
+	Object* GetOwner() const { return owner; }
 
-	void SetOwner(const shared_ptr<Object>& obj) { owner = obj; }
+	void SetOwner(Object* obj) { owner = obj; }
 
 protected:
 	string name;
-	shared_ptr<Object> owner = nullptr;
+	Object* owner = nullptr;
 };

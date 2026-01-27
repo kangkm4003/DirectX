@@ -52,15 +52,39 @@
     <ClInclude Include="Components\Component.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Transform.h" />
-    <ClInclude Include="Components\MeshRenderer.h" />
-    <ClInclude Include="Renders\Resources\Mesh.h" />
-    <ClInclude Include="Systems\ShaderManager.h" />
-    <ClInclude Include="Utilities\GeometryHelper.h" />
-    <ClInclude Include="Components\Material.h" />
-    <ClInclude Include="Objects\Circle.h" />
-    <ClInclude Include="Scenes\Scene.h" />
-    <ClInclude Include="Objects\SolidCircle.h" />
+    <ClInclude Include="Utilities\GeometryHelper.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Line.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\ColorCircle.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Material.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\Resources\Mesh.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\MeshRenderer.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\Scene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\WireCircle.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Transform.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\ShaderManager.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\Scene1_Geometry.h" />
+    <ClInclude Include="Scenes\SceneList.h" />
+    <ClInclude Include="Components\PlayerController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -105,14 +129,35 @@
     <ClCompile Include="Objects\Object.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Components\MeshRenderer.cpp" />
-    <ClCompile Include="Renders\Resources\Mesh.cpp" />
-    <ClCompile Include="Components\Transform.cpp" />
-    <ClCompile Include="Systems\ShaderManager.cpp" />
-    <ClCompile Include="Utilities\GeometryHelper.cpp" />
-    <ClCompile Include="Components\Material.cpp" />
-    <ClCompile Include="Objects\Circle.cpp" />
-    <ClCompile Include="Objects\SolidCircle.cpp" />
+    <ClCompile Include="Utilities\GeometryHelper.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Line.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\ColorCircle.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Material.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Renders\Resources\Mesh.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\MeshRenderer.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\WireCircle.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Transform.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\ShaderManager.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\Scene1_Geometry.cpp" />
+    <ClCompile Include="Components\PlayerController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
@@ -138,6 +183,9 @@
     </Filter>
     <Filter Include="Components">
       <UniqueIdentifier>{cd3cc95c-0d43-4192-8832-5c9cffd8321b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{7cc27709-e575-44dd-ac30-f2374bdb917b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

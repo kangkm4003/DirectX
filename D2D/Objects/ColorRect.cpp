@@ -1,34 +1,18 @@
 #include "stdafx.h"
 #include "ColorRect.h"
-#include "Renders/Resources/GlobalBuffers.h"
-#include "Utilities/GeometryHelper.h"
-#include "Systems/ShaderManager.h"
-
-#include "Components/Material.h"
 #include "Components/MeshRenderer.h"
-
+#include "Utilities/GeometryHelper.h"
+#include "Components/Material.h"
 
 ColorRect::ColorRect(Vector2 position, Vector2 scale, float rotation, Color color)
-	: Object(name, position, scale, rotation)
+	: Object("ColorRect", position, scale, rotation)
 {
-	shared_ptr<Material> marterial = make_shared<Material>(color, 0);
-	shared_ptr<MeshRenderer> meshRenderer = make_shared<MeshRenderer>();
+	auto renderer = make_shared<MeshRenderer>();
 
-	AddComponent(marterial);
-	AddComponent(meshRenderer);
+	renderer->SetMesh(GeometryHelper::CreateRectangle());
+	renderer->SetShaderSet(SHADERS->GetShader(L"_Shaders/Vertex.hlsl", Vertex::descs));
 
-	meshRenderer->SetMesh(GeometryHelper::CreateRectangle());
+	AddComponent(make_shared<Material>(color, 0));
 
-	ShaderSet setShader = (SHADERS->GetShader(L"./_Shaders/Vertex.hlsl", Vertex::descs));
-	meshRenderer->SetShaderSet(setShader);
-}
-
-void ColorRect::Update()
-{
-	SUPER::Update();
-}
-
-void ColorRect::Render()
-{
-	SUPER::Render();
+	AddComponent(renderer);
 }
