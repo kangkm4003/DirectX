@@ -4,6 +4,8 @@
 
 #pragma once
 
+#define NOMINMAX
+
 #ifdef _DEBUG
 #pragma comment (linker, "/entry:wWinMainCRTStartup /subsystem:console")
 #endif

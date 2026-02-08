@@ -82,8 +82,9 @@ public:
 		rotation += radian;
 		bDirty = true;
 	}
-
+	Vector2 right{ 1, 0 }, up{ 0, 1 };
 private:
+
 	Vector2 position, scale{ 1, 1 };
 	float rotation = 0.0f;
 

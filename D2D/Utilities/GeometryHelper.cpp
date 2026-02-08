@@ -2,8 +2,6 @@
 #include "GeometryHelper.h"
 #include "Renders/Resources/Mesh.h"
 
-//Todo : 속이 빈 원, 직선
-
 namespace GeometryHelper
 {
 	shared_ptr<Mesh> CreateRectangle()
@@ -33,31 +31,32 @@ namespace GeometryHelper
 
 		if (cache.count(quality) > 0)
 			return cache[quality];
-		else
+
+		vector<Vertex> vertices(quality + 1);
+		vertices[0].position = Vector2();
+
+		for (UINT i = 1; i <= quality; ++i)
 		{
-			vector<Vertex> vertices(quality + 1); //인덱스 0번은 원의 중점
-			vector<UINT> indices(quality * 3); // 삼각형을 quality만큼 그린다
-			vertices[0].position = Vector2(0.f, 0.f);
-			for (UINT i = 1; i < quality + 1; i++)
-			{
-				float theta = 2.0f * XM_PI * i / quality;
-				vertices[i].position = Vector2(sinf(theta), cosf(theta)) * 0.5f;
-			}
-
-			for (UINT i = 0; i <= quality; i++)
-			{
-				indices.push_back(0);
-				indices.push_back(1);
-				indices.push_back(2);
-			}
-			indices[indices.size() - 1] = indices[1];
-
-			auto mesh = make_shared<Mesh>();
-			mesh->Create(vertices, indices);
-			cache[quality] = mesh;
-
-			return mesh;
+			float theta = 2.0f * XM_PI * (i - 1) / quality;
+			vertices[i].position = Vector2(sinf(theta), cosf(theta)) * 0.5f;
 		}
+
+		vector<UINT> indices;
+		indices.reserve(quality * 3);
+		for (UINT i = 0; i < quality; ++i)
+		{
+			indices.push_back(0);
+			indices.push_back(i + 1);
+			//indices.push_back(i + 2);
+			indices.push_back((i + 2 > quality) ? 1 : i + 2);
+		}
+
+		auto mesh = make_shared<Mesh>();
+		mesh->Create(vertices, indices);
+
+		cache[quality] = mesh;
+
+		return mesh;
 	}
 
 shared_ptr<Mesh> CreateWireCircle(UINT quality)

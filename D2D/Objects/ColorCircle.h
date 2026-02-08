@@ -4,7 +4,8 @@
 class ColorCircle : public Object
 {
 public:
-	ColorCircle(Vector2 position, Vector2 scale, float rotation, Color color = RED);
+	ColorCircle(Vector2 position, Vector2 scale, float rotation = 0.0f, Color color = RED, UINT segments = 50);
+	~ColorCircle() override = default;
 
 	void Update();
 	void Render();

@@ -11,6 +11,11 @@ void Transform::Update()
 {
 	if (bDirty == false) return;
 
+	float s, c;
+	XMScalarSinCos(&s, &c, -rotation);
+	right = Vector2(c, s);
+	up = Vector2(-s, c);
+
 	Matrix S = XMMatrixScalingFromVector(scale);
 	Matrix R = XMMatrixRotationZ(-rotation);
 	Matrix T = XMMatrixTranslationFromVector(position);

@@ -85,6 +85,7 @@
     <ClInclude Include="Scenes\Scene1_Geometry.h" />
     <ClInclude Include="Scenes\SceneList.h" />
     <ClInclude Include="Components\PlayerController.h" />
+    <ClInclude Include="Utilities\Collision.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -158,6 +159,7 @@
     </ClCompile>
     <ClCompile Include="Scenes\Scene1_Geometry.cpp" />
     <ClCompile Include="Components\PlayerController.cpp" />
+    <ClCompile Include="Utilities\Collision.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
