@@ -53,8 +53,29 @@ bool Collision::Intersect(const CircleData& circle, const RectData& rect)
 
 bool IntersectOBB(const Transform* t1, const Transform* t2)
 {
-	const float distance = Vector2::Distance(t1->GetPosition(), t2->GetPosition());
-	const float X_axis = abs(t1->GetPosition().x - t2->GetPosition().x);
+	//서로의 중심점 기준의 거리
+	const Vector2 dist = t2->GetPosition() - t2->GetPosition();
 
-	return false;
+	//각각의 up 벡터와 right 벡터를 배열로 저장
+	const Vector2 axes[] = { t1->GetRight(), t1->GetUp(), t2->GetRight(), t2->GetUp() };
+
+	//t1과 t2의 반지름 벡터 (길이)
+	const Vector2 t1ArmW = axes[0] * (t1->GetScale().x * 0.5f);
+	const Vector2 t1ArmH = axes[1] * (t1->GetScale().y * 0.5f);
+	const Vector2 t2ArmW = axes[2] * (t2->GetScale().x * 0.5f);
+	const Vector2 t2ArmH = axes[3] * (t2->GetScale().y * 0.5f);
+
+	for (auto axis : axes)
+	{
+		//서로의 중심점간의 거리벡터를 축에 투영한 길이(내적)
+		const float projDist = abs(dist.Dot(axis));
+
+		//각각의 반지름 길이의 내적을 구해 
+		const float r1 = abs(t1ArmW.Dot(axis)) + abs(t1ArmH.Dot(axis));
+		const float r2 = abs(t2ArmW.Dot(axis)) + abs(t2ArmH.Dot(axis));
+
+		if (projDist > r1 + r2) return false;
+	}
+
+	return true;
 }

@@ -82,9 +82,13 @@ public:
 		rotation += radian;
 		bDirty = true;
 	}
-	Vector2 right{ 1, 0 }, up{ 0, 1 };
+
+	Vector2 GetRight() const { return right; }
+	Vector2 GetUp() const { return up; }
+
 private:
 
+	Vector2 right{ 1, 0 }, up{ 0, 1 };
 	Vector2 position, scale{ 1, 1 };
 	float rotation = 0.0f;
 

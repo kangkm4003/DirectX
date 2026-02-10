@@ -26,6 +26,7 @@ void Program::SetGlobalBuffers()
 void Program::Init()
 {
 	sceneList.push_back(make_shared<Scene1>());
+	sceneList.push_back(make_shared<Scene3>());
 
 	currentScene = sceneList[0];
 	currentScene->Init();
@@ -38,8 +39,29 @@ void Program::Update()
 
 void Program::Render()
 {
+	if(INPUT->Down(VK_F1))
+	{
+		SwitchScene(0);
+	}
+	else if (INPUT->Down(VK_F2))
+	{
+		SwitchScene(1);
+	}
+
 	VPBuffer->Update();
 	VPBuffer->SetVSBuffer(1);
 
 	currentScene->Render();
+}
+
+void Program::SwitchScene(int index)
+{
+	//너무 큰 값을 넣었을땐 바로 종료
+	if (index >= sceneList.size()) return;
+
+	if (currentScene == sceneList[index]) return;
+
+	currentScene->Destroy();
+	currentScene = sceneList[index];
+	currentScene->Init();
 }

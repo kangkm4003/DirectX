@@ -41,6 +41,8 @@ public:
 	void Render();
 
 private:
+	void SwitchScene(int index);
+
 	unique_ptr<ViewProjectionBuffer> VPBuffer;
 
 	Matrix view, projection;

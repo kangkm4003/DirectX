@@ -8,6 +8,9 @@
 #include "Utilities/Collision.h"
 #include "Components/Transform.h"
 
+//과제 : 충돌 체크 시뮬레이터, 시계 구현, 크리스마스 트리 만들기 
+
+
 void Scene1::Init()
 {
 	rect1 = make_unique<ColorRect>(CENTER, Vector2(100, 100), 0.0f, BLUE);
@@ -16,17 +19,11 @@ void Scene1::Init()
 
 	rect2 = make_unique<ColorRect>(CENTER, Vector2(100, 100), 0.0f, BLUE);
 	AddObject(rect2);
-
-	//AddObject(make_shared<Line>(CENTER, 300.0f, 0.0f, MAGENTA));
-	//AddObject(make_shared<WireCircle>(CENTER, Vector2(100, 100), 0.0f, YELLOW));
-	//AddObject(make_shared<ColorCircle>(CENTER - Vector2(0, 100), Vector2(100, 100), 0.0f, CYAN));
 }
 
 void Scene1::Update()
 {
 	SUPER::Update();
-
-	std::cout << "x:" << rect1->GetTransform()->right.x + rect1->GetTransform()->up.x << std::endl;
 }
 
 //void Scene1::Destroy()
