@@ -70,12 +70,13 @@ bool IntersectOBB(const Transform* t1, const Transform* t2)
 		//서로의 중심점간의 거리벡터를 축에 투영한 길이(내적)
 		const float projDist = abs(dist.Dot(axis));
 
-		//각각의 반지름 길이의 내적을 구해 
+		//각각의 반지름 벡터의 내적한 값
 		const float r1 = abs(t1ArmW.Dot(axis)) + abs(t1ArmH.Dot(axis));
 		const float r2 = abs(t2ArmW.Dot(axis)) + abs(t2ArmH.Dot(axis));
 
+		//값을 더했을때 중점끼리의 거리값 보다 작다면 false)
 		if (projDist > r1 + r2) return false;
 	}
-
+	//모든 정점의 길이가 거리값보다 크다면 true)
 	return true;
 }
