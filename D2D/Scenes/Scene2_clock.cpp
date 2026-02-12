@@ -4,8 +4,11 @@
 #include "Objects/Line.h"
 #include "Components/Transform.h"
 
+// 과제: 실제 시간에 맞춰 시계침 시작지점 조정하기
 void Scene2::Init()
 {
+	SYSTEMTIME sysTime;
+	GetSystemTime(&sysTime); //실제 시간
 	clock_body = make_unique<WireCircle>(CENTER, Vector2(600, 600), 0, WHITE);
 	clock_second = make_unique<Line>(Vector2(CENTER.x, CENTER.y + 250 * 0.5), Vector2(1, 250), 0, BLUE); //생성후 최초 Update함수 실행시 순간적으로 몸체의 중앙에 위치하는 것을 방지 하기위헤 생성위치 조정
 	clock_minute = make_unique<Line>(Vector2(CENTER.x, CENTER.y + 150 * 0.5), Vector2(1, 150), 0, GREEN);
@@ -24,7 +27,7 @@ void Scene2::Update()
 {
 	SUPER::Update();
 
-	float  angle = clock_second->GetTransform()->GetRotationRadian() + speed_rad * DELTA;
+	double  angle = clock_second->GetTransform()->GetRotationRadian() + speed_rad * DELTA;
 	Vector2 result = { R_sec * sinf(angle), R_sec * cosf(angle) };
 	clock_second->GetTransform()->SetPosition(CENTER + result); //초침의 위치를 기울기에 맞춰 값 변환
 	clock_second->GetTransform()->RotateRadian(speed_rad * DELTA);

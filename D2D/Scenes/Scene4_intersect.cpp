@@ -11,6 +11,7 @@
 #include "Objects/ColorCircle.h"
 #include "Objects/WireCircle.h"
 
+//과제 : 원과 회전한 직사각형 충돌체크 구현 (힌트: 기준 축을 직사각형으로 하면 AABB 가능)
 void Scene4::Init()
 {
 	rect1 = make_unique<ColorRect>(CENTER, Vector2(100, 100), 0, BLUE);

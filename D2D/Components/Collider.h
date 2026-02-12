@@ -3,6 +3,7 @@
 #include "Utilities/Collision.h"
 #include "Components/Transform.h"
 
+//ToDo: 회전한 직사각형과 원의 충돌 체크 구현하기
 enum class ColliderType { POINT, BOX, CIRCLE };
 
 class Collider : public Component
