@@ -16,26 +16,26 @@ void Scene2::Init()
 	AddObject(clock_minute);
 	AddObject(clock_hour);
 
-	R_sec = clock_second->GetTransform()->GetScale().y * 0.5; //초침이 이동할 가상의 원형 경로의 크기(반지름)
-	R_min = clock_minute->GetTransform()->GetScale().y * 0.5;
-	R_hour = clock_hour->GetTransform()->GetScale().y * 0.5;
+	R_sec = clock_second->GetTransform()->GetScale().y * 0.5; //초침이 이동할 가상의 원의 크기(자신의 길이 / 2)
+	R_min = clock_minute->GetTransform()->GetScale().y * 0.5; //분침이 이동할 가상의 원의 크기(자신의 길이 / 2)
+	R_hour = clock_hour->GetTransform()->GetScale().y * 0.5; //시침이 이동할 가상의 원의 크기(자신의 길이 / 2)
 }
 void Scene2::Update()
 {
 	SUPER::Update();
 
-	float  angle = clock_second->GetTransform()->GetRotationRadian() + speed * DELTA;
+	float  angle = clock_second->GetTransform()->GetRotationRadian() + speed_rad * DELTA;
 	Vector2 result = { R_sec * sinf(angle), R_sec * cosf(angle) };
 	clock_second->GetTransform()->SetPosition(CENTER + result); //초침의 위치를 기울기에 맞춰 값 변환
-	clock_second->GetTransform()->SetRotationRadian(angle);
+	clock_second->GetTransform()->RotateRadian(speed_rad * DELTA);
 
-	angle = clock_minute->GetTransform()->GetRotationRadian() + speed * 0.016 * DELTA;
+	angle = clock_minute->GetTransform()->GetRotationRadian() + speed_rad * 0.016 * DELTA;
 	result = { R_min * sinf(angle), R_min * cosf(angle) };
 	clock_minute->GetTransform()->SetPosition(CENTER + result); //분침의 위치를 기울기에 맞춰 값 변환
-	clock_minute->GetTransform()->SetRotationRadian(angle);
+	clock_minute->GetTransform()->RotateRadian(speed_rad * 0.016 * DELTA);
 
-	angle = clock_hour->GetTransform()->GetRotationRadian() + speed * 0.0016 * DELTA;
+	angle = clock_hour->GetTransform()->GetRotationRadian() + speed_rad * 0.0016 * DELTA;
 	result = { R_hour * sinf(angle), R_hour * cosf(angle) };
 	clock_hour->GetTransform()->SetPosition(CENTER + result); //시침의 위치를 기울기에 맞춰 값 변환
-	clock_hour->GetTransform()->SetRotationRadian(angle);
+	clock_hour->GetTransform()->RotateRadian(speed_rad * 0.0016 * DELTA);
 }
