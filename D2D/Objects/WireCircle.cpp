@@ -12,7 +12,7 @@ WireCircle::WireCircle(Vector2 position, Vector2 scale, float rotation, Color co
 	shared_ptr<Material> marterial = make_shared<Material>(color, 0);
 	shared_ptr<MeshRenderer> meshRenderer = make_shared<MeshRenderer>();
 
-	meshRenderer->SetTopology(D3D11_PRIMITIVE_TOPOLOGY_LINELIST);
+	meshRenderer->SetTopology(D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP);
 	meshRenderer->SetMesh(GeometryHelper::CreateWireCircle(50));
 
 	meshRenderer->SetShaderSet(SHADERS->GetShader(L"./_Shaders/Vertex.hlsl", Vertex::descs));

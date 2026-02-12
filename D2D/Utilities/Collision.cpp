@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "Collision.h"
-#include "Objects/Object.h"
 #include "Components/Transform.h"
 
 bool Collision::Intersect(const RectData& rect, Vector2 point)
@@ -15,46 +14,10 @@ bool Collision::Intersect(const CircleData& circle, Vector2 point)
 	return distanceSq <= circle.radius * circle.radius;
 }
 
-bool Collision::Intersect(const RectData& rect1, const RectData& rect2)
-{
-	return (rect1.min.x <= rect2.max.x && rect2.min.x <= rect1.max.x &&
-		rect1.min.y <= rect2.max.y && rect2.min.y <= rect1.max.y);
-}
-
-bool Collision::Intersect(const CircleData& circle1, const CircleData& circle2)
-{
-	const float distanceSq = Vector2::DistanceSquared(circle1.pivot, circle2.pivot);
-	return distanceSq <= (circle1.radius + circle2.radius) * (circle1.radius + circle2.radius);
-}
-
-bool Collision::Intersect(const RectData& rect, const CircleData& circle)
-{
-	Vector2 closest; // 원의 중심에서 가장 가까운 사각형 위의 점.
-
-	closest.x = max(rect.min.x, min(circle.pivot.x, rect.max.x));
-	closest.x = max(rect.min.y, min(circle.pivot.y, rect.max.y));
-
-	const float distanceSq = Vector2::DistanceSquared(closest, circle.pivot);
-
-	return distanceSq <= circle.radius * circle.radius;
-}
-
-bool Collision::Intersect(const CircleData& circle, const RectData& rect)
-{
-	Vector2 closest; // 원의 중심에서 가장 가까운 사각형 위의 점.
-
-	closest.x = max(rect.min.x, min(circle.pivot.x, rect.max.x));
-	closest.x = max(rect.min.y, min(circle.pivot.y, rect.max.y));
-
-	const float distanceSq = Vector2::DistanceSquared(closest, circle.pivot);
-
-	return distanceSq <= circle.radius * circle.radius;
-}
-
-bool IntersectOBB(const Transform* t1, const Transform* t2)
+bool Collision::IntersectOBB(const shared_ptr<Transform>& t1, const shared_ptr<Transform>& t2)
 {
 	//서로의 중심점 기준의 거리
-	const Vector2 dist = t2->GetPosition() - t2->GetPosition();
+	const Vector2 dist = t1->GetPosition() - t2->GetPosition();
 
 	//각각의 up 벡터와 right 벡터를 배열로 저장
 	const Vector2 axes[] = { t1->GetRight(), t1->GetUp(), t2->GetRight(), t2->GetUp() };
@@ -79,4 +42,40 @@ bool IntersectOBB(const Transform* t1, const Transform* t2)
 	}
 	//모든 정점의 길이가 거리값보다 크다면 true)
 	return true;
+}
+
+bool Collision::Intersect(const RectData& rect1, const RectData& rect2)
+{
+	return (rect1.min.x <= rect2.max.x && rect2.min.x <= rect1.max.x &&
+		rect1.min.y <= rect2.max.y && rect2.min.y <= rect1.max.y);
+}
+
+bool Collision::Intersect(const CircleData& circle1, const CircleData& circle2)
+{
+	const float distanceSq = Vector2::DistanceSquared(circle1.pivot, circle2.pivot);
+	return distanceSq <= (circle1.radius + circle2.radius) * (circle1.radius + circle2.radius);
+}
+
+bool Collision::Intersect(const RectData& rect, const CircleData& circle)
+{
+	Vector2 closest; // 원의 중심에서 가장 가까운 사각형 위의 점.
+
+	closest.x = max(rect.min.x, min(circle.pivot.x, rect.max.x));
+	closest.y = max(rect.min.y, min(circle.pivot.y, rect.max.y));
+
+	const float distanceSq = Vector2::DistanceSquared(closest, circle.pivot);
+
+	return distanceSq <= circle.radius * circle.radius;
+}
+
+bool Collision::Intersect(const CircleData& circle, const RectData& rect)
+{
+	Vector2 closest; // 원의 중심에서 가장 가까운 사각형 위의 점.
+
+	closest.x = max(rect.min.x, min(circle.pivot.x, rect.max.x));
+	closest.y = max(rect.min.y, min(circle.pivot.y, rect.max.y));
+
+	const float distanceSq = Vector2::DistanceSquared(closest, circle.pivot);
+
+	return distanceSq <= circle.radius * circle.radius;
 }

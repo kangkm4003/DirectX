@@ -26,7 +26,9 @@ void Program::SetGlobalBuffers()
 void Program::Init()
 {
 	sceneList.push_back(make_shared<Scene1>());
+	sceneList.push_back(make_shared<Scene2>());
 	sceneList.push_back(make_shared<Scene3>());
+	sceneList.push_back(make_shared<Scene4>());
 
 	currentScene = sceneList[0];
 	currentScene->Init();
@@ -46,6 +48,14 @@ void Program::Render()
 	else if (INPUT->Down(VK_F2))
 	{
 		SwitchScene(1);
+	}
+	else if (INPUT->Down(VK_F3))
+	{
+		SwitchScene(2);
+	}
+	else if (INPUT->Down(VK_F4))
+	{
+		SwitchScene(3);
 	}
 
 	VPBuffer->Update();

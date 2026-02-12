@@ -1,8 +1,9 @@
 #pragma once
 #include "Component.h"
 #include "Utilities/Collision.h"
+#include "Components/Transform.h"
 
-enum class ColliderType { BOX, CIRCLE };
+enum class ColliderType { POINT, BOX, CIRCLE };
 
 class Collider : public Component
 {
@@ -10,7 +11,7 @@ public:
 	Collider(ColliderType type) : Component("Collider"), type(type) {}
 	virtual ~Collider() = default;
 
-	virtual bool IsColliding(Vector2 point) = 0;
+	virtual bool IsCollidingWith(ColliderType type, Vector2 position, Vector2 scale) = 0; //충돌 확인할 물체의 형태, 그 물체의 위치와 크기.
 
 	ColliderType GetType() const { return type; }
 

@@ -16,3 +16,13 @@ ColorRect::ColorRect(Vector2 position, Vector2 scale, float rotation, Color colo
 
 	AddComponent(renderer);
 }
+
+void ColorRect::Update()
+{
+	SUPER::Update();
+}
+
+void ColorRect::Render()
+{
+	SUPER::Render();
+}

@@ -155,10 +155,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Components\CircleCollider.cpp" />
     <ClCompile Include="Components\Material.cpp" />
     <ClCompile Include="Components\PlayerController.cpp" />
     <ClCompile Include="Components\BoxCollider.cpp" />
-    <ClCompile Include="Components\CircleCollider.cpp" />
     <ClCompile Include="Objects\ColorCircle.cpp" />
     <ClCompile Include="Objects\WireCircle.cpp" />
     <ClCompile Include="Objects\Line.cpp" />
@@ -169,13 +169,13 @@
     <ClCompile Include="Systems\ShaderManager.cpp" />
     <ClCompile Include="Utilities\GeometryHelper.cpp" />
     <ClCompile Include="Utilities\Collision.cpp" />
+    <ClInclude Include="Components\CircleCollider.h" />
     <ClInclude Include="Components\Component.h" />
     <ClInclude Include="Components\MeshRenderer.h" />
     <ClInclude Include="Components\Material.h" />
     <ClInclude Include="Components\PlayerController.h" />
     <ClInclude Include="Components\Collider.h" />
     <ClInclude Include="Components\BoxCollider.h" />
-    <ClInclude Include="Components\CircleCollider.h" />
     <ClInclude Include="Objects\ColorRect.h" />
     <ClInclude Include="Objects\Object.h" />
     <ClInclude Include="Objects\ColorCircle.h" />

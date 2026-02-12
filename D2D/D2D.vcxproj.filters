@@ -89,9 +89,9 @@
     <ClInclude Include="Components\Collider.h" />
     <ClInclude Include="Components\BoxCollider.h" />
     <ClInclude Include="Scenes\Scene4_intersect.h" />
-    <ClInclude Include="Components\CircleCollider.h" />
     <ClInclude Include="Scenes\Scene2_clock.h" />
     <ClInclude Include="Scenes\Scene3_Tree.h" />
+    <ClInclude Include="Components\CircleCollider.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -168,9 +168,9 @@
     <ClCompile Include="Utilities\Collision.cpp" />
     <ClCompile Include="Components\BoxCollider.cpp" />
     <ClCompile Include="Scenes\Scene4_intersect.cpp" />
-    <ClCompile Include="Components\CircleCollider.cpp" />
     <ClCompile Include="Scenes\Scene2_clock.cpp" />
     <ClCompile Include="Scenes\Scene3_Tree.cpp" />
+    <ClCompile Include="Components\CircleCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
