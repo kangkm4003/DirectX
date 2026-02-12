@@ -14,7 +14,7 @@ bool Collision::Intersect(const CircleData& circle, Vector2 point)
 	return distanceSq <= circle.radius * circle.radius;
 }
 
-bool Collision::IntersectOBB(const shared_ptr<Transform>& t1, const shared_ptr<Transform>& t2)
+bool Collision::IntersectOBB(Transform* t1, Transform* t2)
 {
 	//서로의 중심점 기준의 거리
 	const Vector2 dist = t1->GetPosition() - t2->GetPosition();

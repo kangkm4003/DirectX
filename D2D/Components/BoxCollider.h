@@ -1,11 +1,16 @@
 #pragma once
 #include "Collider.h"
 
+class CircleCollider;
 class BoxCollider : public Collider
 {
 public:
 	BoxCollider() : Collider(ColliderType::BOX) {}
 
-	bool IsCollidingWith(ColliderType type, Vector2 position, Vector2) override;
-	bool IsCollidingWithOBB(shared_ptr<Transform> target); //OBB는 직사각형 형태 끼리에만 유효 하기에 단독 선언
+	bool IsColliding(Vector2 point) override;
+
+	bool IsColliding(const shared_ptr<Collider>& other) override;
+
+	bool IsColliding(BoxCollider* other) override;
+	bool IsColliding(CircleCollider* other) override;
 };

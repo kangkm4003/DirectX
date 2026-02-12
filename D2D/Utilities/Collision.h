@@ -34,7 +34,7 @@ namespace Collision
 	bool Intersect(const RectData& rect, Vector2 point);
 	bool Intersect(const CircleData& circle, Vector2 point);
 
-	bool IntersectOBB(const shared_ptr<Transform>& t1, const shared_ptr<Transform>& t2);
+	bool Collision::IntersectOBB(Transform* t1, Transform* t2);
 
 	bool Intersect(const RectData& rect1, const RectData& rect2);
 	bool Intersect(const CircleData& circle1, const CircleData& circle2);

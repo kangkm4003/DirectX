@@ -19,8 +19,22 @@ void Scene4::Init()
 	circle1 = make_unique<ColorCircle>(CENTER + Vector2(-300, -300), Vector2(100, 100), 0, RED);
 	circle2 = make_unique<WireCircle>(CENTER + Vector2(-300, +300), Vector2(100, 100), 0, RED);
 
+	//rect1 == 조작키로 이동 가능한 rect
 	rect1->AddComponent(make_shared<PlayerController>());
+
+	//사각 콜리더 추가
 	rect1->AddComponent(make_shared<BoxCollider>());
+	rect2->AddComponent(make_shared<BoxCollider>());
+	
+	//원형 콜리더 추가
+	circle1->AddComponent(make_shared<CircleCollider>());
+	circle2->AddComponent(make_shared<CircleCollider>());
+
+	rect1HitBox = rect1->GetComponent<BoxCollider>("Collider");
+	rect2HitBox = rect2->GetComponent<BoxCollider>("Collider");
+	circle1HitBox = circle1->GetComponent<CircleCollider>("Collider");
+	circle2HitBox = circle2->GetComponent<CircleCollider>("Collider");
+
 	AddObject(rect1);
 	AddObject(rect2);
 	AddObject(circle1);
@@ -35,7 +49,7 @@ void Scene4::Update()
 	//	rect1->GetComponent<Material>("Material")->SetColor(Color(1, 0, 1, 1));
 
 	//직사각형, 원 충돌
-	if (rect1->GetComponent<BoxCollider>("Collider")->IsCollidingWith(ColliderType::CIRCLE, circle1->GetTransform()->GetPosition(), circle1->GetTransform()->GetScale()))
+	if (rect1HitBox->)
 		circle1->GetComponent<Material>("Material")->SetColor(MAGENTA);
 	else
 		circle1->GetComponent<Material>("Material")->SetColor(RED);

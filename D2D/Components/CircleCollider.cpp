@@ -2,27 +2,32 @@
 #include "CircleCollider.h"
 #include "Components/Transform.h"
 #include "Objects/Object.h"
+#include "BoxCollider.h"
 
-bool CircleCollider::IsCollidingWith(ColliderType type, Vector2 position, Vector2 scale)
+bool CircleCollider::IsColliding(Vector2 point)
 {
 	const auto& tr = GetOwner()->GetTransform();
 
-	//type 인자값에 맞춰 Collision::Intersect 실핼 (CircleCollider 이기에 자신은 무조건 CircleData)
-	switch (type)
-	{
-	case ColliderType::POINT:
-	{
-		return Collision::Intersect(Collision::CircleData(tr->GetPosition(), tr->GetScale()), position);
-	}
-	case ColliderType::BOX:
-	{
-		return Collision::Intersect(Collision::CircleData(tr->GetPosition(), tr->GetScale()), Collision::RectData(position, scale));
-	}
-	case ColliderType::CIRCLE:
-	{
-		return Collision::Intersect(Collision::CircleData(tr->GetPosition(), tr->GetScale()), Collision::CircleData(position, scale));
-	}
-	break;
-	}
-	return false;
+	return Collision::Intersect(Collision::RectData(tr->GetPosition(), tr->GetScale()), point);
+}
+
+bool CircleCollider::IsColliding(const shared_ptr<Collider>& other)
+{
+	return other->IsColliding(this);
+}
+
+bool CircleCollider::IsColliding(BoxCollider* other)
+{
+	return other->IsColliding(this);
+}
+
+bool CircleCollider::IsColliding(CircleCollider* other)
+{
+	const auto& myTransform = GetOwner()->GetTransform();
+	const auto& otherTransform = other->GetOwner()->GetTransform();
+
+	return Collision::Intersect(
+		Collision::CircleData(myTransform->GetPosition(), myTransform->GetScale()),
+		Collision::CircleData(otherTransform->GetPosition(), otherTransform->GetScale())
+	);
 }
