@@ -162,6 +162,7 @@
     <ClCompile Include="Objects\ColorCircle.cpp" />
     <ClCompile Include="Objects\WireCircle.cpp" />
     <ClCompile Include="Objects\Line.cpp" />
+    <ClCompile Include="Objects\ObjectGroup.cpp" />
     <ClCompile Include="Scenes\Scene1_Geometry.cpp" />
     <ClCompile Include="Scenes\Scene4_intersect.cpp" />
     <ClCompile Include="Scenes\Scene2_clock.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="Objects\ColorCircle.h" />
     <ClInclude Include="Objects\WireCircle.h" />
     <ClInclude Include="Objects\Line.h" />
+    <ClInclude Include="Objects\ObjectGroup.h" />
     <ClInclude Include="Renders\IA\IndexBuffer.h" />
     <ClInclude Include="Renders\IA\InputLayout.h" />
     <ClInclude Include="Renders\IA\VertexBuffer.h" />

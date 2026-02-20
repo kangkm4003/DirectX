@@ -23,3 +23,5 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 	return int(wParam);
 }
+
+//ToDo: 크리스마스 트리 완성하기 (별, 눈 남았음)

@@ -55,9 +55,6 @@ void Scene4::Destroy()
 void Scene4::Update()
 {
 	SUPER::Update();
-	//직사각형 끼리의 충돌
-	//if (rect1->GetComponent<BoxCollider>("Collider")->IsCollidingWith(ColliderType::BOX, rect2->GetTransform()->GetPosition(), rect2->GetTransform()->GetScale()))
-	//	rect1->GetComponent<Material>("Material")->SetColor(Color(1, 0, 1, 1));
 
 	//직사각형, 원1 충돌
 	if (rect1HitBox->IsColliding(circle1HitBox))
@@ -71,7 +68,7 @@ void Scene4::Update()
 	else
 		circle2->GetComponent<Material>("Material")->SetColor(RED);
 	
-	//직사각형 끼리의 충돌(OBB)
+	//직사각형 끼리의 충돌(OBB 포함)
 	if (rect1HitBox->IsColliding(rect2HitBox))
 		rect2->GetComponent<Material>("Material")->SetColor(MAGENTA);
 	else
