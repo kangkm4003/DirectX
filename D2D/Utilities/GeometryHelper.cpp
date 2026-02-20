@@ -107,4 +107,24 @@ shared_ptr<Mesh> CreateLine()
 
 		return mesh;
 	}
+
+shared_ptr<Mesh> CreateLine2()
+{
+	static shared_ptr<Mesh> mesh = nullptr;
+	if (mesh == nullptr)
+	{
+
+		vector<Vertex> vertices(2);
+		vertices[0].position = Vector2(0.f, 0.0f);
+		vertices[1].position = Vector2(0.f, 1.f);
+
+		vector<UINT> indices = { 0, 1 };
+
+		mesh = make_shared<Mesh>();
+		mesh->Create(vertices, indices);
+
+	}
+
+	return mesh;
+}
 }

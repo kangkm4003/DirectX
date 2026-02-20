@@ -13,4 +13,7 @@ public:
 
 	bool IsColliding(BoxCollider* other) override;
 	bool IsColliding(CircleCollider* other) override;
+
+	//
+	Collision::RectData GetGlobalBounds();
 };

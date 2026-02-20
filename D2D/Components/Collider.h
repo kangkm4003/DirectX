@@ -18,6 +18,8 @@ public:
 	virtual bool IsColliding(class BoxCollider* other) = 0;
 	virtual bool IsColliding(class CircleCollider* other) = 0;
 
+	virtual Collision::RectData GetGlobalBounds() = 0;
+
 	ColliderType GetType() const { return type; }
 
 protected:

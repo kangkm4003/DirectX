@@ -11,6 +11,8 @@ public:
 
 	bool IsColliding(const shared_ptr<Collider>& other) override;
 
-	bool IsColliding(BoxCollider* other) override;
-	bool IsColliding(CircleCollider* other) override;
+	bool IsColliding(class BoxCollider* other) override;
+	bool IsColliding(class CircleCollider* other) override;
+
+	Collision::RectData GetGlobalBounds() override;
 };

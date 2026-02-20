@@ -18,6 +18,7 @@ public:
 
 private:
 
+	//멤버로 오브젝트를 선언했다면 destroy에서 nullptr로 해야 한다.
 	shared_ptr <ColorRect> rect1;
 	shared_ptr<BoxCollider> rect1HitBox;
 
