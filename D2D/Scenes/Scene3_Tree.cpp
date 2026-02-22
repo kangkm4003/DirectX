@@ -3,6 +3,7 @@
 #include "Objects/ColorCircle.h"
 #include "Objects/ColorRect.h"
 #include "Scene3_Tree.h"
+#include "Components/Transform.h"
 
 void Scene3::Init()
 {
@@ -21,10 +22,20 @@ void Scene3::Init()
 	TreeObject_Group->Add(move(treeBody), Vector2(0, -250));
 
 	//나무 위에 있는 빚나는 뭐시기
-	Star_Group = make_unique<ObjectGroup>(CENTER, Vector2(1, 1), 0, 4);
+	Star_Group = make_unique<ObjectGroup>(Vector2(CENTER.x, CENTER.y + 100), Vector2(1, 1), 0, 4);
 
-	//shared_ptr<ColorRect> treeLeaf0 = make_unique<ColorRect>(Vector2(0, 0), Vector2(100, 100), 0.f, YELLOW);
+	shared_ptr<ColorRect> starRect1 = make_unique<ColorRect>(Vector2(0, 0), Vector2(40, 40), 0.f, YELLOW);
+	shared_ptr<ColorRect> starRect2 = make_unique<ColorRect>(Vector2(0, 0), Vector2(40, 40), 0.f, YELLOW);
+	shared_ptr<ColorCircle> starCircle = make_unique<ColorCircle>(Vector2(0, 0), Vector2(10, 10), 0.f, WHITE);
 
+	Star_Group->Add(starRect1, Vector2(0, 0));
+	Star_Group->Add(starRect2, Vector2(0, 0));
+	Star_Group->Add(starCircle, Vector2(0, 0));
+
+	starRect1_tr = starRect1->GetTransform();
+	starRect2_tr = starRect2->GetTransform();
+	starCircle_tr = starCircle->GetTransform();
+	defaultScale = starRect1_tr->GetScale().x;
 
 	//선물1
 	Gift1_Group = make_unique<ObjectGroup>(Vector2(CENTER.x - 90, CENTER.y - 270), Vector2(1, 1), 0, 3);
@@ -50,6 +61,7 @@ void Scene3::Init()
 	Gift2_Group->Add(move(Gift2_Tie2), Vector2(0, 0));
 
 	AddObject(TreeObject_Group);
+	AddObject(Star_Group);
 	AddObject(Gift1_Group);
 	AddObject(Gift2_Group);
 }
@@ -58,6 +70,12 @@ void Scene3::Destroy()
 {
 	SUPER::Destroy();
 	TreeObject_Group = nullptr;
+
+	starRect1_tr = nullptr;
+	starRect2_tr = nullptr;
+	starCircle_tr = nullptr;
+	Star_Group = nullptr;
+
 	Gift1_Group = nullptr;
 	Gift2_Group = nullptr;
 }
@@ -65,4 +83,11 @@ void Scene3::Destroy()
 void Scene3::Update()
 {
 	SUPER::Update();
+
+	Vector2 scaleToBe = Vector2(defaultScale + sinf(TIME->GetWorldTime() * rotateSpeed) * scaleAmount); //현시각 오브젝트의 스케일이될 값(실시간으로 바뀌기에 지역변수로 선언. WorldTime을 참조하기에 DELTA 미사용)
+	starRect1_tr->RotateDegree(75 * DELTA);
+	starRect1_tr->SetScale(scaleToBe);
+	starRect2_tr->RotateDegree(-75 * DELTA);
+	starRect2_tr->SetScale(scaleToBe);
+	starCircle_tr->SetScale(Vector2(defaultScale * 0.2f + sinf(TIME->GetWorldTime() * rotateSpeed) * -scaleAmount * 0.15f)); //이놈만 반대로 해야하기 때문에 scaleToBe 예외
 }

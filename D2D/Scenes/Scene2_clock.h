@@ -15,7 +15,7 @@ public:
 	//void Render() override;
 
 private:
-	float speed = 360.f; //초침이 1초당 증가할 각도 //(실제시간 = 1초당 6˚)
+	float speed = 6.f; //초침이 1초당 증가할 각도 //(실제시간 = 1초당 6˚(기본값))
 
 	//시계침들의 속도
 	float R_sec = speed;

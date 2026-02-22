@@ -9,6 +9,7 @@ void Scene2::Init()
 {
 	SYSTEMTIME sysTime;
 	GetSystemTime(&sysTime); //실제 시간
+	std::cout << sysTime.wHour;
 	clock_body = make_unique<WireCircle>(CENTER, Vector2(600, 600), 0, WHITE);
 	clock_second = make_unique<Line>(CENTER, Vector2(1, 250), 0, BLUE);
 	clock_minute = make_unique<Line>(CENTER, Vector2(1, 150), 0, GREEN);
@@ -27,6 +28,10 @@ void Scene2::Init()
 	clock_second_tr = clock_second->GetTransform();
 	clock_minute_tr = clock_minute->GetTransform();
 	clock_hour_tr = clock_hour->GetTransform();
+
+	clock_second_tr->SetRotationDegree(speed * sysTime.wSecond); //현재 시간 반영
+	clock_minute_tr->SetRotationDegree(speed * sysTime.wMinute);
+	clock_hour_tr->SetRotationDegree(speed * sysTime.wHour);
 }
 
 void Scene2::Update()
@@ -49,9 +54,9 @@ void Scene2::Update()
 	//clock_hour->GetTransform()->RotateRadian(speed_rad * 0.0016 * DELTA);
 
 	//각 시계침들의 속도값에 맞춰 기울임 조절
-	clock_second_tr->SetRotationDegree(clock_second_tr->GetRotationDegree() + R_sec * DELTA);
-	clock_minute_tr->SetRotationDegree(clock_minute_tr->GetRotationDegree() + R_min * DELTA);
-	clock_hour_tr->SetRotationDegree(clock_hour_tr->GetRotationDegree() + R_hour * DELTA);
+	clock_second_tr->RotateDegree(R_sec * DELTA);
+	clock_minute_tr->RotateDegree(R_min * DELTA);
+	clock_hour_tr->RotateDegree(R_hour * DELTA);
 }
 
 void Scene2::Destroy()

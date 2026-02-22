@@ -13,18 +13,19 @@ void ObjectGroup::Add(shared_ptr<Object> targetObject, Vector2 groupPosition) //
 	if (targetObject == nullptr) //만약 대상이 유효하지 않다면 (객체가 존재하지 않음)
 		return;
 
+
 	shared_ptr<Transform> target_tr = targetObject->GetTransform();
 	target_tr->SetPosition(this->GetTransform()->GetPosition() + groupPosition);
-	members.push_back(move(targetObject)); //포인터 값 이동으로 복사를 줄여 성능 최적화
+	members.push_back(move(targetObject));
 }
 
-void ObjectGroup::Insert(shared_ptr<Object> targetObject, Vector2 groupPosition, int index) //오브젝트 그룹에 멤버 특정 인덱스에 삽입
+void ObjectGroup::Insert(shared_ptr<Object> targetObject, Vector2 groupPosition, int index) //오브젝트 그룹에 멤버 특정 인덱스에 삽입 (update 순서)
 {
+	if (targetObject == nullptr) //만약 대상이 유효하지 않다면 (객체가 존재하지 않음)
+		return;
+
 	if (index >= 0 || index <= members.size()) //유효한 값을 입력 했을시 (-1 이하 혹은 현재 크기를 넘어선 인덱스가 아님)
+	{
 		members.insert(members.begin() + index, move(targetObject));
-}
-
-void ObjectGroup::Remove(int startIndex, int endIndex) // 어디부터, 어디까지 지울지
-{
-	members.erase(members.begin() + startIndex, members.begin() + endIndex);
+	}
 }
