@@ -13,9 +13,7 @@ void ObjectGroup::Add(shared_ptr<Object> targetObject, Vector2 groupPosition) //
 	if (targetObject == nullptr) //만약 대상이 유효하지 않다면 (객체가 존재하지 않음)
 		return;
 
-
-	shared_ptr<Transform> target_tr = targetObject->GetTransform();
-	target_tr->SetPosition(this->GetTransform()->GetPosition() + groupPosition);
+	targetObject->GetTransform()->SetPosition(this->GetTransform()->GetPosition() + groupPosition);
 	members.push_back(move(targetObject));
 }
 

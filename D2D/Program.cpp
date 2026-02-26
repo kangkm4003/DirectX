@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Program.h"
 #include "Scenes/SceneList.h"
+#include "Utilities/Random.h"
 
 Program::Program()
 {
@@ -25,10 +26,13 @@ void Program::SetGlobalBuffers()
 
 void Program::Init()
 {
+	Random::Init();
+
 	sceneList.push_back(make_shared<Scene1>());
 	sceneList.push_back(make_shared<Scene2>());
 	sceneList.push_back(make_shared<Scene3>());
 	sceneList.push_back(make_shared<Scene4>());
+	sceneList.push_back(make_shared<Scene5>());
 
 	currentScene = sceneList[0];
 	currentScene->Init();
@@ -56,6 +60,10 @@ void Program::Render()
 	else if (INPUT->Down(VK_F4))
 	{
 		SwitchScene(3);
+	}
+	else if (INPUT->Down(VK_F5))
+	{
+		SwitchScene(4);
 	}
 
 	VPBuffer->Update();

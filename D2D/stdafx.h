@@ -47,6 +47,9 @@ using namespace SimpleMath;
 // DirectXTex
 #include <DirectXTex.h>
 
+// Box2D
+#include <box2d/box2d.h>
+
 using namespace std;
 
 // Macros
@@ -83,7 +86,7 @@ extern float gWinWidth;
 extern float gWinHeight;
 
 constexpr float epsilon = 1e-5f;
-
+constexpr float Pixel_to_Meter_RATIO = 50.f;
 // ColorMacros
 #define RED Color(1, 0, 0, 1)
 #define GREEN Color(0, 1, 0, 1)

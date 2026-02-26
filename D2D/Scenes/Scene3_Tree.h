@@ -17,7 +17,7 @@ private:
 
 	shared_ptr<ObjectGroup> TreeObject_Group;
 	shared_ptr<ObjectGroup> Star_Group;
-	//멤버가 많지 않기에 star 오브젝트들 캐싱 
+	//멤버가 많지 않기에 star 오브젝트들의 transform 캐싱 
 	shared_ptr<Transform> starRect1_tr;
 	shared_ptr<Transform> starRect2_tr;
 	shared_ptr<Transform> starCircle_tr;
@@ -31,4 +31,7 @@ private:
 	shared_ptr<ObjectGroup> Gift1_Group;
 	shared_ptr<ObjectGroup> Gift2_Group;
 
+	//shared_ptr<ObjectGroup> snowGroup1;
+	//shared_ptr<ObjectGroup> snowGroup2;
+	//shared_ptr<ObjectGroup> snowGroup3;
 };

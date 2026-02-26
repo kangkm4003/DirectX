@@ -20,7 +20,7 @@ private:
 	//시계침들의 속도
 	float R_sec = speed;
 	float R_min = speed / 60.f;
-	float R_hour = speed / 600.f;
+	float R_hour = speed / 720.f;
 
 	shared_ptr<WireCircle> clock_body;
 

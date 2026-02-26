@@ -93,6 +93,9 @@
     <ClInclude Include="Scenes\Scene3_Tree.h" />
     <ClInclude Include="Components\CircleCollider.h" />
     <ClInclude Include="Objects\ObjectGroup.h" />
+    <ClInclude Include="Objects\SnowCircle.h" />
+    <ClInclude Include="Scenes\Scene5_Box2D.h" />
+    <ClInclude Include="Utilities\Random.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -173,6 +176,9 @@
     <ClCompile Include="Scenes\Scene3_Tree.cpp" />
     <ClCompile Include="Components\CircleCollider.cpp" />
     <ClCompile Include="Objects\ObjectGroup.cpp" />
+    <ClCompile Include="Objects\SnowCircle.cpp" />
+    <ClCompile Include="Scenes\Scene5_Box2D.cpp" />
+    <ClCompile Include="Utilities\Random.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">

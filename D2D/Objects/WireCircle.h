@@ -4,7 +4,7 @@
 class WireCircle : public Object
 {
 public:
-	WireCircle(Vector2 position, Vector2 scale, float rotation, Color color = RED);
+	WireCircle(Vector2 position, Vector2 scale, Color color = RED);
 
 	void Update();
 	void Render();

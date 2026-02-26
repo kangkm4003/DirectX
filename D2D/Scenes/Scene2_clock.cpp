@@ -8,9 +8,8 @@
 void Scene2::Init()
 {
 	SYSTEMTIME sysTime;
-	GetSystemTime(&sysTime); //실제 시간
-	std::cout << sysTime.wHour;
-	clock_body = make_unique<WireCircle>(CENTER, Vector2(600, 600), 0, WHITE);
+	GetLocalTime(&sysTime); //컴퓨터의 시간
+	clock_body = make_unique<WireCircle>(CENTER, Vector2(600, 600), WHITE);
 	clock_second = make_unique<Line>(CENTER, Vector2(1, 250), 0, BLUE);
 	clock_minute = make_unique<Line>(CENTER, Vector2(1, 150), 0, GREEN);
 	clock_hour = make_unique<Line>(CENTER, Vector2(1, 75), 0, RED);
@@ -31,7 +30,7 @@ void Scene2::Init()
 
 	clock_second_tr->SetRotationDegree(speed * sysTime.wSecond); //현재 시간 반영
 	clock_minute_tr->SetRotationDegree(speed * sysTime.wMinute);
-	clock_hour_tr->SetRotationDegree(speed * sysTime.wHour);
+	clock_hour_tr->SetRotationDegree(speed * 5 * sysTime.wHour);
 }
 
 void Scene2::Update()

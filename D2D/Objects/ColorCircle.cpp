@@ -6,8 +6,8 @@
 #include "Components/Material.h"
 #include "Components/MeshRenderer.h"
 
-ColorCircle::ColorCircle(Vector2 position, Vector2 scale, float rotation, Color color, UINT segments)
-	: Object("ColorCircle", position, scale, rotation)
+ColorCircle::ColorCircle(Vector2 position, Vector2 scale, Color color, UINT segments)
+	: Object("ColorCircle", position, scale, 0.f)
 {
 	shared_ptr<MeshRenderer> meshRenderer = make_shared<MeshRenderer>();
 

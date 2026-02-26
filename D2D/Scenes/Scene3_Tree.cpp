@@ -22,11 +22,11 @@ void Scene3::Init()
 	TreeObject_Group->Add(move(treeBody), Vector2(0, -250));
 
 	//나무 위에 있는 빚나는 뭐시기
-	Star_Group = make_unique<ObjectGroup>(Vector2(CENTER.x, CENTER.y + 100), Vector2(1, 1), 0, 4);
+	Star_Group = make_unique<ObjectGroup>(Vector2(CENTER_X, CENTER_Y + 100), Vector2(1, 1), 0, 4);
 
 	shared_ptr<ColorRect> starRect1 = make_unique<ColorRect>(Vector2(0, 0), Vector2(40, 40), 0.f, YELLOW);
 	shared_ptr<ColorRect> starRect2 = make_unique<ColorRect>(Vector2(0, 0), Vector2(40, 40), 0.f, YELLOW);
-	shared_ptr<ColorCircle> starCircle = make_unique<ColorCircle>(Vector2(0, 0), Vector2(10, 10), 0.f, WHITE);
+	shared_ptr<ColorCircle> starCircle = make_unique<ColorCircle>(Vector2(0, 0), Vector2(10, 10), WHITE);
 
 	Star_Group->Add(starRect1, Vector2(0, 0));
 	Star_Group->Add(starRect2, Vector2(0, 0));
@@ -38,11 +38,11 @@ void Scene3::Init()
 	defaultScale = starRect1_tr->GetScale().x;
 
 	//선물1
-	Gift1_Group = make_unique<ObjectGroup>(Vector2(CENTER.x - 90, CENTER.y - 270), Vector2(1, 1), 0, 3);
+	Gift1_Group = make_unique<ObjectGroup>(Vector2(CENTER_X - 90, CENTER_Y - 270), Vector2(1, 1), 0, 3);
 
-	shared_ptr<ColorRect> Gift1_Box = treeLeaf0 = make_unique<ColorRect>(Vector2(0, 0), Vector2(75, 75), 0.f, RED);
-	shared_ptr<ColorRect> Gift1_Tie1 = treeLeaf0 = make_unique<ColorRect>(Vector2(0, 0), Vector2(10, 75), 0.f, YELLOW);
-	shared_ptr<ColorRect> Gift1_Tie2 = treeLeaf0 = make_unique<ColorRect>(Vector2(0, 0), Vector2(75, 10), 0.f, YELLOW);
+	shared_ptr<ColorRect> Gift1_Box = make_unique<ColorRect>(Vector2(0, 0), Vector2(75, 75), 0.f, RED);
+	shared_ptr<ColorRect> Gift1_Tie1 = make_unique<ColorRect>(Vector2(0, 0), Vector2(10, 75), 0.f, YELLOW);
+	shared_ptr<ColorRect> Gift1_Tie2 = make_unique<ColorRect>(Vector2(0, 0), Vector2(75, 10), 0.f, YELLOW);
 
 	Gift1_Group->Add(move(Gift1_Box), Vector2(0, 0));
 	Gift1_Group->Add(move(Gift1_Tie1), Vector2(0, 0));
@@ -50,25 +50,31 @@ void Scene3::Init()
 
 
 	//선물2
-	Gift2_Group = make_unique<ObjectGroup>(Vector2(CENTER.x + 100, CENTER.y - 285), Vector2(1, 1), 0, 3);
+	Gift2_Group = make_unique<ObjectGroup>(Vector2(CENTER_X + 100, CENTER_Y - 285), Vector2(1, 1), 0, 3);
 
-	shared_ptr<ColorRect> Gift2_Box = treeLeaf0 = make_unique<ColorRect>(Vector2(0, 0), Vector2(60, 60), 0.f, BLUE);
-	shared_ptr<ColorRect> Gift2_Tie1 = treeLeaf0 = make_unique<ColorRect>(Vector2(0, 0), Vector2(10, 60), 0.f, WHITE);
-	shared_ptr<ColorRect> Gift2_Tie2 = treeLeaf0 = make_unique<ColorRect>(Vector2(0, 0), Vector2(60, 10), 0.f, WHITE);
+	shared_ptr<ColorRect> Gift2_Box = make_unique<ColorRect>(Vector2(0, 0), Vector2(60, 60), 0.f, BLUE);
+	shared_ptr<ColorRect> Gift2_Tie1 = make_unique<ColorRect>(Vector2(0, 0), Vector2(10, 60), 0.f, WHITE);
+	shared_ptr<ColorRect> Gift2_Tie2 = make_unique<ColorRect>(Vector2(0, 0), Vector2(60, 10), 0.f, WHITE);
 
 	Gift2_Group->Add(move(Gift2_Box), Vector2(0, 0));
 	Gift2_Group->Add(move(Gift2_Tie1), Vector2(0, 0));
 	Gift2_Group->Add(move(Gift2_Tie2), Vector2(0, 0));
 
+	//눈 이펙트
+	float snowAmount = 20;
+
 	AddObject(TreeObject_Group);
 	AddObject(Star_Group);
 	AddObject(Gift1_Group);
 	AddObject(Gift2_Group);
+
 }
 
 void Scene3::Destroy()
 {
 	SUPER::Destroy();
+
+	//캐싱해둔 오브젝트 해제
 	TreeObject_Group = nullptr;
 
 	starRect1_tr = nullptr;
@@ -78,6 +84,10 @@ void Scene3::Destroy()
 
 	Gift1_Group = nullptr;
 	Gift2_Group = nullptr;
+
+	//snowGroup1 = nullptr;
+	//snowGroup2 = nullptr;
+	//snowGroup3 = nullptr;
 }
 
 void Scene3::Update()

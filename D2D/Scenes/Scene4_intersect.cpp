@@ -22,11 +22,11 @@ void Scene4::Init()
 	rect2->AddComponent(make_shared<BoxCollider>());
 	AddObject(rect2);
 
-	circle1 = make_unique<ColorCircle>(CENTER + Vector2(-300, -300), Vector2(100, 100), 0, RED);
+	circle1 = make_unique<ColorCircle>(CENTER + Vector2(-300, -300), Vector2(100, 100), RED);
 	circle1->AddComponent(make_shared<CircleCollider>());
 	AddObject(circle1);
 	
-	circle2 = make_unique<WireCircle>(CENTER + Vector2(-300, +300), Vector2(100, 100), 0, RED);
+	circle2 = make_unique<WireCircle>(CENTER + Vector2(-300, +300), Vector2(100, 100), RED);
 	circle2->AddComponent(make_shared<CircleCollider>());
 	AddObject(circle2);
 

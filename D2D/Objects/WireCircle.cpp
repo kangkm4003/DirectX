@@ -6,8 +6,8 @@
 #include "Components/Material.h"
 #include "Components/MeshRenderer.h"
 
-WireCircle::WireCircle(Vector2 position, Vector2 scale, float rotation, Color color)
-	: Object(name, position, scale, rotation)
+WireCircle::WireCircle(Vector2 position, Vector2 scale, Color color)
+	: Object(name, position, scale, 0.f)
 {
 	shared_ptr<Material> marterial = make_shared<Material>(color, 0);
 	shared_ptr<MeshRenderer> meshRenderer = make_shared<MeshRenderer>();
