@@ -96,6 +96,9 @@
     <ClInclude Include="Objects\SnowCircle.h" />
     <ClInclude Include="Scenes\Scene5_Box2D.h" />
     <ClInclude Include="Utilities\Random.h" />
+    <ClInclude Include="Scenes\Scene6_MousePicking.h" />
+    <ClInclude Include="Utilities\PhysicsState.h" />
+    <ClInclude Include="Objects\box2DRect.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -179,6 +182,8 @@
     <ClCompile Include="Objects\SnowCircle.cpp" />
     <ClCompile Include="Scenes\Scene5_Box2D.cpp" />
     <ClCompile Include="Utilities\Random.cpp" />
+    <ClCompile Include="Scenes\Scene6_MousePicking.cpp" />
+    <ClCompile Include="Objects\box2DRect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">

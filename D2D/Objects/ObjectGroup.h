@@ -5,7 +5,7 @@ class Transform;
 class ObjectGroup : public Object
 {
 public:
-	ObjectGroup(Vector2 position, Vector2 scale = Vector2(1, 1), float rotation = 0.0f, int size = 1);
+	ObjectGroup(Vector2 position, Vector2 scale = Vector2(1, 1), float rotation = 0.0f, int size = 0);
 	~ObjectGroup() override { 
 		members.clear();
 	}

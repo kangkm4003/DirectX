@@ -33,6 +33,7 @@ void Program::Init()
 	sceneList.push_back(make_shared<Scene3>());
 	sceneList.push_back(make_shared<Scene4>());
 	sceneList.push_back(make_shared<Scene5>());
+	sceneList.push_back(make_shared<Scene6>());
 
 	currentScene = sceneList[0];
 	currentScene->Init();
@@ -64,6 +65,10 @@ void Program::Render()
 	else if (INPUT->Down(VK_F5))
 	{
 		SwitchScene(4);
+	}
+	else if (INPUT->Down(VK_F6))
+	{
+		SwitchScene(5);
 	}
 
 	VPBuffer->Update();

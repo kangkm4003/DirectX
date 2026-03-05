@@ -5,3 +5,4 @@
 #include "Scene3_Tree.h"
 #include "Scene4_intersect.h"
 #include "Scene5_Box2D.h"
+#include "Scene6_MousePicking.h"

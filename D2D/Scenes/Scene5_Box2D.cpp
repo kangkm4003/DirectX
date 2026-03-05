@@ -2,22 +2,48 @@
 #include "Scene5_Box2D.h"
 #include "Objects/ColorRect.h"
 #include "Components/Transform.h"
+#include "Components/Material.h"
+#include "Utilities/Random.h"
+
+namespace
+{
+	constexpr float FIXED_TIME_STEP = 1.0f / 60.0f;
+	constexpr size_t MAX_GHOSTS = 30;
+
+	PhysicsState GetCurrentPhysicsState(b2BodyId bodyId)
+	{
+		if (!b2Body_IsValid(bodyId)) return { Vector2(), 0.0f };
+
+		b2Vec2 pos = b2Body_GetPosition(bodyId);
+		b2Rot rot = b2Body_GetRotation(bodyId);
+		float angle = b2Rot_GetAngle(rot);
+
+		return { Vector2(pos.x * Pixel_to_Meter_RATIO, pos.y * Pixel_to_Meter_RATIO), angle };
+	}
+}
 
 void Scene5::Init()
 {
+	CD3D11_RASTERIZER_DESC desc(D3D11_DEFAULT);
+
+	DEVICE->CreateRasterizerState(&desc, &rs);
+
+	desc.FillMode = D3D11_FILL_WIREFRAME;
+	DEVICE->CreateRasterizerState(&desc, &wireframe);
+
 	b2WorldDef worldDef = b2DefaultWorldDef();
 	worldDef.gravity = { 0.f, -30.f }; //현실 중력 { 0.f, -9.8f}
 
 	worldId = b2CreateWorld(&worldDef);
 
 	{
-		auto groundObj = make_shared<ColorRect>(Vector2(CENTER_X, 100), Vector2(800, 20), 0.0f, GREEN);
+		auto groundObj = make_shared<ColorRect>(Vector2(CENTER_X, 100), Vector2(800, 20), 15.f, GREEN);
 
 		auto groundObj_tr = groundObj->GetTransform();
 
 		//오브젝트의 위치, 기울기
 		b2BodyDef groundBodyDef = b2DefaultBodyDef();
-		groundBodyDef.rotation = b2MakeRot(groundObj_tr->GetRotationRadian()); //b2Rot 타입으로 받기 위해 b2MakeRot 함수 이용 
+		groundBodyDef.rotation = b2MakeRot(-groundObj_tr->GetRotationRadian()); //b2Rot 타입으로 받기 위해 b2MakeRot 함수 이용 
 		groundBodyDef.position = { CENTER_X / Pixel_to_Meter_RATIO, 100.f / Pixel_to_Meter_RATIO }; //b2에서는 미터 단위를 쓰기 때문에 픽셀 단위에서 미터 단위로 변환
 
 		groundBodyId = b2CreateBody(worldId, &groundBodyDef);
@@ -37,7 +63,7 @@ void Scene5::Init()
 		//오브젝트의 위치, 기울기
 		b2BodyDef BodyDef = b2DefaultBodyDef();
 		//BodyDef.type = b2_kinematicBody; //다른물체에겐 물리영향이 가지만 자신은 영향이 없음
-		BodyDef.type = b2_dynamicBody; //모든 물리연산이 적용됨
+		BodyDef.type = b2_dynamicBody; //모든 물리연산이 적용됨 (중력, 충돌, ...)
 
 		BodyDef.rotation = b2MakeRot(boxObj->GetTransform()->GetRotationRadian()); //b2Rot 타입으로 받기 위해 b2MakeRot 함수 이용 
 		BodyDef.position = { CENTER_X / Pixel_to_Meter_RATIO, 600.f / Pixel_to_Meter_RATIO }; //b2에서는 미터 단위를 쓰기 때문에 픽셀 단위에서 미터 단위로 변환
@@ -52,12 +78,16 @@ void Scene5::Init()
 		b2ShapeDef shapeDef = b2DefaultShapeDef();
 		shapeDef.density = 1.0f;					//밀도(오브젝트의 크기에 따른)
 		shapeDef.material.friction = 0.5f;			//마찰력 (매 step 마다 연산)
-		shapeDef.material.restitution = 0.1f;		//반발력 (튕겨나감) (충돌 했을때에 속력: 0 ~ 1)
+		shapeDef.material.restitution = 0.3f;		//반발력 (튕겨나감) (충돌 했을때에 속력: 0 ~ 1)
 
 		b2CreatePolygonShape(boxBodyId, &shapeDef, &Box);
 
 		AddObject(boxObj);
 	}
+
+	currState = GetCurrentPhysicsState(boxBodyId);
+	prevState = currState;
+	timeAccumulator = 0.0f;
 }
 
 void Scene5::Destroy()
@@ -69,26 +99,51 @@ void Scene5::Destroy()
 	}
 
 	SUPER::Destroy();
+	ghostTrails.clear();
 }
 
 void Scene5::Update()
 {
-	if (b2World_IsValid(worldId))
+	float dt = DELTA;
+	if (dt > 0.25f) dt = 0.25f;
+
+	timeAccumulator += dt;
+
+	while (timeAccumulator >= FIXED_TIME_STEP)
 	{
-		float scaledDeltaTime = DELTA * timeScale;
-		b2World_Step(worldId, scaledDeltaTime, subStepCount);
+		prevState = currState;
+
+		if (b2World_IsValid(worldId))
+		{
+			b2World_Step(worldId, FIXED_TIME_STEP, subStepCount);
+		}
+
+		currState = GetCurrentPhysicsState(boxBodyId);
+
+		timeAccumulator -= FIXED_TIME_STEP;
 	}
+
+	float alpha = timeAccumulator / FIXED_TIME_STEP;
 
 	if (b2Body_IsValid(boxBodyId) && boxObj)
 	{
-		b2Vec2 position = b2Body_GetPosition(boxBodyId);
-		b2Rot rotation = b2Body_GetRotation(boxBodyId);
-		float angle = b2Rot_GetAngle(rotation);
+		Vector2 renderPos = Vector2::Lerp(prevState.position, currState.position, alpha);
+		float renderAngle = lerp(prevState.angle, currState.angle, alpha);
 
-		const auto& boxTransform = boxObj->GetTransform();
+		const auto& boxTr = boxObj->GetTransform();
+		boxTr->SetPosition(renderPos);
+		boxTr->SetRotationRadian(-renderAngle);
 
-		boxTransform->SetPosition(Vector2(position.x, position.y) * Pixel_to_Meter_RATIO);
-		boxTransform->SetRotationRadian(-angle);
+		float distSq = Vector2::DistanceSquared(renderPos, lastRecordedPos); //잔상끼리의 거리 (일정 거리를 이동했을때 마다 잔상을 생성)
+
+		if (distSq > 100.0f)
+		{
+			GhostData data = { renderPos, renderAngle };
+			ghostTrails.push_back(data);
+			lastRecordedPos = renderPos;
+
+		}
+		if (ghostTrails.size() > MAX_GHOSTS) ghostTrails.pop_front();
 	}
 
 	SUPER::Update();
@@ -97,4 +152,28 @@ void Scene5::Update()
 void Scene5::Render()
 {
 	SUPER::Render();
+
+	if (boxObj) //isVaild
+	{
+		const auto& tr = boxObj->GetTransform();
+		
+		const Vector2 originalPos = tr->GetPosition();
+		const float originalAngle = tr->GetRotationRadian();
+
+		DC->RSSetState(wireframe.Get());
+		for (const auto& ghost : ghostTrails)
+		{
+			tr->SetPosition(ghost.position);
+			tr->SetRotationRadian(-ghost.angle);
+			boxObj->GetComponent<Material>("Material")->SetColor(Random::GetColor());
+			tr->Update();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+			boxObj->Render();
+		}
+		DC->RSSetState(rs.Get());
+
+		tr->SetPosition(originalPos);
+		tr->SetRotationRadian(-originalAngle);
+		boxObj->GetComponent<Material>("Material")->SetColor(BLUE);
+		tr->Update();
+	}
 }

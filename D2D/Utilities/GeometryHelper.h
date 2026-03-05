@@ -1,6 +1,5 @@
 #pragma once
 
-// ToDo : 원과 속이 빈 원그리기
 class Mesh;
 
 namespace GeometryHelper

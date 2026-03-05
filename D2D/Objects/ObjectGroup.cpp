@@ -5,7 +5,8 @@
 ObjectGroup::ObjectGroup(Vector2 position, Vector2 scale, float rotation, int size) //ObjectGroup의 scale필드값은 멤버 오브젝트들의 scale 배율을 의미함 (1 = 기본 크기) [미완]
 	: Object("ObjectGroup", position, scale, rotation)
 {
-	members.reserve(size); //member vector의 크기(담을 오브젝트의 양)
+	if (size < 0)
+		members.reserve(size); //member vector의 크기(담을 오브젝트의 양)
 }
 
 void ObjectGroup::Add(shared_ptr<Object> targetObject, Vector2 groupPosition) //오브젝트 그룹에 멤버 추가
