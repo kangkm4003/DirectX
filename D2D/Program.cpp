@@ -29,11 +29,6 @@ void Program::Init()
 	Random::Init();
 
 	sceneList.push_back(make_shared<Scene1>());
-	sceneList.push_back(make_shared<Scene2>());
-	sceneList.push_back(make_shared<Scene3>());
-	sceneList.push_back(make_shared<Scene4>());
-	sceneList.push_back(make_shared<Scene5>());
-	sceneList.push_back(make_shared<Scene6>());
 
 	currentScene = sceneList[0];
 	currentScene->Init();
@@ -49,26 +44,6 @@ void Program::Render()
 	if(INPUT->Down(VK_F1))
 	{
 		SwitchScene(0);
-	}
-	else if (INPUT->Down(VK_F2))
-	{
-		SwitchScene(1);
-	}
-	else if (INPUT->Down(VK_F3))
-	{
-		SwitchScene(2);
-	}
-	else if (INPUT->Down(VK_F4))
-	{
-		SwitchScene(3);
-	}
-	else if (INPUT->Down(VK_F5))
-	{
-		SwitchScene(4);
-	}
-	else if (INPUT->Down(VK_F6))
-	{
-		SwitchScene(5);
 	}
 
 	VPBuffer->Update();

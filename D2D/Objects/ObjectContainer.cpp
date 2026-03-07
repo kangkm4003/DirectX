@@ -1,15 +1,15 @@
 #include "stdafx.h"
-#include "ObjectGroup.h"
+#include "ObjectContainer.h"
 #include "Components/Transform.h"
 
-ObjectGroup::ObjectGroup(Vector2 position, Vector2 scale, float rotation, int size) //ObjectGroup의 scale필드값은 멤버 오브젝트들의 scale 배율을 의미함 (1 = 기본 크기) [미완]
-	: Object("ObjectGroup", position, scale, rotation)
+ObjectContainer::ObjectContainer(Vector2 position, Vector2 scale, float rotation, int size) //ObjectGroup의 scale필드값은 멤버 오브젝트들의 scale 배율을 의미함 (1 = 기본 크기) [미완]
+	: Object("ObjectContainer", position, scale, rotation)
 {
 	if (size < 0)
 		members.reserve(size); //member vector의 크기(담을 오브젝트의 양)
 }
 
-void ObjectGroup::Add(shared_ptr<Object> targetObject, Vector2 groupPosition) //오브젝트 그룹에 멤버 추가
+void ObjectContainer::Add(shared_ptr<Object> targetObject, Vector2 groupPosition) //오브젝트 그룹에 멤버 추가
 {
 	if (targetObject == nullptr) //만약 대상이 유효하지 않다면 (객체가 존재하지 않음)
 		return;
@@ -18,7 +18,7 @@ void ObjectGroup::Add(shared_ptr<Object> targetObject, Vector2 groupPosition) //
 	members.push_back(move(targetObject));
 }
 
-void ObjectGroup::Insert(shared_ptr<Object> targetObject, Vector2 groupPosition, int index) //오브젝트 그룹에 멤버 특정 인덱스에 삽입 (update 순서)
+void ObjectContainer::Insert(shared_ptr<Object> targetObject, Vector2 groupPosition, int index) //오브젝트 그룹에 멤버 특정 인덱스에 삽입 (update 순서)
 {
 	if (targetObject == nullptr) //만약 대상이 유효하지 않다면 (객체가 존재하지 않음)
 		return;
