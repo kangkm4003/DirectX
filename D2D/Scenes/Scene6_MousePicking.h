@@ -1,9 +1,13 @@
 #pragma once
 #include "Scene.h"
-#include "Utilities/PhysicsState.h"
-#include <deque>
 
-class ObjectGroup;
+class ColorRect;
+
+struct BoxObject
+{
+	shared_ptr<ColorRect> visaul;
+	b2BodyId bodyId;
+};
 
 class Scene6 : public Scene
 {
@@ -14,12 +18,20 @@ public:
 	void Render() override;
 
 private:
+	void CreateBox(Vector2 screenPos);
+
 	b2WorldId worldId = b2_nullWorldId;
 
 	b2BodyId groundBodyId = b2_nullBodyId;
+	shared_ptr<ColorRect> groundObj;
 
-	float timeScale = 1.f; //시간이 흘러가는 배율
-	int subStepCount = 4; //스탭을 밟을때 마다 얼마나 정밀하게 계산할건지
+	b2JointId mouseJointId = b2_nullJointId;
 
-	float timeAccumulator = 0.0f;
+	vector<BoxObject> boxes;
+
+	ComPtr<ID3D11RasterizerState> rs;
+	ComPtr<ID3D11RasterizerState> wireframe;
+
+	float timeScale = 1.0f;
+	int subStepCount = 4;
 };

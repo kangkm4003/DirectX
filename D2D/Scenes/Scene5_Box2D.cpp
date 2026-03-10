@@ -4,6 +4,7 @@
 #include "Components/Transform.h"
 #include "Components/Material.h"
 #include "Utilities/Random.h"
+#include "Utilities/PhysicsUtils.h"
 
 namespace
 {
@@ -18,7 +19,7 @@ namespace
 		b2Rot rot = b2Body_GetRotation(bodyId);
 		float angle = b2Rot_GetAngle(rot);
 
-		return { Vector2(pos.x * Pixel_to_Meter_RATIO, pos.y * Pixel_to_Meter_RATIO), angle };
+		return { PhysicsUtils::MetersToPixels(pos), angle};
 	}
 }
 

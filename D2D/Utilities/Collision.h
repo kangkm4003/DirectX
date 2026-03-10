@@ -15,10 +15,7 @@ namespace Collision
 			min = position - halfScale;
 			max = position + halfScale;
 		}
-
-
 	};
-
 	struct CircleData
 	{
 		Vector2 pivot;
@@ -34,10 +31,9 @@ namespace Collision
 	bool Intersect(const RectData& rect, Vector2 point);
 	bool Intersect(const CircleData& circle, Vector2 point);
 
-	bool IntersectOBB(Transform* t1, Transform* t2);
-
 	bool Intersect(const RectData& rect1, const RectData& rect2);
+	bool IntersectOBB(const Transform* t1, const Transform* t2);
+
 	bool Intersect(const CircleData& circle1, const CircleData& circle2);
 	bool Intersect(const RectData& rect, const CircleData& circle);
-	bool Intersect(const CircleData& circle, const RectData& rect);
 }
