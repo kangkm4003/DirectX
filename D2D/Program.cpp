@@ -29,6 +29,7 @@ void Program::Init()
 	Random::Init();
 
 	sceneList.push_back(make_shared<Scene1>());
+	sceneList.push_back(make_shared<Scene2>());
 
 	currentScene = sceneList[0];
 	currentScene->Init();
@@ -44,6 +45,10 @@ void Program::Render()
 	if(INPUT->Down(VK_F1))
 	{
 		SwitchScene(0);
+	}
+	else if (INPUT->Down(VK_F2))
+	{
+		SwitchScene(1);
 	}
 
 	VPBuffer->Update();

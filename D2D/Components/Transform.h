@@ -86,6 +86,7 @@ public:
 	Vector2 GetRight() const { return right; }
 	Vector2 GetUp() const { return up; }
 
+	float angularVelocity = 0.f; //매 프레임당 값 만큼 회전 (각도)
 private:
 
 	Vector2 right{ 1, 0 }, up{ 0, 1 };

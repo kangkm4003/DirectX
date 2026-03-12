@@ -11,6 +11,11 @@ void Transform::Update()
 {
 	if (bDirty == false) return;
 
+	if (abs(angularVelocity) > epsilon)
+	{
+		RotateDegree(angularVelocity * DELTA);
+	}
+
 	float s, c;
 	XMScalarSinCos(&s, &c, -rotation);
 	right = Vector2(c, s);

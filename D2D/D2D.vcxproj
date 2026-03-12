@@ -159,13 +159,14 @@
     <ClCompile Include="Components\Material.cpp" />
     <ClCompile Include="Components\Jump.cpp" />
     <ClCompile Include="Components\BoxCollider.cpp" />
+    <ClCompile Include="Components\Controller.cpp" />
     <ClCompile Include="Objects\ColorCircle.cpp" />
     <ClCompile Include="Objects\WireCircle.cpp" />
     <ClCompile Include="Objects\Line.cpp" />
     <ClCompile Include="Objects\ObjectContainer.cpp" />
-    <ClCompile Include="Objects\SnowCircle.cpp" />
-    <ClCompile Include="Objects\box2DRect.cpp" />
-    <ClCompile Include="Scenes\Scene1_Running.cpp" />
+    <ClCompile Include="Objects\PlayerCircle.cpp" />
+    <ClCompile Include="Scenes\Scene2_Running.cpp" />
+    <ClCompile Include="Scenes\Scene1_Intersect.cpp" />
     <ClCompile Include="Systems\ShaderManager.cpp" />
     <ClCompile Include="Utilities\GeometryHelper.cpp" />
     <ClCompile Include="Utilities\Collision.cpp" />
@@ -177,14 +178,14 @@
     <ClInclude Include="Components\Jump.h" />
     <ClInclude Include="Components\Collider.h" />
     <ClInclude Include="Components\BoxCollider.h" />
+    <ClInclude Include="Components\Controller.h" />
     <ClInclude Include="Objects\ColorRect.h" />
     <ClInclude Include="Objects\Object.h" />
     <ClInclude Include="Objects\ColorCircle.h" />
     <ClInclude Include="Objects\WireCircle.h" />
     <ClInclude Include="Objects\Line.h" />
     <ClInclude Include="Objects\ObjectContainer.h" />
-    <ClInclude Include="Objects\SnowCircle.h" />
-    <ClInclude Include="Objects\box2DRect.h" />
+    <ClInclude Include="Objects\PlayerCircle.h" />
     <ClInclude Include="Renders\IA\IndexBuffer.h" />
     <ClInclude Include="Renders\IA\InputLayout.h" />
     <ClInclude Include="Renders\IA\VertexBuffer.h" />
@@ -196,8 +197,9 @@
     <ClInclude Include="Renders\Resources\VertexType.h" />
     <ClInclude Include="Renders\Shaders\VertexShader.h" />
     <ClInclude Include="Scenes\Scene.h" />
-    <ClInclude Include="Scenes\Scene1_Running.h" />
+    <ClInclude Include="Scenes\Scene2_Running.h" />
     <ClInclude Include="Scenes\SceneList.h" />
+    <ClInclude Include="Scenes\Scene1_Intersect.h" />
     <ClInclude Include="Systems\Graphics.h" />
     <ClInclude Include="Program.h" />
     <ClInclude Include="stdafx.h" />
@@ -211,7 +213,6 @@
     <ClInclude Include="Utilities\GeometryHelper.h" />
     <ClInclude Include="Utilities\Collision.h" />
     <ClInclude Include="Utilities\Random.h" />
-    <ClInclude Include="Utilities\PhysicsState.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Components\MeshRenderer.cpp" />

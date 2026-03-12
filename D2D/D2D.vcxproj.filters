@@ -82,7 +82,7 @@
     <ClInclude Include="Systems\ShaderManager.h">
       <Filter>Systems</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\Scene1_Running.h" />
+    <ClInclude Include="Scenes\Scene2_Running.h" />
     <ClInclude Include="Scenes\SceneList.h" />
     <ClInclude Include="Components\Jump.h" />
     <ClInclude Include="Utilities\Collision.h" />
@@ -90,10 +90,10 @@
     <ClInclude Include="Components\BoxCollider.h" />
     <ClInclude Include="Components\CircleCollider.h" />
     <ClInclude Include="Objects\ObjectContainer.h" />
-    <ClInclude Include="Objects\SnowCircle.h" />
     <ClInclude Include="Utilities\Random.h" />
-    <ClInclude Include="Utilities\PhysicsState.h" />
-    <ClInclude Include="Objects\box2DRect.h" />
+    <ClInclude Include="Scenes\Scene1_Intersect.h" />
+    <ClInclude Include="Components\Controller.h" />
+    <ClInclude Include="Objects\PlayerCircle.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -165,15 +165,16 @@
     <ClCompile Include="Systems\ShaderManager.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\Scene1_Running.cpp" />
+    <ClCompile Include="Scenes\Scene2_Running.cpp" />
     <ClCompile Include="Components\Jump.cpp" />
     <ClCompile Include="Utilities\Collision.cpp" />
     <ClCompile Include="Components\BoxCollider.cpp" />
     <ClCompile Include="Components\CircleCollider.cpp" />
     <ClCompile Include="Objects\ObjectContainer.cpp" />
-    <ClCompile Include="Objects\SnowCircle.cpp" />
     <ClCompile Include="Utilities\Random.cpp" />
-    <ClCompile Include="Objects\box2DRect.cpp" />
+    <ClCompile Include="Scenes\Scene1_Intersect.cpp" />
+    <ClCompile Include="Components\Controller.cpp" />
+    <ClCompile Include="Objects\PlayerCircle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
