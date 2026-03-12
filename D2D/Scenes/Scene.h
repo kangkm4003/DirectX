@@ -33,6 +33,7 @@ public:
 
 	void AddObject(std::shared_ptr<Object> object) //포인터 값 이동으로 복사를 줄여 성능 최적화
 	{
+		object->Awake();
 		objects.push_back(move(object));
 	}
 

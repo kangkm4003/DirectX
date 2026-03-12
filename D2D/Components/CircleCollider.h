@@ -1,11 +1,12 @@
 #pragma once
 #include "Collider.h"
 
-class BoxCollider;
 class CircleCollider : public Collider
 {
 public:
 	CircleCollider() : Collider(ColliderType::CIRCLE) {}
+
+	void Awake() override;
 
 	bool IsColliding(Vector2 point) override;
 

@@ -4,7 +4,6 @@
 
 enum class ColliderType { BOX, CIRCLE };
 
-
 class Collider : public Component
 {
 public:

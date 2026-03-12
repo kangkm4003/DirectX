@@ -5,7 +5,7 @@ class ColorRect;
 
 struct BoxObject
 {
-	shared_ptr<ColorRect> visaul;
+	shared_ptr<ColorRect> visual;
 	b2BodyId bodyId;
 };
 
@@ -22,7 +22,6 @@ private:
 
 	b2WorldId worldId = b2_nullWorldId;
 
-	b2BodyId groundBodyId = b2_nullBodyId;
 	shared_ptr<ColorRect> groundObj;
 
 	b2JointId mouseJointId = b2_nullJointId;

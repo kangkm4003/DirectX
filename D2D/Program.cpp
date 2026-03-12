@@ -12,7 +12,9 @@ Program::Program()
 
 Program::~Program()
 {
-
+	currentScene = nullptr;
+	sceneList.clear();
+	PHYSICS->Destroy();
 }
 
 void Program::SetGlobalBuffers()
@@ -31,7 +33,8 @@ void Program::Init()
 	sceneList.push_back(make_shared<Scene1>());
 	sceneList.push_back(make_shared<Scene6>());
 
-	currentScene = sceneList[0];
+	currentScene = sceneList[1];
+	PHYSICS->Init();
 	currentScene->Init();
 }
 
@@ -65,6 +68,10 @@ void Program::SwitchScene(int index)
 	if (currentScene == sceneList[index]) return;
 
 	currentScene->Destroy();
+	PHYSICS->Destroy();
+
 	currentScene = sceneList[index];
+
+	PHYSICS->Init();
 	currentScene->Init();
 }

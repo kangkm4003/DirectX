@@ -20,7 +20,7 @@ public:
 		return nullptr;
 	}
 
-	shared_ptr<Transform> GetTransform() { return transform; }
+	const shared_ptr<Transform>& GetTransform() { return transform; }
 
 	virtual void Awake();
 	virtual void Update();

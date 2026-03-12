@@ -2,9 +2,11 @@
 #include "Scene6_MousePicking.h"
 #include "Objects/ColorRect.h"
 #include "Components/Transform.h"
+#include "Components/RigidBody.h"
 #include "Utilities/PhysicsUtils.h"
 #include "Utilities/Random.h"
 
+//todo : rigidBody를 활용해 코드 최적화 하기
 namespace
 {
 	struct PickingContext
@@ -43,24 +45,21 @@ void Scene6::Init()
 
 	{
 		groundObj = make_shared<ColorRect>(Vector2(CENTER_X, 50), Vector2(800, 20), 0.0f, GREEN);
+		groundObj->AddComponent(make_shared<RigidBody>(b2_staticBody));
 		AddObject(groundObj);
 
-		const auto& tr = groundObj->GetTransform();
-
-		b2BodyDef bodyDef = b2DefaultBodyDef();
-		bodyDef.position = PhysicsUtils::PixelsToMeters(tr->GetPosition());
-
-		groundBodyId = b2CreateBody(worldId, &bodyDef);
-
+		auto rigidBody = groundObj->GetComponent<RigidBody>("RigidBody");
 		Vector2 halfScale = tr->GetScale() * 0.5f;
 		float hx = PhysicsUtils::PixelsToMeters(halfScale.x);
 		float hy = PhysicsUtils::PixelsToMeters(halfScale.y);
+
+		rigidBody->Awake();
 
 		b2Polygon groundBox = b2MakeBox(hx, hy);
 
 		b2ShapeDef shapeDef = b2DefaultShapeDef();
 
-		b2CreatePolygonShape(groundBodyId, &shapeDef, &groundBox);
+		b2CreatePolygonShape(rigidBody->GetBodyId(), &shapeDef, &groundBox);
 	}
 }
 
@@ -149,8 +148,8 @@ void Scene6::Update()
 			b2Rot rot = b2Body_GetRotation(box.bodyId);
 			float angle = b2Rot_GetAngle(rot);
 
-			box.visaul->GetTransform()->SetPosition(PhysicsUtils::MetersToPixels(pos));
-			box.visaul->GetTransform()->SetRotationRadian(-angle);
+			box.visual->GetTransform()->SetPosition(PhysicsUtils::MetersToPixels(pos));
+			box.visual->GetTransform()->SetRotationRadian(-angle);
 		}
 	}
 
