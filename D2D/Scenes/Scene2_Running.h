@@ -25,7 +25,7 @@ private:
 	shared_ptr<class ObjectContainer> objects;
 	vector<shared_ptr<BoxCollider>, shared_ptr<Transform>> boxObstacles;
 	vector<shared_ptr<CircleCollider>, shared_ptr<Transform>> circleObstacles;
-	vector <shared_ptr<CircleCollider>, shared_ptr<Transform>> coins;
+	vector <pair<shared_ptr<CircleCollider>, shared_ptr<Transform>>> coins;
 
 	pair<float, float> spawn_range = (300.f, 1000.f); //물체들의 x좌표 랜덤스폰 지점 (화면 중앙 기준)
 	float scrollSpeed = -450.f;

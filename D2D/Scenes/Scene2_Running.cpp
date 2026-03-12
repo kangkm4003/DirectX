@@ -49,17 +49,20 @@ void Scene2::Init()
 	{
 		auto coin1 = make_shared<ColorCircle>(Vector2(0, 0), Vector2(30), Color(1, 1, 0)); //³ë¶û ¿ø (ÄÚÀÎ)
 		coin1->AddComponent(make_shared<CircleCollider>());
-		auto collider =  coin1->GetComponent<CircleCollider>("Collider"));
+		auto collider =  coin1->GetComponent<CircleCollider>("Collider");
 		auto transform = coin1->GetTransform();
-		coins.push_back({ move(collider), move(transform) });
+		coins.push_back(pair(move(collider), move(transform)));
 		objects->Add(move(coin1), Vector2(Random::Range(spawn_range.first, spawn_range.second), Random::Range(200, 400)));
 	}
 
-
-	auto coin2 = make_shared<ColorCircle>(Vector2(0, 0), Vector2(30), Color(1, 1, 0)); //³ë¶û ¿ø (ÄÚÀÎ)
-	coin2->AddComponent(make_shared<CircleCollider>());
-	coins.push_back(move(move(coin2->GetComponent<CircleCollider>("Collider"))));
-	objects->Add(move(coin2), Vector2(Random::Range(spawn_range.first, spawn_range.second), Random::Range(200, 400)));
+	{
+		auto coin2 = make_shared<ColorCircle>(Vector2(0, 0), Vector2(30), Color(1, 1, 0)); //³ë¶û ¿ø (ÄÚÀÎ)
+		coin2->AddComponent(make_shared<CircleCollider>());
+		auto collider = coin2->GetComponent<CircleCollider>("Collider");
+		auto transform = coin2->GetTransform();
+		coins.push_back(pair(move(collider), move(transform)));
+		objects->Add(move(coin2), Vector2(Random::Range(spawn_range.first, spawn_range.second), Random::Range(200, 400)));
+	}
 
 	AddObject(objects);
 
