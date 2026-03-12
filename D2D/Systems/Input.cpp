@@ -35,7 +35,7 @@ void Input::InputProc(UINT message, LPARAM lParam)
 	if (message >= WM_MOUSEFIRST && message <= WM_MOUSELAST)
 	{
 		mousePos.x = float(GET_X_LPARAM(lParam));
-		mousePos.y = float(GET_Y_LPARAM(lParam));
+		mousePos.y = gWinHeight - float(GET_Y_LPARAM(lParam));
 
 		if (message == WM_LBUTTONDBLCLK)
 			isDblClk = true;

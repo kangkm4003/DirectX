@@ -84,7 +84,7 @@ void Scene6::Update()
 		b2World_Step(worldId, DELTA * timeScale, subStepCount);
 	}
 
-	Vector2 mousePixels = Vector2(INPUT->GetMousePos().x, -INPUT->GetMousePos().y + WIN_DEFAULT_HEIGHT);
+	Vector2 mousePixels = Vector2(INPUT->GetMousePos().x, INPUT->GetMousePos().y);
 	b2Vec2 mouseMeters = PhysicsUtils::PixelsToMeters(mousePixels);
 
 	if (INPUT->Down(VK_LBUTTON))
@@ -113,7 +113,7 @@ void Scene6::Update()
 			jointDef.bodyIdB = context.hitBodyId;
 			jointDef.target = mouseMeters;
 			jointDef.maxForce = 1000.f * b2Body_GetMass(context.hitBodyId); //대상의 무게 비례
-			jointDef.hertz = 5.f; //높을수록 뻣뻣하며 반응이 빠르다
+			jointDef.hertz = 10.f; //높을수록 뻣뻣하며 반응이 빠르다
 			jointDef.dampingRatio = 0.7f; //joint의 관성
 
 			mouseJointId = b2CreateMouseJoint(worldId, &jointDef);
