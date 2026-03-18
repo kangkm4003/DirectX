@@ -8,7 +8,7 @@ enum class ColliderType { BOX, CIRCLE };
 class Collider : public Component
 {
 public:
-	Collider(ColliderType type) : Component("Collider"), type(type) {}
+	Collider(ColliderType type, const string& compName) : Component(compName), type(type) {}
 	virtual ~Collider() = default;
 
 	virtual bool IsColliding(Vector2 point) = 0;

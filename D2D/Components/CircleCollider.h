@@ -5,7 +5,7 @@ class BoxCollider;
 class CircleCollider : public Collider
 {
 public:
-	CircleCollider() : Collider(ColliderType::CIRCLE) {}
+	CircleCollider() : Collider(ColliderType::CIRCLE, "CircleCollider") {}
 
 	bool IsColliding(Vector2 point) override;
 
