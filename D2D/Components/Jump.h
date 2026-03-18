@@ -17,6 +17,7 @@ public:
 	void SetMaxJumpCount(int count) { if (count >= 1) maxJumpCount = count; }
 	void SetGravity(float amount) { if (amount >= 0) gravity = amount; }
 	bool GetonAir() { return onAir; }
+	void SetonAir(bool boolean) { onAir = boolean; }
 	float GetSpeed() { return speed; }
 private:
 	float gravity = 20.f;

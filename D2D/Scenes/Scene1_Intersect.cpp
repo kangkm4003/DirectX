@@ -31,10 +31,10 @@ void Scene1::Init()
 	AddObject(circle2);
 
 	//히트박스 컴포넌트 참조 캐싱
-	rect1HitBox = rect1->GetComponent<BoxCollider>("Collider");
-	rect2HitBox = rect2->GetComponent<BoxCollider>("Collider");
-	circle1HitBox = circle1->GetComponent<CircleCollider>("Collider");
-	circle2HitBox = circle2->GetComponent<CircleCollider>("Collider");
+	rect1HitBox = rect1->GetComponent<BoxCollider>("BoxCollider");
+	rect2HitBox = rect2->GetComponent<BoxCollider>("BoxCollider");
+	circle1HitBox = circle1->GetComponent<CircleCollider>("CircleCollider");
+	circle2HitBox = circle2->GetComponent<CircleCollider>("CircleCollider");
 }
 
 void Scene1::Destroy()
