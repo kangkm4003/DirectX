@@ -76,9 +76,8 @@ void Graphics::CreateBackBuffer()
 
 	hr = swapChain->GetBuffer
 	(
-		0,
-		__uuidof(ID3D11Texture2D),
-		(void**)&backBuffer
+		0, //swapChain 생성시 자동으로 버퍼 생성됨. 몇번째 버퍼에 접근 할건지에 대한 여부
+		IID_PPV_ARGS(&backBuffer) //backBuffer 타입에 맞춰 타입 캐스팅 후 backBuffer에 주소값 반환
 	);
 	CHECK(hr);
 
