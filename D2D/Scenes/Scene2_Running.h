@@ -22,6 +22,7 @@ private:
 	shared_ptr<class PlayerCircle> playerCircle;
 	shared_ptr<class CircleCollider> playerCircleCollider;
 	shared_ptr<class BoxCollider> playerBoxCollider;
+	shared_ptr<class Collider> playerCollider;
 	shared_ptr<class Jump> playerCircleJump;
 
 	shared_ptr<class ColorRect> floor;

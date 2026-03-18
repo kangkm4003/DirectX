@@ -4,7 +4,7 @@
 class Jump : public Component
 {
 public:
-	Jump(float speed = 10.f, float gravity = 10.f, const string& name = "Jump")
+	Jump(float speed = 10.f, float gravity = 2000.f, const string& name = "Jump")
 		: Component(name)
 	{
 	}
@@ -20,7 +20,7 @@ public:
 	void SetonAir(bool boolean) { onAir = boolean; }
 	float GetSpeed() { return speed; }
 private:
-	float gravity = 20.f;
+	float gravity = 2000.f;
 	int maxJumpCount = 1; //최대 공중 점프 횟수
 	int curJumpCount = 0; //현재 공중 점프 횟수
 	bool onAir = true; //현재 공중에 뜬 상태인지

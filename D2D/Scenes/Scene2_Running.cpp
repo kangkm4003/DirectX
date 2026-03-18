@@ -166,7 +166,6 @@ void Scene2::Render()
 		}
 	}
 
-	shared_ptr<Collider> playerCollider;
 	if (inFever)
 		playerCollider = playerBoxCollider;
 	else

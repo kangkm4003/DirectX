@@ -11,7 +11,7 @@ void Jump::Update()
 	if (onAir)
 	{
 		transform->Move(Vector2(0.f, speed * DELTA));
-		speed -= gravity;
+		speed -= gravity * DELTA;
 	}
 }
 
