@@ -8,6 +8,21 @@ Graphics::Graphics()
 
 Graphics::~Graphics() {}
 
+void Graphics::SetBlendDefault() //Blend State
+{
+	CD3D11_BLEND_DESC desc(D3D11_DEFAULT);
+
+	desc.RenderTarget[0].BlendEnable = true;
+	desc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA; //섞을 비율을 픽셀의 alpha값을 따라가도록
+	desc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA; //소스 픽셀 alpha의 반전값으로
+	desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+	desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+
+	HRESULT hr = DEVICE->CreateBlendState(&desc, &blendState);
+	CHECK(hr);
+}
+
+
 void Graphics::Initialize()
 {
 	DXGI_SWAP_CHAIN_DESC desc = { 0 };
@@ -56,6 +71,8 @@ void Graphics::Initialize()
 		&deviceContext
 	);
 	CHECK(hr);
+
+	SetBlendDefault();
 
 	CreateBackBuffer();
 }

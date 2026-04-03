@@ -34,17 +34,17 @@ private:
 	vector<pair<shared_ptr<CircleCollider>, shared_ptr<Transform>>> coins;
 
 	pair<float, float> spawn_range = { 300.f, 1000.f }; //물체들의 x좌표 랜덤스폰 지점 (화면 중앙 기준)
-	float scrollSpeed = -450.f;
-	float curScrollSpeed = scrollSpeed;
+	float defaultScrollSpeed = -450.f; //curScrollSpeed의 초기값
+	float curScrollSpeed = defaultScrollSpeed; //현재 스크롤 스피드의 값
 	unsigned int score = 0; //점수
 	float score_AddTime = 0.1f; //몇초 마다 점수가 추가될건지
 	float score_curTime = 0.f; //점수가 추가되고 경과한 시간
 
 	float feverTime = 5.f; //피버의 지속시간
 	float feverGauge = 100.f; //피버의 게이지 (0~100)
-	float feverColorTime = 0.05f;
-	float feverColorCurTime = 0.f;
-	bool inFever = false;
+	float feverColorTime = 0.05f; //피버상태일시 색상이 바뀌는 속도(초)
+	float feverColorCurTime = 0.f; //피버상태일때 최근 색상이 바뀌고 경과한 시간
+	bool inFever = false; //현재 피버 상태인지에 대한 여부
 
-	bool immuteEnd_Function_Dirty = false;
+	bool immuteEnd_Function_Dirty = false; //플레이어의 무적 상태 종료 이벤트를 종료 직후 1회만 실행하기 위한 변수값
 };

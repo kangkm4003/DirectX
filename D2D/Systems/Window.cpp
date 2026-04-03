@@ -116,15 +116,16 @@ WPARAM Window::Run()
 
 LRESULT Window::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	INPUT->InputProc(message, lParam);
+    INPUT->InputProc(message, lParam);
 
-	switch (message)
-	{
-	case WM_CLOSE:
-		PostQuitMessage(0);
-
-		return 0;
-	}
-
+    switch (message)
+    {
+    case WM_CLOSE:
+    {
+        PostQuitMessage(0);
+        return 0;
+    }
+    break;
+    }
 	return DefWindowProc(hWnd, message, wParam, lParam);
 }

@@ -19,8 +19,7 @@
 
 void Scene2::Init()
 {
-	scrollSpeed = -450.f;
-	curScrollSpeed = scrollSpeed;
+	curScrollSpeed = defaultScrollSpeed;
 
 	Random::Init();
 	playerCircle = make_unique<PlayerCircle>(Vector2(CENTER_X - 400, CENTER_Y - 200), Vector2(50), GREEN);
@@ -111,16 +110,12 @@ void Scene2::Update()
 
 	//점프
 	if (INPUT->Down(VK_SPACE))
-	{
 		playerCircle->GetComponent<Jump>("Jump")->doJump(800);
-	}
 
 	// 피버 모드 활성화
 	if (INPUT->Down('Z'))
 		if (feverGauge >= 100)
-		{
 			startFever(10.f);
-		}
 
 	//장해물들 왼쪽으로 이동
 	for (const auto& obj : objects->members)
@@ -145,8 +140,21 @@ void Scene2::Update()
 
 void Scene2::Render()
 {
-	SUPER::Render();
+	PAINTSTRUCT ps;
+	HDC hdc = BeginPaint(gHandle, &ps);
 
+	RECT rect = { 0 };
+	rect.left = 100;
+	rect.top = 100;
+	rect.right = 150;
+	rect.bottom = 120;
+
+	wstring text = L"text";
+
+	DrawTextExW(hdc, text.data(), 5, &rect, DT_LEFT, nullptr);
+	EndPaint(gHandle, &ps);
+
+	SUPER::Render();
 	if (inFever)
 	{
 		if (feverColorCurTime >= feverColorTime)
@@ -159,12 +167,8 @@ void Scene2::Render()
 	}
 
 	if (immuteEnd_Function_Dirty)
-	{
 		if (playerCircle->isImmute() != true) //dirty 되었고 무적이 아니라면 (무적시간이 끝났다면)
-		{
 			Player_ImmuteEnd();
-		}
-	}
 
 	if (inFever)
 		playerCollider = playerBoxCollider;
@@ -241,8 +245,8 @@ void Scene2::Player_Dameged(int damege, float immuteTime) //플레이어가 (데미지 o
 {
 	immuteEnd_Function_Dirty = true;
 	playerCircle->Damege(damege, immuteTime);
-	playerCircle->GetComponent<Material>("Material")->SetColor(RED);
-	curScrollSpeed = scrollSpeed;
+	playerCircle->GetComponent<Material>("Material")->SetColor(Color(0.f,0.f,0.f,0.f));
+	curScrollSpeed = defaultScrollSpeed;
 	if (playerCircle->isDead())
 		Player_Dead();
 }
@@ -268,10 +272,13 @@ void Scene2::ResetObstacle(shared_ptr<Transform> target) //위치 재설정
 
 void Scene2::startFever(float time)
 {
-	immuteEnd_Function_Dirty = true;
+	if (curScrollSpeed > -1200.f)
+		curScrollSpeed = -1200.f;
+
 	feverGauge = 0.f;
 	inFever = true;
 	playerCircle->setImmute(10.f); //플레이어에게 10초 무적 추가
+	immuteEnd_Function_Dirty = true;
 	playerCircle->GetComponent<MeshRenderer>("MeshRenderer")->SetMesh(GeometryHelper::CreateRectangle()); //사각형으로 매시 변경
 	playerCircle->GetTransform()->SetScale(Vector2(200));
 	if (playerCircle->GetTransform()->GetPosition().y - playerCircle->GetTransform()->GetScale().y * 0.5 < floor->GetTransform()->GetPosition().y + floor->GetTransform()->GetScale().y * 0.5)
@@ -292,13 +299,12 @@ void Scene2::Player_ImmuteEnd() //무적시간 종료 (장해물과 부딛힌 후, 혹은 피버타
 		inFever = false;
 		playerCircle->GetComponent<MeshRenderer>("MeshRenderer")->SetMesh(GeometryHelper::CreateColorCircle(50));
 		playerCircle->GetTransform()->SetScale(Vector2(50));
-		playerCircle->setImmute(3.f);
 		playerCircle->GetComponent<Jump>("Jump")->SetonAir(true);
+		playerCircle->setImmute(3.f); //피버타임 종료후 무적시간 부여(dirty값 다시 true로 설정)
 		immuteEnd_Function_Dirty = true;
-	}
-	else
-	{
 
+		if (curScrollSpeed <= -1200.f)
+			curScrollSpeed *= 0.5;
 	}
 	playerCircle->GetComponent<Material>("Material")->SetColor(GREEN);
 }

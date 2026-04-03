@@ -165,6 +165,8 @@
     <ClCompile Include="Objects\Line.cpp" />
     <ClCompile Include="Objects\ObjectContainer.cpp" />
     <ClCompile Include="Objects\PlayerCircle.cpp" />
+    <ClCompile Include="Renders\OM\BlendState.cpp" />
+    <ClCompile Include="Renders\RasterizerState.cpp" />
     <ClCompile Include="Scenes\Scene2_Running.cpp" />
     <ClCompile Include="Scenes\Scene1_Intersect.cpp" />
     <ClCompile Include="Systems\ShaderManager.cpp" />
@@ -189,6 +191,7 @@
     <ClInclude Include="Renders\IA\IndexBuffer.h" />
     <ClInclude Include="Renders\IA\InputLayout.h" />
     <ClInclude Include="Renders\IA\VertexBuffer.h" />
+    <ClInclude Include="Renders\OM\BlendState.h" />
     <ClInclude Include="Renders\Resources\ConstantBuffer.h" />
     <ClInclude Include="Renders\Resources\GlobalBuffers.h" />
     <ClInclude Include="Renders\Resources\Mesh.h" />
@@ -196,6 +199,7 @@
     <ClInclude Include="Renders\Shaders\Shader.h" />
     <ClInclude Include="Renders\Resources\VertexType.h" />
     <ClInclude Include="Renders\Shaders\VertexShader.h" />
+    <ClInclude Include="Renders\RasterizerState.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Scenes\Scene2_Running.h" />
     <ClInclude Include="Scenes\SceneList.h" />

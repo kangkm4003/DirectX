@@ -14,6 +14,8 @@ void MeshRenderer::Render()
 	VS->SetShader();
 	PS->SetShader();
 
+	BLEND;
+
 	DC->DrawIndexed(mesh->GetIndexCount(), 0, 0);
 }
 
