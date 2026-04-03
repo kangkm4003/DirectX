@@ -245,7 +245,7 @@ void Scene2::Player_Dameged(int damege, float immuteTime) //플레이어가 (데미지 o
 {
 	immuteEnd_Function_Dirty = true;
 	playerCircle->Damege(damege, immuteTime);
-	playerCircle->GetComponent<Material>("Material")->SetColor(Color(0.f,0.f,0.f,0.f));
+	playerCircle->GetComponent<Material>("Material")->SetColor(Color(1.f,0.f,0.f));
 	curScrollSpeed = defaultScrollSpeed;
 	if (playerCircle->isDead())
 		Player_Dead();

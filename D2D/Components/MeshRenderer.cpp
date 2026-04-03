@@ -13,8 +13,7 @@ void MeshRenderer::Render()
 	IL->SetIA();
 	VS->SetShader();
 	PS->SetShader();
-
-	BLEND;
+	DC->OMSetBlendState(GRAPHICS->GetBlend(), nullptr, 0xFFFFFFFF);
 
 	DC->DrawIndexed(mesh->GetIndexCount(), 0, 0);
 }
