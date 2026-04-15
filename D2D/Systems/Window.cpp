@@ -125,6 +125,22 @@ LRESULT Window::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         PostQuitMessage(0);
         return 0;
     }
+    case WM_PAINT:
+    {
+        PAINTSTRUCT ps;
+        HDC hdc = BeginPaint(gHandle, &ps);
+
+        RECT rect = { 0 };
+        rect.left = 100;
+        rect.top = 100;
+        rect.right = 150;
+        rect.bottom = 120;
+
+        wstring text = L"text";
+
+        DrawTextExW(hdc, text.data(), 5, &rect, DT_LEFT, nullptr);
+        EndPaint(gHandle, &ps);
+    }
     break;
     }
 	return DefWindowProc(hWnd, message, wParam, lParam);

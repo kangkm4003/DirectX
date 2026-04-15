@@ -13,25 +13,47 @@
 #include "Components/CircleCollider.h"
 #include "Components/Material.h"
 #include "Components/MeshRenderer.h"
+#include "Components/FollowObject.h"
 
 #include "Utilities/Random.h"
 #include "Utilities/GeometryHelper.h"
 
+/* 문제점들: 
+	1. 씬에서 처리하는 것들이 너무 많음. (컴포넌트 혹은 오브젝트로 뺄수 있는것들은 전부 빼기)
+	2. 다형성 부족 (장해물 타입을 굳이 나눌 필요가 없음)
+	3. 일관성 부족 (변수명, 함수명의 이름을 일관성있게 작성하지 않음)
+	4. scroll 스피드 제한 걸기
+	5. 씬 안에서 GetComponent 사용 최대한 줄이기
+*/
 void Scene2::Init()
 {
 	curScrollSpeed = defaultScrollSpeed;
-
 	Random::Init();
-	playerCircle = make_unique<PlayerCircle>(Vector2(CENTER_X - 400, CENTER_Y - 200), Vector2(50), GREEN);
-	playerCircle->AddComponent(make_unique<BoxCollider>());
-	AddObject(playerCircle);
 
+	//플레이어
+	playerCircle = make_unique<PlayerCircle>(Vector2(CENTER_X - 400, CENTER_Y - 200), Vector2(50), GREEN);
+	AddObject(playerCircle);
+	//
+
+	//플레이어의 잔상
+	playerAfterImageObjects = make_unique<ObjectContainer>(Vector2(0, 0), Vector2(0, 0), 0, 10);
+	for (int i = 0; i < playerAfterImageObjects->members.size(); i++)
+	{
+		auto afterImage = make_unique<ColorRect>(Vector2(), Vector2(), 0, Random::GetColor());
+		afterImage->AddComponent(make_shared<FollowObject>());
+		afterImage->GetComponent<FollowObject>("FollowObject")->followScale = 0x00;
+		afterImage->GetComponent<FollowObject>("FollowObject")->followRotation = false;
+		playerAfterImageObjects->Add(move(afterImage), playerCircle->GetTransform()->GetPosition());
+	}
+	//
+	//바닥
 	floor = make_unique<ColorRect>(Vector2(CENTER_X, CENTER_Y - 300), Vector2(WIN_DEFAULT_WIDTH, 50), 0.f, WHITE);
 	floor->AddComponent(make_shared<BoxCollider>());
 	AddObject(floor);
+	//
 
+	//장해물들
 	objects = make_unique<ObjectContainer>(Vector2(WIN_DEFAULT_WIDTH, 0), Vector2(0, 0), 0, 3);
-
 	//원형 장해물
 	{
 		auto circleObstacle1 = make_shared<ColorCircle>(Vector2(0, 0), Vector2(50), Color(1, 0.49, 0)); //주황 원
@@ -39,7 +61,7 @@ void Scene2::Init()
 		auto collider = circleObstacle1->GetComponent<CircleCollider>("CircleCollider");
 		auto transform = circleObstacle1->GetTransform();
 		circleObstacles.push_back({collider, transform});
-		objects->Add(move(circleObstacle1), Vector2(Random::Range(spawn_range.first, spawn_range.second), floor->GetTransform()->GetPosition().y + floor->GetTransform()->GetScale().y * 0.5));
+		objects->Add(move(circleObstacle1), Vector2(Random::Range(spawnRange.first, spawnRange.second), floor->GetTransform()->GetPosition().y + floor->GetTransform()->GetScale().y * 0.5));
 	}
 
 	//사각형 장해물
@@ -49,7 +71,7 @@ void Scene2::Init()
 		auto collider = boxObstacle1->GetComponent<BoxCollider>("BoxCollider");
 		auto transform = boxObstacle1->GetTransform();
 		boxObstacles.push_back({collider, transform});
-		objects->Add(move(boxObstacle1), Vector2(Random::Range(spawn_range.first, spawn_range.second), floor->GetTransform()->GetPosition().y + 75));
+		objects->Add(move(boxObstacle1), Vector2(Random::Range(spawnRange.first, spawnRange.second), floor->GetTransform()->GetPosition().y + 75));
 	}
 
 	//회전하는 장해물
@@ -60,8 +82,9 @@ void Scene2::Init()
 		auto transform = boxObstacle2->GetTransform();
 		boxObstacles.push_back({ collider, transform });
 		boxObstacle2->GetTransform()->angularVelocity = 360; //매 프레임 마다 회전할 각도값 
-		objects->Add(move(boxObstacle2), Vector2(Random::Range(spawn_range.first, spawn_range.second), floor->GetTransform()->GetPosition().y + 250));
+		objects->Add(move(boxObstacle2), Vector2(Random::Range(spawnRange.first, spawnRange.second), floor->GetTransform()->GetPosition().y + 250));
 	}
+	//
 
 	{
 		int coinNumber = 5; //한 화면에 보일 코인의 최대 갯수
@@ -73,7 +96,7 @@ void Scene2::Init()
 			auto collider =  coin->GetComponent<CircleCollider>("CircleCollider");
 			auto transform = coin->GetTransform();
 			coins.push_back({ move(collider) ,move(transform) });
-			objects->Add(move(coin), Vector2(Random::Range(spawn_range.first, spawn_range.second), Random::Range(200, 400)));
+			objects->Add(move(coin), Vector2(Random::Range(spawnRange.first, spawnRange.second), Random::Range(200, 400)));
 		}
 	}
 
@@ -94,7 +117,7 @@ void Scene2::Update()
 	SUPER::Update();
 
 	shared_ptr<Collider> playerCollider;
-	if (inFever)
+	if (playerCircle->GetInFever())
 		playerCollider = playerBoxCollider;
 	else
 		playerCollider = playerCircleCollider;
@@ -114,8 +137,11 @@ void Scene2::Update()
 
 	// 피버 모드 활성화
 	if (INPUT->Down('Z'))
-		if (feverGauge >= 100)
-			startFever(10.f);
+		if (playerCircle->GetFeverGauge() >= 100.f)
+		{
+			playerCircle->StartFever(10.f);
+			startFeverEvent();
+		}
 
 	//장해물들 왼쪽으로 이동
 	for (const auto& obj : objects->members)
@@ -140,37 +166,13 @@ void Scene2::Update()
 
 void Scene2::Render()
 {
-	PAINTSTRUCT ps;
-	HDC hdc = BeginPaint(gHandle, &ps);
-
-	RECT rect = { 0 };
-	rect.left = 100;
-	rect.top = 100;
-	rect.right = 150;
-	rect.bottom = 120;
-
-	wstring text = L"text";
-
-	DrawTextExW(hdc, text.data(), 5, &rect, DT_LEFT, nullptr);
-	EndPaint(gHandle, &ps);
-
 	SUPER::Render();
-	if (inFever)
-	{
-		if (feverColorCurTime >= feverColorTime)
-		{
-			playerCircle->GetComponent<Material>("Material")->SetColor(Random::GetColor());
-			feverColorCurTime = 0;
-		}
-		else
-			feverColorCurTime += DELTA;
-	}
 
-	if (immuteEnd_Function_Dirty)
+	if (playerCircle->GetImmuteEnd_Dirty())
 		if (playerCircle->isImmute() != true) //dirty 되었고 무적이 아니라면 (무적시간이 끝났다면)
-			Player_ImmuteEnd();
+			PlayerImmuteEndEvent();
 
-	if (inFever)
+	if (playerCircle->GetInFever())
 		playerCollider = playerBoxCollider;
 	else
 		playerCollider = playerCircleCollider;
@@ -182,10 +184,10 @@ void Scene2::Render()
 			int addScore = 100; //추가할 점수
 			int addScrollSpeed = 9; //추가할 스크롤 속도
 
-			if (inFever != true)
+			if (playerCircle->GetInFever() != true)
 			{
 				int addFever = 20; // 추가할 피버 게이지 (퍼센트)
-				addFeverGauge(addFever);
+				addFeverGaugeEvent(addFever);
 			}
 
 			score += addScore;
@@ -200,7 +202,7 @@ void Scene2::Render()
 	{
 		if (playerCollider->IsColliding(obstacle.first))
 		{
-			if (inFever)
+			if (playerCircle->GetInFever())
 			{
 				ResetObstacle(obstacle.second); //위치 재설정
 
@@ -213,7 +215,7 @@ void Scene2::Render()
 			{
 				int damege = 1; //가할 데미지
 				float immuteTime = 3.f; // 무적 시간 (초)
-				Player_Dameged(damege, immuteTime);
+				playerDamegedEvent(damege, immuteTime);
 			}
 		}
 	}
@@ -222,7 +224,7 @@ void Scene2::Render()
 	{
 		if (playerCollider->IsColliding(obstacle.first))
 		{
-			if (inFever)
+			if (playerCircle->GetInFever())
 			{
 				ResetObstacle(obstacle.second); //위치 재설정
 
@@ -235,23 +237,21 @@ void Scene2::Render()
 			{
 				int damege = 1; //가할 데미지
 				float immuteTime = 3.f; // 무적 시간 (초)
-				Player_Dameged(damege, immuteTime);
+				playerDamegedEvent(damege, immuteTime);
 			}
 		}
 	}
 }
 
-void Scene2::Player_Dameged(int damege, float immuteTime) //플레이어가 (데미지 or 사망) 했다면 해당하는 이벤트 실행
+void Scene2::playerDamegedEvent(int damege, float immuteTime) //플레이어 (데미지 or 사망) 이벤트
 {
-	immuteEnd_Function_Dirty = true;
-	playerCircle->Damege(damege, immuteTime);
-	playerCircle->GetComponent<Material>("Material")->SetColor(Color(0.f,0.f,0.f,0.f));
 	curScrollSpeed = defaultScrollSpeed;
+	playerCircle->Damege(damege, immuteTime);
 	if (playerCircle->isDead())
-		Player_Dead();
+		PlayerDeadEvent();
 }
 
-void Scene2::Player_Dead()
+void Scene2::PlayerDeadEvent() //플레이어 사망 이벤트
 {
 	wstring text = L"점수 : " + to_wstring(score);
 	if (MessageBox(gHandle, text.c_str(), L"RunningGame", MB_OKCANCEL) == IDOK)
@@ -270,17 +270,16 @@ void Scene2::ResetObstacle(shared_ptr<Transform> target) //위치 재설정
 	target->SetPosition(Vector2(WIN_DEFAULT_WIDTH + Random::Range(100, 1000), target->GetPosition().y));
 }
 
-void Scene2::startFever(float time)
+void Scene2::addFeverGaugeEvent(float amount)
+{
+	playerCircle->AddFeverGauge(amount);
+}
+
+void Scene2::startFeverEvent() //플레이어 피버 시작 이벤트
 {
 	if (curScrollSpeed > -1200.f)
 		curScrollSpeed = -1200.f;
 
-	feverGauge = 0.f;
-	inFever = true;
-	playerCircle->setImmute(10.f); //플레이어에게 10초 무적 추가
-	immuteEnd_Function_Dirty = true;
-	playerCircle->GetComponent<MeshRenderer>("MeshRenderer")->SetMesh(GeometryHelper::CreateRectangle()); //사각형으로 매시 변경
-	playerCircle->GetTransform()->SetScale(Vector2(200));
 	if (playerCircle->GetTransform()->GetPosition().y - playerCircle->GetTransform()->GetScale().y * 0.5 < floor->GetTransform()->GetPosition().y + floor->GetTransform()->GetScale().y * 0.5)
 	{
 		playerCircle->GetTransform()->SetPosition(Vector2(
@@ -290,23 +289,12 @@ void Scene2::startFever(float time)
 	}
 }
 
-void Scene2::Player_ImmuteEnd() //무적시간 종료 (장해물과 부딛힌 후, 혹은 피버타임 종료)
+void Scene2::PlayerImmuteEndEvent() //무적시간 종료 (장해물과 부딛힌 후, 혹은 피버타임 무적) 이벤트
 {
-	immuteEnd_Function_Dirty = false; //한번만 실행
-
-	if (inFever)
-	{
-		inFever = false;
-		playerCircle->GetComponent<MeshRenderer>("MeshRenderer")->SetMesh(GeometryHelper::CreateColorCircle(50));
-		playerCircle->GetTransform()->SetScale(Vector2(50));
-		playerCircle->GetComponent<Jump>("Jump")->SetonAir(true);
-		playerCircle->setImmute(3.f); //피버타임 종료후 무적시간 부여(dirty값 다시 true로 설정)
-		immuteEnd_Function_Dirty = true;
-
+	if (playerCircle->GetInFever())
 		if (curScrollSpeed <= -1200.f)
 			curScrollSpeed *= 0.5;
-	}
-	playerCircle->GetComponent<Material>("Material")->SetColor(GREEN);
+	playerCircle->ImmuteEnd();
 }
 
 void Scene2::Destroy()
@@ -316,6 +304,7 @@ void Scene2::Destroy()
 	playerCircleCollider = nullptr;
 	playerBoxCollider = nullptr;
 	playerCircleJump = nullptr;
+	playerAfterImageObjects = nullptr;
 
 	floor = nullptr;
 	floorCollider = nullptr;

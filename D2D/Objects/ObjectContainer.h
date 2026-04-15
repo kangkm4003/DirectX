@@ -10,8 +10,6 @@ public:
 		members.clear();
 	}
 
-	//void Add(std::shared_ptr<Object> targetObject, int index = 0, Vector2 groupPosition = Vector2(0, 0)); //가독성을 위해 Add와 Insert로 분리
-
 	virtual void Destroy()
 	{
 		members.clear();

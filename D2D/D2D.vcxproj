@@ -156,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Components\CircleCollider.cpp" />
+    <ClCompile Include="Components\FollowObject.cpp" />
     <ClCompile Include="Components\Material.cpp" />
     <ClCompile Include="Components\Jump.cpp" />
     <ClCompile Include="Components\BoxCollider.cpp" />
@@ -175,6 +176,7 @@
     <ClCompile Include="Utilities\Random.cpp" />
     <ClInclude Include="Components\CircleCollider.h" />
     <ClInclude Include="Components\Component.h" />
+    <ClInclude Include="Components\FollowObject.h" />
     <ClInclude Include="Components\MeshRenderer.h" />
     <ClInclude Include="Components\Material.h" />
     <ClInclude Include="Components\Jump.h" />

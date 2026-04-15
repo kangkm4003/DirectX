@@ -5,7 +5,7 @@ class Jump : public Component
 {
 public:
 	Jump(float speed = 10.f, float gravity = 2000.f, const string& name = "Jump")
-		: Component(name)
+		: Component(name), speed(speed), gravity(gravity)
 	{
 	}
 

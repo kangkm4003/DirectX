@@ -94,6 +94,9 @@
     <ClInclude Include="Scenes\Scene1_Intersect.h" />
     <ClInclude Include="Components\Controller.h" />
     <ClInclude Include="Objects\PlayerCircle.h" />
+    <ClInclude Include="Renders\OM\BlendState.h" />
+    <ClInclude Include="Renders\RasterizerState.h" />
+    <ClInclude Include="Components\FollowObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -175,6 +178,9 @@
     <ClCompile Include="Scenes\Scene1_Intersect.cpp" />
     <ClCompile Include="Components\Controller.cpp" />
     <ClCompile Include="Objects\PlayerCircle.cpp" />
+    <ClCompile Include="Renders\OM\BlendState.cpp" />
+    <ClCompile Include="Renders\RasterizerState.cpp" />
+    <ClCompile Include="Components\FollowObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">

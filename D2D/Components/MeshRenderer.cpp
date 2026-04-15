@@ -14,7 +14,7 @@ void MeshRenderer::Render()
 	VS->SetShader();
 	PS->SetShader();
 
-	BLEND;
+	DC->OMSetBlendState(BLEND, nullptr, 0xFFFFFFFF);
 
 	DC->DrawIndexed(mesh->GetIndexCount(), 0, 0);
 }

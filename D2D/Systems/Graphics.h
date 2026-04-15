@@ -15,7 +15,6 @@ public:
 	ID3D11Device* GetDevice() const { return device.Get(); }
 	ID3D11DeviceContext* GetDC() const { return deviceContext.Get(); }
 	ID3D11BlendState* GetBlend() const { return blendState.Get(); }
-	void SetBlendDefault();
 
 private:
 	ComPtr<ID3D11Device> device;

@@ -6,7 +6,7 @@ class Controller : public Component
 {
 public:
 	Controller(float speed = 300.0f, const string& name = "Controller")
-		: Component(name)
+		: Component(name), speed(speed)
 	{
 	}
 
