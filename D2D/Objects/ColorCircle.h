@@ -10,4 +10,5 @@ public:
 	void Update();
 	void Render();
 private:
+	ComPtr<ID3D11BlendState> blendState;
 };

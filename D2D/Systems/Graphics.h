@@ -21,7 +21,9 @@ private:
 	ComPtr<ID3D11DeviceContext> deviceContext;
 	ComPtr<IDXGISwapChain> swapChain;
 	ComPtr<ID3D11RenderTargetView> rtv;
+
 	ComPtr<ID3D11BlendState> blendState;
+
 
 	D3D11_VIEWPORT viewport = { 0 };
 	Color clearColor = { 0.4f, 0.4f, 0.4f, 1.0f };

@@ -110,6 +110,7 @@ constexpr float epsilon = 1e-5f;
 #define GRAPHICS Graphics::Get()
 #define DEVICE GRAPHICS->GetDevice()
 #define DC GRAPHICS->GetDC()
+#define BLEND GRAPHICS->GetBlend()
 #define SHADERS ShaderManager::Get()
 
 // Headers
