@@ -1,19 +1,18 @@
 #include "stdafx.h"
 #include "Scene2_Running.h"
 
-#include "Objects/ColorRect.h"
-#include "Objects/ColorCircle.h"
-#include "Objects/PlayerCircle.h"]
-#include "Objects/ObjectContainer.h"
+#include "Objects/Geometry/ColorRect.h"
+#include "Objects/Geometry/ColorCircle.h"
+#include "Objects/Geometry/PlayerCircle.h"]
+#include "Objects/Functional/Util/ObjectContainer.h"
 
-#include "Components/Jump.h"
+#include "Components/Input/Jump.h"
 #include "Components/Transform.h"
-#include "Components/Jump.h"
-#include "Components/BoxCollider.h"
-#include "Components/CircleCollider.h"
-#include "Components/Material.h"
-#include "Components/MeshRenderer.h"
-#include "Components/FollowObject.h"
+#include "Components/Collision/BoxCollider.h"
+#include "Components/Collision/CircleCollider.h"
+#include "Components/Graphic/Material.h"
+#include "Components/Graphic/MeshRenderer.h"
+#include "Components/Util/FollowObject.h"
 
 #include "Utilities/Random.h"
 #include "Utilities/GeometryHelper.h"

@@ -1,15 +1,15 @@
 #include "stdafx.h"
 #include "Scene1_Intersect.h"
 
-#include "Components/BoxCollider.h"
-#include "Components/CircleCollider.h"
-#include "Components/Controller.h"
-#include "Components/Material.h"
+#include "Components/Collision/BoxCollider.h"
+#include "Components/Collision/CircleCollider.h"
+#include "Components/Input/Controller.h"
+#include "Components/Graphic/Material.h"
 #include "Components/Transform.h"
 
-#include "Objects/ColorRect.h"
-#include "Objects/ColorCircle.h"
-#include "Objects/WireCircle.h"
+#include "Objects/Geometry/ColorRect.h"
+#include "Objects/Geometry/ColorCircle.h"
+#include "Objects/Geometry/WireCircle.h"
 
 void Scene1::Init()
 {
