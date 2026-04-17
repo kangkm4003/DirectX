@@ -3,8 +3,8 @@
 #include "Utilities/GeometryHelper.h"
 #include "Systems/ShaderManager.h"
 
-#include "Components/Material.h"
-#include "Components/MeshRenderer.h"
+#include "Components/Graphic/Material.h"
+#include "Components/Graphic/MeshRenderer.h"
 
 ColorCircle::ColorCircle(Vector2 position, Vector2 scale, Color color, UINT segments)
 	: Object("ColorCircle", position, scale, 0.f)

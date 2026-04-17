@@ -61,13 +61,13 @@
     <ClInclude Include="Objects\ColorCircle.h">
       <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Material.h">
+    <ClInclude Include="Components\Graphic\Material.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="Renders\Resources\Mesh.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="Components\MeshRenderer.h">
+    <ClInclude Include="Components\Graphic\MeshRenderer.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="Scenes\Scene.h">
@@ -84,19 +84,19 @@
     </ClInclude>
     <ClInclude Include="Scenes\Scene2_Running.h" />
     <ClInclude Include="Scenes\SceneList.h" />
-    <ClInclude Include="Components\Jump.h" />
+    <ClInclude Include="Components\Input\Jump.h" />
     <ClInclude Include="Utilities\Collision.h" />
-    <ClInclude Include="Components\Collider.h" />
-    <ClInclude Include="Components\BoxCollider.h" />
-    <ClInclude Include="Components\CircleCollider.h" />
+    <ClInclude Include="Components\Collision\Collider.h" />
+    <ClInclude Include="Components\Collision\BoxCollider.h" />
+    <ClInclude Include="Components\Collision\CircleCollider.h" />
     <ClInclude Include="Objects\ObjectContainer.h" />
     <ClInclude Include="Utilities\Random.h" />
     <ClInclude Include="Scenes\Scene1_Intersect.h" />
-    <ClInclude Include="Components\Controller.h" />
+    <ClInclude Include="Components\Input\Controller.h" />
     <ClInclude Include="Objects\PlayerCircle.h" />
     <ClInclude Include="Renders\OM\BlendState.h" />
     <ClInclude Include="Renders\RasterizerState.h" />
-    <ClInclude Include="Components\FollowObject.h" />
+    <ClInclude Include="Components\Util\FollowObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -150,13 +150,13 @@
     <ClCompile Include="Objects\ColorCircle.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Components\Material.cpp">
+    <ClCompile Include="Components\Graphic\Material.cpp">
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="Renders\Resources\Mesh.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="Components\MeshRenderer.cpp">
+    <ClCompile Include="Components\Graphic\MeshRenderer.cpp">
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="Objects\WireCircle.cpp">
@@ -169,18 +169,18 @@
       <Filter>Systems</Filter>
     </ClCompile>
     <ClCompile Include="Scenes\Scene2_Running.cpp" />
-    <ClCompile Include="Components\Jump.cpp" />
+    <ClCompile Include="Components\Input\Jump.cpp" />
     <ClCompile Include="Utilities\Collision.cpp" />
-    <ClCompile Include="Components\BoxCollider.cpp" />
-    <ClCompile Include="Components\CircleCollider.cpp" />
+    <ClCompile Include="Components\Collision\BoxCollider.cpp" />
+    <ClCompile Include="Components\Collision\CircleCollider.cpp" />
     <ClCompile Include="Objects\ObjectContainer.cpp" />
     <ClCompile Include="Utilities\Random.cpp" />
     <ClCompile Include="Scenes\Scene1_Intersect.cpp" />
-    <ClCompile Include="Components\Controller.cpp" />
+    <ClCompile Include="Components\Input\Controller.cpp" />
     <ClCompile Include="Objects\PlayerCircle.cpp" />
     <ClCompile Include="Renders\OM\BlendState.cpp" />
     <ClCompile Include="Renders\RasterizerState.cpp" />
-    <ClCompile Include="Components\FollowObject.cpp" />
+    <ClCompile Include="Components\Util\FollowObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">

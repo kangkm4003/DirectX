@@ -4,8 +4,8 @@
 #include "Utilities/GeometryHelper.h"
 #include "Systems/ShaderManager.h"
 
-#include "Components/Material.h"
-#include "Components/MeshRenderer.h"
+#include "Components/Graphic/Material.h"
+#include "Components/Graphic/MeshRenderer.h"
 
 
 Line::Line(Vector2 position, Vector2 scale, float rotation, Color color)
