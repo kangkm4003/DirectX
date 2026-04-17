@@ -1,5 +1,5 @@
 #pragma once
-#include "Component.h"
+#include "Components/Component.h"
 
 //TransForm Component required to use this
 class FollowObject : public Component

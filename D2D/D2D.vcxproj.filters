@@ -43,7 +43,7 @@
     <ClInclude Include="Renders\Resources\GlobalBuffers.h">
       <Filter>Renders\Resources</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\ColorRect.h">
+    <ClInclude Include="Objects\Geometry\ColorRect.h">
       <Filter>Objects</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Object.h">
@@ -58,7 +58,7 @@
     <ClInclude Include="Objects\Line.h">
       <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\ColorCircle.h">
+    <ClInclude Include="Objects\Geometry\ColorCircle.h">
       <Filter>Objects</Filter>
     </ClInclude>
     <ClInclude Include="Components\Graphic\Material.h">
@@ -73,7 +73,7 @@
     <ClInclude Include="Scenes\Scene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\WireCircle.h">
+    <ClInclude Include="Objects\Geometry\WireCircle.h">
       <Filter>Objects</Filter>
     </ClInclude>
     <ClInclude Include="Components\Transform.h">
@@ -89,11 +89,11 @@
     <ClInclude Include="Components\Collision\Collider.h" />
     <ClInclude Include="Components\Collision\BoxCollider.h" />
     <ClInclude Include="Components\Collision\CircleCollider.h" />
-    <ClInclude Include="Objects\ObjectContainer.h" />
+    <ClInclude Include="Objects\Util\ObjectContainer.h" />
     <ClInclude Include="Utilities\Random.h" />
     <ClInclude Include="Scenes\Scene1_Intersect.h" />
     <ClInclude Include="Components\Input\Controller.h" />
-    <ClInclude Include="Objects\PlayerCircle.h" />
+    <ClInclude Include="Objects\Geometry\PlayerCircle.h" />
     <ClInclude Include="Renders\OM\BlendState.h" />
     <ClInclude Include="Renders\RasterizerState.h" />
     <ClInclude Include="Components\Util\FollowObject.h" />
@@ -135,7 +135,7 @@
     <ClCompile Include="Renders\Shaders\VertexShader.cpp">
       <Filter>Renders\Shaders</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\ColorRect.cpp">
+    <ClCompile Include="Objects\Geometry\ColorRect.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
     <ClCompile Include="Objects\Object.cpp">
@@ -147,7 +147,7 @@
     <ClCompile Include="Objects\Line.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\ColorCircle.cpp">
+    <ClCompile Include="Objects\Geometry\ColorCircle.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
     <ClCompile Include="Components\Graphic\Material.cpp">
@@ -159,7 +159,7 @@
     <ClCompile Include="Components\Graphic\MeshRenderer.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\WireCircle.cpp">
+    <ClCompile Include="Objects\Geometry\WireCircle.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
     <ClCompile Include="Components\Transform.cpp">
@@ -173,11 +173,11 @@
     <ClCompile Include="Utilities\Collision.cpp" />
     <ClCompile Include="Components\Collision\BoxCollider.cpp" />
     <ClCompile Include="Components\Collision\CircleCollider.cpp" />
-    <ClCompile Include="Objects\ObjectContainer.cpp" />
+    <ClCompile Include="Objects\Util\ObjectContainer.cpp" />
     <ClCompile Include="Utilities\Random.cpp" />
     <ClCompile Include="Scenes\Scene1_Intersect.cpp" />
     <ClCompile Include="Components\Input\Controller.cpp" />
-    <ClCompile Include="Objects\PlayerCircle.cpp" />
+    <ClCompile Include="Objects\Geometry\PlayerCircle.cpp" />
     <ClCompile Include="Renders\OM\BlendState.cpp" />
     <ClCompile Include="Renders\RasterizerState.cpp" />
     <ClCompile Include="Components\Util\FollowObject.cpp" />

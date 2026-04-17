@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "BoxCollider.h"
-#include "Transform.h"
+#include "Components/Transform.h"
 #include "CircleCollider.h"
 #include "Objects/Object.h"
 

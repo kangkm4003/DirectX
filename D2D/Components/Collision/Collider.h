@@ -1,5 +1,5 @@
 #pragma once
-#include "Component.h"
+#include "Components/Component.h"
 #include "Utilities/Collision.h"
 
 enum class ColliderType { BOX, CIRCLE };
