@@ -2,12 +2,12 @@
 #include "ObjectContainer.h"
 #include "PlayerCircle.h"
 
-#include "Components/CircleCollider.h"
-#include "Components/BoxCollider.h"
-#include "Components/MeshRenderer.h"
+#include "Components/Collision/CircleCollider.h"
+#include "Components/Collision/BoxCollider.h"
+#include "Components/Graphic/Material.h"
+#include "Components/Graphic/MeshRenderer.h"
 #include "Components/Transform.h"
-#include "Components/Material.h"
-#include "Components/Jump.h"
+#include "Components/Input/Jump.h"
 
 #include "Utilities/Random.h"
 #include "Utilities/GeometryHelper.h"

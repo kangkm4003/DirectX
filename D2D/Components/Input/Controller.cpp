@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Controller.h"
-#include "Transform.h"
+#include "Components/Transform.h"
 
 void Controller::Update()
 {

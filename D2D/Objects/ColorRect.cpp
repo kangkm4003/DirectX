@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "ColorRect.h"
-#include "Components/MeshRenderer.h"
+#include "Components/Graphics/Material.h"
+#include "Components/Graphics/MeshRenderer.h"
 #include "Utilities/GeometryHelper.h"
-#include "Components/Material.h"
 
 ColorRect::ColorRect(Vector2 position, Vector2 scale, float rotation, Color color)
 	: Object("ColorRect", position, scale, rotation)

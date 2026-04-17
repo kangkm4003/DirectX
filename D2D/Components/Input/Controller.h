@@ -1,6 +1,6 @@
 
 #pragma once
-#include "Component.h"
+#include "Components/Component.h"
 
 class Controller : public Component
 {
