@@ -3,7 +3,7 @@
 
 #include "Objects/Geometry/ColorRect.h"
 #include "Objects/Geometry/ColorCircle.h"
-#include "Objects/Geometry/PlayerCircle.h"]
+#include "Objects/Functional/PlayerCircle.h"]
 #include "Objects/Functional/Util/ObjectContainer.h"
 
 #include "Components/Input/Jump.h"
@@ -167,6 +167,7 @@ void Scene2::Render()
 {
 	SUPER::Render();
 
+	//이것들을 왜 Render에서 함??
 	if (playerCircle->GetImmuteEnd_Dirty())
 		if (playerCircle->isImmute() != true) //dirty 되었고 무적이 아니라면 (무적시간이 끝났다면)
 			PlayerImmuteEndEvent();
@@ -186,7 +187,7 @@ void Scene2::Render()
 			if (playerCircle->GetInFever() != true)
 			{
 				int addFever = 20; // 추가할 피버 게이지 (퍼센트)
-				addFeverGaugeEvent(addFever);
+				AddFeverGaugeEvent(addFever);
 			}
 
 			score += addScore;
@@ -214,7 +215,7 @@ void Scene2::Render()
 			{
 				int damege = 1; //가할 데미지
 				float immuteTime = 3.f; // 무적 시간 (초)
-				playerDamegedEvent(damege, immuteTime);
+				PlayerDamegedEvent(damege, immuteTime);
 			}
 		}
 	}
@@ -242,7 +243,7 @@ void Scene2::Render()
 	}
 }
 
-void Scene2::playerDamegedEvent(int damege, float immuteTime) //플레이어 (데미지 or 사망) 이벤트
+void Scene2::PlayerDamegedEvent(int damege, float immuteTime) //플레이어 (데미지 or 사망) 이벤트
 {
 	curScrollSpeed = defaultScrollSpeed;
 	playerCircle->Damege(damege, immuteTime);
@@ -269,7 +270,7 @@ void Scene2::ResetObstacle(shared_ptr<Transform> target) //위치 재설정
 	target->SetPosition(Vector2(WIN_DEFAULT_WIDTH + Random::Range(100, 1000), target->GetPosition().y));
 }
 
-void Scene2::addFeverGaugeEvent(float amount)
+void Scene2::AddFeverGaugeEvent(float amount)
 {
 	playerCircle->AddFeverGauge(amount);
 }

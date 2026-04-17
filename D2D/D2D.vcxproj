@@ -170,11 +170,11 @@
     <ClCompile Include="Objects\Functional\Util\ObjectContainer.cpp" />
     <ClCompile Include="Objects\Functional\PlayerCircle.cpp" />
     <ClCompile Include="Objects\Functional\Obstacle.cpp" />
-    <ClCompile Include="Renders\OM\BlendState.cpp" />
     <ClCompile Include="Renders\RasterizerState.cpp" />
     <ClCompile Include="Scenes\Scene2_Running.cpp" />
     <ClCompile Include="Scenes\Scene1_Intersect.cpp" />
     <ClCompile Include="Systems\ShaderManager.cpp" />
+    <ClCompile Include="Systems\ScoreManager.cpp" />
     <ClCompile Include="Utilities\GeometryHelper.cpp" />
     <ClCompile Include="Utilities\Collision.cpp" />
     <ClCompile Include="Utilities\Random.cpp" />
@@ -201,7 +201,6 @@
     <ClInclude Include="Renders\IA\IndexBuffer.h" />
     <ClInclude Include="Renders\IA\InputLayout.h" />
     <ClInclude Include="Renders\IA\VertexBuffer.h" />
-    <ClInclude Include="Renders\OM\BlendState.h" />
     <ClInclude Include="Renders\Resources\ConstantBuffer.h" />
     <ClInclude Include="Renders\Resources\GlobalBuffers.h" />
     <ClInclude Include="Renders\Resources\Mesh.h" />
@@ -220,6 +219,7 @@
     <ClInclude Include="Systems\Input.h" />
     <ClInclude Include="Systems\Time.h" />
     <ClInclude Include="Systems\ShaderManager.h" />
+    <ClInclude Include="Systems\ScoreManager.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Systems\Window.h" />
     <ClCompile Include="Components\Transform.cpp" />

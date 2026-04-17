@@ -94,13 +94,13 @@
     <ClInclude Include="Scenes\Scene1_Intersect.h" />
     <ClInclude Include="Components\Input\Controller.h" />
     <ClInclude Include="Objects\Functional\PlayerCircle.h" />
-    <ClInclude Include="Renders\OM\BlendState.h" />
     <ClInclude Include="Renders\RasterizerState.h" />
     <ClInclude Include="Components\Util\FollowObject.h" />
     <ClInclude Include="Objects\Functional\Obstacle.h" />
     <ClInclude Include="Objects\Functional\Coin.h" />
     <ClInclude Include="Objects\Functional\Effect\EffectEmitter.h" />
     <ClInclude Include="Objects\Functional\Effect\Particle\AfterImage.h" />
+    <ClInclude Include="Systems\ScoreManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -182,13 +182,13 @@
     <ClCompile Include="Scenes\Scene1_Intersect.cpp" />
     <ClCompile Include="Components\Input\Controller.cpp" />
     <ClCompile Include="Objects\Functional\PlayerCircle.cpp" />
-    <ClCompile Include="Renders\OM\BlendState.cpp" />
     <ClCompile Include="Renders\RasterizerState.cpp" />
     <ClCompile Include="Components\Util\FollowObject.cpp" />
     <ClCompile Include="Objects\Functional\Obstacle.cpp" />
     <ClCompile Include="Objects\Functional\Coin.cpp" />
     <ClCompile Include="Objects\Functional\Effect\EffectEmitter.cpp" />
     <ClCompile Include="Objects\Functional\Effect\Particle\AfterImage.cpp" />
+    <ClCompile Include="Systems\ScoreManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">

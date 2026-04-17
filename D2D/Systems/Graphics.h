@@ -22,8 +22,7 @@ private:
 	ComPtr<IDXGISwapChain> swapChain;
 	ComPtr<ID3D11RenderTargetView> rtv;
 
-	ComPtr<ID3D11BlendState> blendState;
-
+	ComPtr<ID3D11BlendState> blendState; //모든 그래픽에 적용할 기본 blendState
 
 	D3D11_VIEWPORT viewport = { 0 };
 	Color clearColor = { 0.4f, 0.4f, 0.4f, 1.0f };
