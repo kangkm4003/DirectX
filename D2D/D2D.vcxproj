@@ -42,7 +42,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -164,10 +164,10 @@
     <ClCompile Include="Objects\Functional\Coin.cpp" />
     <ClCompile Include="Objects\Functional\Effect\EffectEmitter.cpp" />
     <ClCompile Include="Objects\Functional\Effect\Particle\AfterImage.cpp" />
+    <ClCompile Include="Objects\Functional\CollisionObject.cpp" />
     <ClCompile Include="Objects\Geometry\ColorCircle.cpp" />
     <ClCompile Include="Objects\Geometry\WireCircle.cpp" />
     <ClCompile Include="Objects\Line.cpp" />
-    <ClCompile Include="Objects\Functional\Util\ObjectContainer.cpp" />
     <ClCompile Include="Objects\Functional\PlayerCircle.cpp" />
     <ClCompile Include="Objects\Functional\Obstacle.cpp" />
     <ClCompile Include="Renders\RasterizerState.cpp" />
@@ -190,12 +190,12 @@
     <ClInclude Include="Objects\Functional\Coin.h" />
     <ClInclude Include="Objects\Functional\Effect\EffectEmitter.h" />
     <ClInclude Include="Objects\Functional\Effect\Particle\AfterImage.h" />
+    <ClInclude Include="Objects\Functional\CollisionObject.h" />
     <ClInclude Include="Objects\Geometry\ColorRect.h" />
     <ClInclude Include="Objects\Object.h" />
     <ClInclude Include="Objects\Geometry\ColorCircle.h" />
     <ClInclude Include="Objects\Geometry\WireCircle.h" />
     <ClInclude Include="Objects\Line.h" />
-    <ClInclude Include="Objects\Functional\Util\ObjectContainer.h" />
     <ClInclude Include="Objects\Functional\PlayerCircle.h" />
     <ClInclude Include="Objects\Functional\Obstacle.h" />
     <ClInclude Include="Renders\IA\IndexBuffer.h" />

@@ -10,7 +10,7 @@ class Scene
 public:
 	virtual ~Scene() = default;
 
-	virtual void Init() = 0; // »ý¼ºÀÚ() = 0 ¶æ: ¼ø¼ö °¡»ó ÇÔ¼ö ¼±¾ð
+	virtual void Init() = 0; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½() = 0 ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 	virtual void Destroy()
 	{
 		objects.clear();
@@ -31,7 +31,7 @@ public:
 		}
 	}
 
-	void AddObject(std::shared_ptr<Object> object) //Æ÷ÀÎÅÍ °ª ÀÌµ¿À¸·Î º¹»ç¸¦ ÁÙ¿© ¼º´É ÃÖÀûÈ­
+	void AddObject(std::shared_ptr<Object> object) //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ç¸¦ ï¿½Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È­
 	{
 		objects.push_back(move(object));
 	}

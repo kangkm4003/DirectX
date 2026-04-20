@@ -37,4 +37,6 @@ private:
 	pair<float, float> spawnRange = { 300.f, 1000.f }; //물체들의 x좌표 랜덤스폰 지점 (화면 중앙 기준)
 	float defaultScrollSpeed = -450.f; //curScrollSpeed의 초기값
 	float curScrollSpeed = defaultScrollSpeed; //현재 스크롤 스피드의 값
+
+	int coinAmount = 5; //한 화면에 보일 코인의 최대 갯수
 };

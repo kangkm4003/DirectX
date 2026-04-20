@@ -6,21 +6,21 @@
 //	class Component
 //	{
 //	public:
-//		~Component() { cout << "Component ¼Ò¸ê!\n"; }
+//		~Component() { cout << "Component ï¿½Ò¸ï¿½!\n"; }
 //
 //		weak_ptr<Object> owner;
 //
 //		void Update()
 //		{
-//			owner.expired(); // lock()°ú´Â ´Ù¸£°Ô expired´Â ¹ÝÈ¯°ªÀÌ bool ÀÌ´Ù
+//			owner.expired(); // lock()ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½ expiredï¿½ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ï¿½ï¿½ bool ï¿½Ì´ï¿½
 //
-//			if (auto lockedOwner = owner.lock()) //weak_ptr ÀÇ lock() ¸Å¼­µå¸¦ »ç¿ëÇÏ¸é ±×¿¡´ëÇÑ shared_ptrÀ» ¹ÝÈ¯ÇØÁØ´Ù (À¯È¿ÇÏÁö ¾Ê´Ù¸é nullptr ¹ÝÈ¯)
+//			if (auto lockedOwner = owner.lock()) //weak_ptr ï¿½ï¿½ lock() ï¿½Å¼ï¿½ï¿½å¸¦ ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½×¿ï¿½ï¿½ï¿½ï¿½ï¿½ shared_ptrï¿½ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ï¿½Ø´ï¿½ (ï¿½ï¿½È¿ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Ù¸ï¿½ nullptr ï¿½ï¿½È¯)
 //			{
 //				lockedOwner;
 //			}
 //			else
 //			{
-//				lockedOwner.reset(); //nullptr À» ¹ÝÈ¯ Çß´Ù¸é ÀÚ½Å ¶ÇÇÑ ÇØÁ¦
+//				lockedOwner.reset(); //nullptr ï¿½ï¿½ ï¿½ï¿½È¯ ï¿½ß´Ù¸ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 //			}
 //		}
 //	};

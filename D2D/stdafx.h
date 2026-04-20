@@ -1,5 +1,5 @@
-// header.h: Ç¥ÁØ ½Ã½ºÅÛ Æ÷ÇÔ ÆÄÀÏ
-// ¶Ç´Â ÇÁ·ÎÁ§Æ® Æ¯Á¤ Æ÷ÇÔ ÆÄÀÏÀÌ µé¾î ÀÖ´Â Æ÷ÇÔ ÆÄÀÏÀÔ´Ï´Ù.
+// header.h: í‘œì¤€ ì‹œìŠ¤í…œ í¬í•¨ íŒŒì¼
+// ë˜ëŠ” í”„ë¡œì íŠ¸ íŠ¹ì • í¬í•¨ íŒŒì¼ì´ ë“¤ì–´ ìžˆëŠ” í¬í•¨ íŒŒì¼ìž…ë‹ˆë‹¤.
 //
 
 #pragma once
@@ -11,15 +11,15 @@
 #endif
 
 #include "targetver.h"
-#define WIN32_LEAN_AND_MEAN             // °ÅÀÇ »ç¿ëµÇÁö ¾Ê´Â ³»¿ëÀ» Windows Çì´õ¿¡¼­ Á¦¿ÜÇÕ´Ï´Ù.
-// Windows Çì´õ ÆÄÀÏ
+#define WIN32_LEAN_AND_MEAN             // ê±°ì˜ ì‚¬ìš©ë˜ì§€ ì•ŠëŠ” ë‚´ìš©ì„ Windows í—¤ë”ì—ì„œ ì œì™¸í•©ë‹ˆë‹¤.
+// Windows í—¤ë” íŒŒì¼
 #include <windows.h>
 #include <windowsx.h>
 
-// C ·±Å¸ÀÓ Çì´õ ÆÄÀÏÀÔ´Ï´Ù.
+// C ëŸ°íƒ€ìž„ í—¤ë” íŒŒì¼ìž…ë‹ˆë‹¤.
 #include <cassert>
 
-// C++ ·±Å¸ÀÓ Çì´õ ÆÄÀÏÀÔ´Ï´Ù.
+// C++ ëŸ°íƒ€ìž„ í—¤ë” íŒŒì¼ìž…ë‹ˆë‹¤.
 #include <string>
 #include <memory>
 #include <array>
@@ -27,6 +27,7 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
+#include <span>
 
 // DirectX D3D11
 #include <d3d11.h>

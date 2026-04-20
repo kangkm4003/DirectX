@@ -1,18 +1,18 @@
 #include "stdafx.h"
+#include "Coin.h"
 
 //Components
 #include "Components/Collision/CircleCollider.h"
 //
 
-#include "Coin.h"
 
 Coin::Coin(Vector2 position, Vector2 scale, Color color, UINT segments)
-	: ColorCircle(position, scale, color, segments)
+	: CollisionObject(position, scale, 0.f)
 {
-	AddComponent(make_unique<CircleCollider>());
-
+	AddComponent(make_shared<CircleCollider>("CircleCollider"));
 	//Component Precache
 	collider = GetComponent<CircleCollider>("CircleCollider");
+	transform = GetComponent<Transform>("Transform");
 	//
 }
 

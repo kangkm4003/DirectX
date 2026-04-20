@@ -17,24 +17,24 @@
 #include "Utilities/Random.h"
 #include "Utilities/GeometryHelper.h"
 
-/* ¹®Á¦Á¡µé: 
-	1. ¾À¿¡¼­ Ã³¸®ÇÏ´Â °ÍµéÀÌ ³Ê¹« ¸¹À½. (ÄÄÆ÷³ÍÆ® È¤Àº ¿ÀºêÁ§Æ®·Î »¬¼ö ÀÖ´Â°ÍµéÀº ÀüºÎ »©±â)
-	2. ´ÙÇü¼º ºÎÁ· (ÀåÇØ¹° Å¸ÀÔÀ» ±»ÀÌ ³ª´­ ÇÊ¿ä°¡ ¾øÀ½)
-	3. ÀÏ°ü¼º ºÎÁ· (º¯¼ö¸í, ÇÔ¼ö¸íÀÇ ÀÌ¸§À» ÀÏ°ü¼ºÀÖ°Ô ÀÛ¼ºÇÏÁö ¾ÊÀ½)
-	4. scroll ½ºÇÇµå Á¦ÇÑ °É±â
-	5. ¾À ¾È¿¡¼­ GetComponent »ç¿ë ÃÖ´ëÇÑ ÁÙÀÌ±â
+/* ë¬¸ì œì ë“¤:
+	1. ì”¬ì—ì„œ ì²˜ë¦¬í•˜ëŠ” ê²ƒë“¤ì´ ë„ˆë¬´ ë§ìŒ. (ì»´í¬ë„ŒíŠ¸ í˜¹ì€ ì˜¤ë¸Œì íŠ¸ë¡œ ëº„ìˆ˜ ìˆëŠ”ê²ƒë“¤ì€ ì „ë¶€ ë¹¼ê¸°)
+	2. ë‹¤í˜•ì„± ë¶€ì¡± (ì¥í•´ë¬¼ íƒ€ì…ì„ êµ³ì´ ë‚˜ëˆŒ í•„ìš”ê°€ ì—†ìŒ)
+	3. ì¼ê´€ì„± ë¶€ì¡± (ë³€ìˆ˜ëª…, í•¨ìˆ˜ëª…ì˜ ì´ë¦„ì„ ì¼ê´€ì„±ìˆê²Œ ì‘ì„±í•˜ì§€ ì•ŠìŒ)
+	4. scroll ìŠ¤í”¼ë“œ ì œí•œ ê±¸ê¸°
+	5. ì”¬ ì•ˆì—ì„œ GetComponent ì‚¬ìš© ìµœëŒ€í•œ ì¤„ì´ê¸°
 */
 void Scene2::Init()
 {
 	curScrollSpeed = defaultScrollSpeed;
 	Random::Init();
 
-	//ÇÃ·¹ÀÌ¾î
+	//í”Œë ˆì´ì–´
 	playerCircle = make_unique<PlayerCircle>(Vector2(CENTER_X - 400, CENTER_Y - 200), Vector2(50), GREEN);
 	AddObject(playerCircle);
 	//
 
-	//ÇÃ·¹ÀÌ¾îÀÇ ÀÜ»ó
+	//í”Œë ˆì´ì–´ì˜ ì”ìƒ
 	playerAfterImageObjects = make_unique<ObjectContainer>(Vector2(0, 0), Vector2(0, 0), 0, 10);
 	for (int i = 0; i < playerAfterImageObjects->members.size(); i++)
 	{
@@ -45,59 +45,45 @@ void Scene2::Init()
 		playerAfterImageObjects->Add(move(afterImage), playerCircle->GetTransform()->GetPosition());
 	}
 	//
-	//¹Ù´Ú
+	//ë°”ë‹¥
 	floor = make_unique<ColorRect>(Vector2(CENTER_X, CENTER_Y - 300), Vector2(WIN_DEFAULT_WIDTH, 50), 0.f, WHITE);
 	floor->AddComponent(make_shared<BoxCollider>());
 	AddObject(floor);
 	//
 
-	//ÀåÇØ¹°µé
+	//ì¥í•´ë¬¼ë“¤
 	objects = make_unique<ObjectContainer>(Vector2(WIN_DEFAULT_WIDTH, 0), Vector2(0, 0), 0, 3);
-	//¿øÇü ÀåÇØ¹°
+	//ì›í˜• ì¥í•´ë¬¼
 	{
-		auto circleObstacle1 = make_shared<ColorCircle>(Vector2(0, 0), Vector2(50), Color(1, 0.49, 0)); //ÁÖÈ² ¿ø
+		auto circleObstacle1 = make_shared<ColorCircle>(Vector2(0, 0), Vector2(50), Color(1, 0.49, 0)); //ì£¼í™© ì›
 		circleObstacle1->AddComponent(make_shared<CircleCollider>());
 		auto collider = circleObstacle1->GetComponent<CircleCollider>("CircleCollider");
 		auto transform = circleObstacle1->GetTransform();
-		circleObstacles.push_back({collider, transform});
+		circleObstacles.push_back({ collider, transform });
 		objects->Add(move(circleObstacle1), Vector2(Random::Range(spawnRange.first, spawnRange.second), floor->GetTransform()->GetPosition().y + floor->GetTransform()->GetScale().y * 0.5));
 	}
 
-	//»ç°¢Çü ÀåÇØ¹°
+	//ì‚¬ê°í˜• ì¥í•´ë¬¼
 	{
-		auto boxObstacle1 = make_shared<ColorRect>(Vector2(0, 0), Vector2(40, 150), 0, RED); //»¡°£ »ç°¢Çü
+		auto boxObstacle1 = make_shared<ColorRect>(Vector2(0, 0), Vector2(40, 150), 0, RED); //ë¹¨ê°„ ì‚¬ê°í˜•
 		boxObstacle1->AddComponent(make_shared<BoxCollider>());
 		auto collider = boxObstacle1->GetComponent<BoxCollider>("BoxCollider");
 		auto transform = boxObstacle1->GetTransform();
-		boxObstacles.push_back({collider, transform});
+		boxObstacles.push_back({ collider, transform });
 		objects->Add(move(boxObstacle1), Vector2(Random::Range(spawnRange.first, spawnRange.second), floor->GetTransform()->GetPosition().y + 75));
 	}
 
-	//È¸ÀüÇÏ´Â ÀåÇØ¹°
+	//íšŒì „í•˜ëŠ” ì¥í•´ë¬¼
 	{
 		auto boxObstacle2 = make_shared<ColorRect>(Vector2(0, 0), Vector2(20, 120), 0, Color(1.f, 0.f, 1.f));
 		boxObstacle2->AddComponent(make_shared<BoxCollider>());
 		auto collider = boxObstacle2->GetComponent<BoxCollider>("BoxCollider");
 		auto transform = boxObstacle2->GetTransform();
 		boxObstacles.push_back({ collider, transform });
-		boxObstacle2->GetTransform()->angularVelocity = 360; //¸Å ÇÁ·¹ÀÓ ¸¶´Ù È¸ÀüÇÒ °¢µµ°ª 
+		boxObstacle2->GetTransform()->angularVelocity = 360; //ë§¤ í”„ë ˆì„ ë§ˆë‹¤ íšŒì „í•  ê°ë„ê°’ 
 		objects->Add(move(boxObstacle2), Vector2(Random::Range(spawnRange.first, spawnRange.second), floor->GetTransform()->GetPosition().y + 250));
 	}
 	//
-
-	{
-		int coinNumber = 5; //ÇÑ È­¸é¿¡ º¸ÀÏ ÄÚÀÎÀÇ ÃÖ´ë °¹¼ö
-		
-		for (int i = 0; i < coinNumber; i++)
-		{
-			auto coin = make_shared<ColorCircle>(Vector2(0, 0), Vector2(30), Color(1, 1, 0)); //³ë¶û ¿ø (ÄÚÀÎ)
-			coin->AddComponent(make_shared<CircleCollider>());
-			auto collider =  coin->GetComponent<CircleCollider>("CircleCollider");
-			auto transform = coin->GetTransform();
-			coins.push_back({ move(collider) ,move(transform) });
-			objects->Add(move(coin), Vector2(Random::Range(spawnRange.first, spawnRange.second), Random::Range(200, 400)));
-		}
-	}
 
 	AddObject(objects);
 
@@ -121,20 +107,20 @@ void Scene2::Update()
 	else
 		playerCollider = playerCircleCollider;
 
-	if (playerCollider->IsColliding(floorCollider) && playerCircleJump->GetonAir() && playerCircleJump->GetSpeed() <= 0) //Á¡ÇÁ ÀÌÈÄ ÇÏ°­Áß ¹Ù´Ú°ú ºÎµóÈû (ÇÑ¹ø¸¸ ¿¬»ê)
+	if (playerCollider->IsColliding(floorCollider) && playerCircleJump->GetonAir() && playerCircleJump->GetSpeed() <= 0) //ì í”„ ì´í›„ í•˜ê°•ì¤‘ ë°”ë‹¥ê³¼ ë¶€ë”›í˜ (í•œë²ˆë§Œ ì—°ì‚°)
 	{
 		playerCircle->GetComponent<Jump>("Jump")->Land();
 		playerCircle->GetTransform()->SetPosition(Vector2(
 			playerCircle->GetTransform()->GetPosition().x,
-			floor->GetTransform()->GetPosition().y + floor->GetTransform()->GetScale().y * 0.5 + playerCircle->GetTransform()->GetScale().y * 0.5) //ÂøÁö ÇßÀ»¶§ ¹Ù´Ú¿¡ ¹ÚÈ÷´Â°ÍÀ» ¹æÁöÇÏ±â À§ÇØ À§Ä¡ ÀçÁ¶Á¤
+			floor->GetTransform()->GetPosition().y + floor->GetTransform()->GetScale().y * 0.5 + playerCircle->GetTransform()->GetScale().y * 0.5) //ì°©ì§€ í–ˆì„ë•Œ ë°”ë‹¥ì— ë°•íˆëŠ”ê²ƒì„ ë°©ì§€í•˜ê¸° ìœ„í•´ ìœ„ì¹˜ ì¬ì¡°ì •
 		);
 	}
 
-	//Á¡ÇÁ
+	//ì í”„
 	if (INPUT->Down(VK_SPACE))
 		playerCircle->GetComponent<Jump>("Jump")->doJump(800);
 
-	// ÇÇ¹ö ¸ğµå È°¼ºÈ­
+	// í”¼ë²„ ëª¨ë“œ í™œì„±í™”
 	if (INPUT->Down('Z'))
 		if (playerCircle->GetFeverGauge() >= 100.f)
 		{
@@ -142,13 +128,13 @@ void Scene2::Update()
 			startFeverEvent();
 		}
 
-	//ÀåÇØ¹°µé ¿ŞÂÊÀ¸·Î ÀÌµ¿
+	//ì¥í•´ë¬¼ë“¤ ì™¼ìª½ìœ¼ë¡œ ì´ë™
 	for (const auto& obj : objects->members)
 	{
 		if (obj->GetTransform()->GetPosition().x >= -100)
 			obj->GetTransform()->Move(Vector2(curScrollSpeed * DELTA, 0));
 		else
-			ResetObstacle(obj->GetTransform()); //À§Ä¡ Àç¼³Á¤
+			ResetObstacle(obj->GetTransform()); //ìœ„ì¹˜ ì¬ì„¤ì •
 	}
 
 	//
@@ -167,9 +153,9 @@ void Scene2::Render()
 {
 	SUPER::Render();
 
-	//ÀÌ°ÍµéÀ» ¿Ö Render¿¡¼­ ÇÔ??
+	//ì´ê²ƒë“¤ì„ ì™œ Renderì—ì„œ í•¨??
 	if (playerCircle->GetImmuteEnd_Dirty())
-		if (playerCircle->isImmute() != true) //dirty µÇ¾ú°í ¹«ÀûÀÌ ¾Æ´Ï¶ó¸é (¹«Àû½Ã°£ÀÌ ³¡³µ´Ù¸é)
+		if (playerCircle->isImmute() != true) //dirty ë˜ì—ˆê³  ë¬´ì ì´ ì•„ë‹ˆë¼ë©´ (ë¬´ì ì‹œê°„ì´ ëë‚¬ë‹¤ë©´)
 			PlayerImmuteEndEvent();
 
 	if (playerCircle->GetInFever())
@@ -181,22 +167,22 @@ void Scene2::Render()
 	{
 		if (playerCollider->IsColliding(coin.first))
 		{
-			int addScore = 100; //Ãß°¡ÇÒ Á¡¼ö
-			int addScrollSpeed = 9; //Ãß°¡ÇÒ ½ºÅ©·Ñ ¼Óµµ
+			int addScore = 100; //ì¶”ê°€í•  ì ìˆ˜
+			int addScrollSpeed = 9; //ì¶”ê°€í•  ìŠ¤í¬ë¡¤ ì†ë„
 
 			if (playerCircle->GetInFever() != true)
 			{
-				int addFever = 20; // Ãß°¡ÇÒ ÇÇ¹ö °ÔÀÌÁö (ÆÛ¼¾Æ®)
+				int addFever = 20; // ì¶”ê°€í•  í”¼ë²„ ê²Œì´ì§€ (í¼ì„¼íŠ¸)
 				AddFeverGaugeEvent(addFever);
 			}
 
 			score += addScore;
 			curScrollSpeed -= addScrollSpeed;
-			ResetObstacle(coin.second); //À§Ä¡ Àç¼³Á¤
+			ResetObstacle(coin.second); //ìœ„ì¹˜ ì¬ì„¤ì •
 		}
 	}
 
-	//ÀåÇØ¹°°ú ºÎµóÄ£ÈÄ ¹«Àû½Ã°£ÀÌ ³¡³µ´Ù¸é ´Ù½Ã Àå¾Ö¹°°ú Áßµ¹ Ã¼Å©
+	//ì¥í•´ë¬¼ê³¼ ë¶€ë”›ì¹œí›„ ë¬´ì ì‹œê°„ì´ ëë‚¬ë‹¤ë©´ ë‹¤ì‹œ ì¥ì• ë¬¼ê³¼ ì¤‘ëŒ ì²´í¬
 
 	for (const auto& obstacle : boxObstacles)
 	{
@@ -204,17 +190,17 @@ void Scene2::Render()
 		{
 			if (playerCircle->GetInFever())
 			{
-				ResetObstacle(obstacle.second); //À§Ä¡ Àç¼³Á¤
+				ResetObstacle(obstacle.second); //ìœ„ì¹˜ ì¬ì„¤ì •
 
-				int addScore = 100; //Ãß°¡ÇÒ Á¡¼ö
-				int addScrollSpeed = 9; //Ãß°¡ÇÒ ½ºÅ©·Ñ ¼Óµµ
+				int addScore = 100; //ì¶”ê°€í•  ì ìˆ˜
+				int addScrollSpeed = 9; //ì¶”ê°€í•  ìŠ¤í¬ë¡¤ ì†ë„
 				score += addScore;
 				curScrollSpeed -= addScrollSpeed;
 			}
-			else if (playerCircle->isImmute() != true) //ÇÃ·¹ÀÌ¾î°¡ ÇöÀç ¹«Àû»óÅÂ°¡ ¾Æ´Ï¶ó¸é
+			else if (playerCircle->isImmute() != true) //í”Œë ˆì´ì–´ê°€ í˜„ì¬ ë¬´ì ìƒíƒœê°€ ì•„ë‹ˆë¼ë©´
 			{
-				int damege = 1; //°¡ÇÒ µ¥¹ÌÁö
-				float immuteTime = 3.f; // ¹«Àû ½Ã°£ (ÃÊ)
+				int damege = 1; //ê°€í•  ë°ë¯¸ì§€
+				float immuteTime = 3.f; // ë¬´ì  ì‹œê°„ (ì´ˆ)
 				PlayerDamegedEvent(damege, immuteTime);
 			}
 		}
@@ -226,24 +212,24 @@ void Scene2::Render()
 		{
 			if (playerCircle->GetInFever())
 			{
-				ResetObstacle(obstacle.second); //À§Ä¡ Àç¼³Á¤
+				ResetObstacle(obstacle.second); //ìœ„ì¹˜ ì¬ì„¤ì •
 
-				int addScore = 100; //Ãß°¡ÇÒ Á¡¼ö
-				int addScrollSpeed = 9; //Ãß°¡ÇÒ ½ºÅ©·Ñ ¼Óµµ
+				int addScore = 100; //ì¶”ê°€í•  ì ìˆ˜
+				int addScrollSpeed = 9; //ì¶”ê°€í•  ìŠ¤í¬ë¡¤ ì†ë„
 				score += addScore;
 				curScrollSpeed -= addScrollSpeed;
 			}
-			else if (playerCircle->isImmute() != true) //ÇÃ·¹ÀÌ¾î°¡ ÇöÀç ¹«Àû»óÅÂ°¡ ¾Æ´Ï¶ó¸é
+			else if (playerCircle->isImmute() != true) //í”Œë ˆì´ì–´ê°€ í˜„ì¬ ë¬´ì ìƒíƒœê°€ ì•„ë‹ˆë¼ë©´
 			{
-				int damege = 1; //°¡ÇÒ µ¥¹ÌÁö
-				float immuteTime = 3.f; // ¹«Àû ½Ã°£ (ÃÊ)
+				int damege = 1; //ê°€í•  ë°ë¯¸ì§€
+				float immuteTime = 3.f; // ë¬´ì  ì‹œê°„ (ì´ˆ)
 				playerDamegedEvent(damege, immuteTime);
 			}
 		}
 	}
 }
 
-void Scene2::PlayerDamegedEvent(int damege, float immuteTime) //ÇÃ·¹ÀÌ¾î (µ¥¹ÌÁö or »ç¸Á) ÀÌº¥Æ®
+void Scene2::PlayerDamegedEvent(int damege, float immuteTime) //í”Œë ˆì´ì–´ (ë°ë¯¸ì§€ or ì‚¬ë§) ì´ë²¤íŠ¸
 {
 	curScrollSpeed = defaultScrollSpeed;
 	playerCircle->Damege(damege, immuteTime);
@@ -251,9 +237,9 @@ void Scene2::PlayerDamegedEvent(int damege, float immuteTime) //ÇÃ·¹ÀÌ¾î (µ¥¹ÌÁö
 		PlayerDeadEvent();
 }
 
-void Scene2::PlayerDeadEvent() //ÇÃ·¹ÀÌ¾î »ç¸Á ÀÌº¥Æ®
+void Scene2::PlayerDeadEvent() //í”Œë ˆì´ì–´ ì‚¬ë§ ì´ë²¤íŠ¸
 {
-	wstring text = L"Á¡¼ö : " + to_wstring(score);
+	wstring text = L"ì ìˆ˜ : " + to_wstring(score);
 	if (MessageBox(gHandle, text.c_str(), L"RunningGame", MB_OKCANCEL) == IDOK)
 	{
 		Destroy();
@@ -261,11 +247,11 @@ void Scene2::PlayerDeadEvent() //ÇÃ·¹ÀÌ¾î »ç¸Á ÀÌº¥Æ®
 	}
 	else
 	{
-		PostQuitMessage(0); //ÇÁ·Î±×·¥ Á¾·á
+		PostQuitMessage(0); //í”„ë¡œê·¸ë¨ ì¢…ë£Œ
 	}
 }
 
-void Scene2::ResetObstacle(shared_ptr<Transform> target) //À§Ä¡ Àç¼³Á¤
+void Scene2::ResetObstacle(shared_ptr<Transform> target) //ìœ„ì¹˜ ì¬ì„¤ì •
 {
 	target->SetPosition(Vector2(WIN_DEFAULT_WIDTH + Random::Range(100, 1000), target->GetPosition().y));
 }
@@ -275,7 +261,7 @@ void Scene2::AddFeverGaugeEvent(float amount)
 	playerCircle->AddFeverGauge(amount);
 }
 
-void Scene2::startFeverEvent() //ÇÃ·¹ÀÌ¾î ÇÇ¹ö ½ÃÀÛ ÀÌº¥Æ®
+void Scene2::startFeverEvent() //í”Œë ˆì´ì–´ í”¼ë²„ ì‹œì‘ ì´ë²¤íŠ¸
 {
 	if (curScrollSpeed > -1200.f)
 		curScrollSpeed = -1200.f;
@@ -284,12 +270,12 @@ void Scene2::startFeverEvent() //ÇÃ·¹ÀÌ¾î ÇÇ¹ö ½ÃÀÛ ÀÌº¥Æ®
 	{
 		playerCircle->GetTransform()->SetPosition(Vector2(
 			playerCircle->GetTransform()->GetPosition().x,
-			floor->GetTransform()->GetPosition().y + floor->GetTransform()->GetScale().y * 0.5 + playerCircle->GetTransform()->GetScale().y * 0.5) //ÂøÁö ÇßÀ»¶§ ¹Ù´Ú¿¡ ¹ÚÈ÷´Â°ÍÀ» ¹æÁöÇÏ±â À§ÇØ À§Ä¡ ÀçÁ¶Á¤
+			floor->GetTransform()->GetPosition().y + floor->GetTransform()->GetScale().y * 0.5 + playerCircle->GetTransform()->GetScale().y * 0.5) //ì°©ì§€ í–ˆì„ë•Œ ë°”ë‹¥ì— ë°•íˆëŠ”ê²ƒì„ ë°©ì§€í•˜ê¸° ìœ„í•´ ìœ„ì¹˜ ì¬ì¡°ì •
 		);
 	}
 }
 
-void Scene2::PlayerImmuteEndEvent() //¹«Àû½Ã°£ Á¾·á (ÀåÇØ¹°°ú ºÎµóÈù ÈÄ, È¤Àº ÇÇ¹öÅ¸ÀÓ ¹«Àû) ÀÌº¥Æ®
+void Scene2::PlayerImmuteEndEvent() //ë¬´ì ì‹œê°„ ì¢…ë£Œ (ì¥í•´ë¬¼ê³¼ ë¶€ë”›íŒ í›„, í˜¹ì€ í”¼ë²„íƒ€ì„ ë¬´ì ) ì´ë²¤íŠ¸
 {
 	if (playerCircle->GetInFever())
 		if (curScrollSpeed <= -1200.f)
@@ -312,5 +298,5 @@ void Scene2::Destroy()
 	objects = nullptr;
 	boxObstacles.clear();
 	circleObstacles.clear();
-	coins.clear();			  
+	coins.clear();
 }

@@ -59,7 +59,7 @@ void Program::Render()
 
 void Program::SwitchScene(int index)
 {
-	//³Ê¹« Å« °ªÀ» ³Ö¾úÀ»¶© ¹Ù·Î Á¾·á
+	//ï¿½Ê¹ï¿½ Å« ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if (index >= sceneList.size()) return;
 
 	if (currentScene == sceneList[index]) return;
