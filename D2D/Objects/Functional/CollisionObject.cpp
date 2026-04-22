@@ -12,21 +12,32 @@ CollisionObject::CollisionObject(Vector2 position, Vector2 scale, float rotation
 
 	//Component Precache
 	collider = GetComponent<Collider>("Collider");
-	transform = GetComponent<Transform>("Transform");
+	transform = GetTransform();
 	//
 }
 
 void CollisionObject::Update()
 {
 	SUPER::Update();
+
+	if (collider == nullptr) return; //Collider 컴포넌트가 없다면 충돌 검사 불가능
+	if (targets.empty()) return; //충돌 대상이 없다면 충돌 검사 불필요
+
+	for (const auto& target : targets)
+	{
+		if (target.second == nullptr) continue; //충돌 대상이 유효하지 않다면 검사 불필요
+
+		auto targetCollider = target.second;
+		if (targetCollider == nullptr) continue; //충돌 대상에 Collider 컴포넌트가 없다면 충돌 검사 불가능
+
+		if (collider->IsColliding(targetCollider))
+		{
+			onCollision(target.second);
+		}
+	}
 }
 
-void CollisionObject::Render()
-{
-	SUPER::Render();
-}
-
-void CollisionObject::addTarget(const string& name, Object* target) //코인이 부딛힐 대상 추가
+void CollisionObject::addTarget(const string& name, shared_ptr<Collider> target) //부딛힐 대상 추가
 {
 	for (auto member : targets) //같은 이름을 가진 겍체가 이미 존재하는지 검사
 	{
@@ -45,6 +56,7 @@ void CollisionObject::removeTarget(const string& name)
 	{
 		if (member.first == name)
 		{
+			targets.erase(name);
 			return;
 		}
 	}

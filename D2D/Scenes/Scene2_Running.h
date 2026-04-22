@@ -39,4 +39,6 @@ private:
 	float curScrollSpeed = defaultScrollSpeed; //현재 스크롤 스피드의 값
 
 	int coinAmount = 5; //한 화면에 보일 코인의 최대 갯수
+
+	Vector2 scrollAcceleration = Vector2(); //스크롤의 가속도값, 매 프레임마다 scrollSpeed에 더해지는 값, 기본값은 0 (가속도 없음)
 };

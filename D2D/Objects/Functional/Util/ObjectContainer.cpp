@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "ObjectContainer.h"
+
+//Components
 #include "Components/Transform.h"
 
 ObjectContainer::ObjectContainer(Vector2 position, Vector2 scale, float rotation, int size) //ObjectGroup의 scale필드값은 멤버 오브젝트들의 scale 배율을 의미함 (1 = 기본 크기) [미완]
