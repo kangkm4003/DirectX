@@ -103,7 +103,7 @@
     <ClInclude Include="Objects\Functional\CollisionObject.h" />
     <ClInclude Include="Objects\Functional\Util\ObjectContainer.h" />
     <ClInclude Include="Components\Health.h" />
-    <ClInclude Include="Components\Util\ScrollObject.h" />
+    <ClInclude Include="ScrollObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -194,7 +194,7 @@
     <ClCompile Include="Objects\Functional\CollisionObject.cpp" />
     <ClCompile Include="Objects\Functional\Util\ObjectContainer.cpp" />
     <ClCompile Include="Components\Health.cpp" />
-    <ClCompile Include="Components\Util\ScrollObject.cpp" />
+    <ClCompile Include="ScrollObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
