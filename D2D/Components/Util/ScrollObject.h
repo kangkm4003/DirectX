@@ -16,7 +16,7 @@ public:
 	);
 	Vector2 scrollAcceleration = Vector2(); //스크롤 가속도.
 
-	bool doRespawnWhenOfScreen = false; //스크롤이 화면 밖으로 나갔을 때 위치 재설정 여부. true라면 reSpawnPosMin과 reSpawnPosMax를 기준으로 랜덤한 위치에 스폰
+	bool doRespawnWhenOfScreen = true; //스크롤이 화면 밖으로 나갔을 때 위치 재설정 여부. true라면 reSpawnPosMin과 reSpawnPosMax를 기준으로 랜덤한 위치에 스폰
 	Vector2 reSpawnPosMin = Vector2(); //위치 재설정 시 랜덤한 위치의 최소값
 	Vector2 reSpawnPosMax = Vector2(); //위치 재설정 시 랜덤한 위치의 최대값
 
