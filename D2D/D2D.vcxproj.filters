@@ -43,6 +43,9 @@
     <ClInclude Include="Renders\Resources\GlobalBuffers.h">
       <Filter>Renders\Resources</Filter>
     </ClInclude>
+    <ClInclude Include="Objects\Geometry\ColorRect.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
     <ClInclude Include="Objects\Object.h">
       <Filter>Objects</Filter>
     </ClInclude>
@@ -52,11 +55,26 @@
     <ClInclude Include="Utilities\GeometryHelper.h">
       <Filter>Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="Objects\Line.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Geometry\ColorCircle.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Graphic\Material.h">
+      <Filter>Components</Filter>
+    </ClInclude>
     <ClInclude Include="Renders\Resources\Mesh.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Graphic\MeshRenderer.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="Scenes\Scene.h">
       <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Geometry\WireCircle.h">
+      <Filter>Objects</Filter>
     </ClInclude>
     <ClInclude Include="Components\Transform.h">
       <Filter>Components</Filter>
@@ -64,87 +82,28 @@
     <ClInclude Include="Systems\ShaderManager.h">
       <Filter>Systems</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Graphic\Material.h">
-      <Filter>Components\Graphic</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Graphic\MeshRenderer.h">
-      <Filter>Components\Graphic</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Geometry\ColorCircle.h">
-      <Filter>Objects\Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Geometry\ColorRect.h">
-      <Filter>Objects\Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Line.h">
-      <Filter>Objects\Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Geometry\WireCircle.h">
-      <Filter>Objects\Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="Renders\RasterizerState.h">
-      <Filter>Renders</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Functional\Effect\Particle\AfterImage.h">
-      <Filter>Objects\Functional\Effect\Particle</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Collision\BoxCollider.h">
-      <Filter>Components\Collision</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Collision\CircleCollider.h">
-      <Filter>Components\Collision</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Collision\Collider.h">
-      <Filter>Components\Collision</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Input\Jump.h">
-      <Filter>Components\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Input\Controller.h">
-      <Filter>Components\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="Utilities\Collision.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Utilities\Random.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Functional\Coin.h">
-      <Filter>Objects\Functional</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Functional\CollisionObject.h">
-      <Filter>Objects\Functional</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Functional\Effect\EffectEmitter.h">
-      <Filter>Objects\Functional\Effect</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\Scene1_Intersect.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\Scene2_Running.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Util\FollowObject.h">
-      <Filter>Components\Util</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Util\ScrollObject.h">
-      <Filter>Components\Util</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Functional\Util\ObjectContainer.h">
-      <Filter>Objects\Functional\Util</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Functional\PlayerCircle.h">
-      <Filter>Objects\Functional</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Functional\Obstacle.h">
-      <Filter>Objects\Functional</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\SceneList.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Systems\ScoreManager.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
+    <ClInclude Include="Scenes\Scene2_Running.h" />
+    <ClInclude Include="Scenes\SceneList.h" />
+    <ClInclude Include="Components\Input\Jump.h" />
+    <ClInclude Include="Utilities\Collision.h" />
+    <ClInclude Include="Components\Collision\Collider.h" />
+    <ClInclude Include="Components\Collision\BoxCollider.h" />
+    <ClInclude Include="Components\Collision\CircleCollider.h" />
+    <ClInclude Include="Utilities\Random.h" />
+    <ClInclude Include="Scenes\Scene1_Intersect.h" />
+    <ClInclude Include="Components\Input\Controller.h" />
+    <ClInclude Include="Objects\Functional\PlayerCircle.h" />
+    <ClInclude Include="Renders\RasterizerState.h" />
+    <ClInclude Include="Components\Util\FollowObject.h" />
+    <ClInclude Include="Objects\Functional\Obstacle.h" />
+    <ClInclude Include="Objects\Functional\Coin.h" />
+    <ClInclude Include="Objects\Functional\Effect\EffectEmitter.h" />
+    <ClInclude Include="Objects\Functional\Effect\Particle\AfterImage.h" />
+    <ClInclude Include="Systems\ScoreManager.h" />
+    <ClInclude Include="Objects\Functional\CollisionObject.h" />
+    <ClInclude Include="Objects\Functional\Util\ObjectContainer.h" />
+    <ClInclude Include="Components\Health.h" />
+    <ClInclude Include="ScrollObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -183,14 +142,32 @@
     <ClCompile Include="Renders\Shaders\VertexShader.cpp">
       <Filter>Renders\Shaders</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Geometry\ColorRect.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
     <ClCompile Include="Objects\Object.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
     <ClCompile Include="Utilities\GeometryHelper.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Line.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Geometry\ColorCircle.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Graphic\Material.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
     <ClCompile Include="Renders\Resources\Mesh.cpp">
       <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Graphic\MeshRenderer.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Geometry\WireCircle.cpp">
+      <Filter>Objects</Filter>
     </ClCompile>
     <ClCompile Include="Components\Transform.cpp">
       <Filter>Components</Filter>
@@ -198,81 +175,26 @@
     <ClCompile Include="Systems\ShaderManager.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
-    <ClCompile Include="Components\Graphic\Material.cpp">
-      <Filter>Components\Graphic</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\Graphic\MeshRenderer.cpp">
-      <Filter>Components\Graphic</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Geometry\ColorCircle.cpp">
-      <Filter>Objects\Geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Geometry\ColorRect.cpp">
-      <Filter>Objects\Geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Line.cpp">
-      <Filter>Objects\Geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Geometry\WireCircle.cpp">
-      <Filter>Objects\Geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="Renders\RasterizerState.cpp">
-      <Filter>Renders</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Functional\Effect\Particle\AfterImage.cpp">
-      <Filter>Objects\Functional\Effect\Particle</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\Collision\BoxCollider.cpp">
-      <Filter>Components\Collision</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\Collision\CircleCollider.cpp">
-      <Filter>Components\Collision</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\Input\Jump.cpp">
-      <Filter>Components\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\Input\Controller.cpp">
-      <Filter>Components\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="Utilities\Collision.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="Utilities\Random.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Functional\Coin.cpp">
-      <Filter>Objects\Functional</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Functional\CollisionObject.cpp">
-      <Filter>Objects\Functional</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Functional\Effect\EffectEmitter.cpp">
-      <Filter>Objects\Functional\Effect</Filter>
-    </ClCompile>
-    <ClCompile Include="Scenes\Scene1_Intersect.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Scenes\Scene2_Running.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\Util\FollowObject.cpp">
-      <Filter>Components\Util</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\Util\ScrollObject.cpp">
-      <Filter>Components\Util</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Functional\Util\ObjectContainer.cpp">
-      <Filter>Objects\Functional\Util</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Functional\PlayerCircle.cpp">
-      <Filter>Objects\Functional</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Functional\Obstacle.cpp">
-      <Filter>Objects\Functional</Filter>
-    </ClCompile>
-    <ClCompile Include="Systems\ScoreManager.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
+    <ClCompile Include="Scenes\Scene2_Running.cpp" />
+    <ClCompile Include="Components\Input\Jump.cpp" />
+    <ClCompile Include="Utilities\Collision.cpp" />
+    <ClCompile Include="Components\Collision\BoxCollider.cpp" />
+    <ClCompile Include="Components\Collision\CircleCollider.cpp" />
+    <ClCompile Include="Utilities\Random.cpp" />
+    <ClCompile Include="Scenes\Scene1_Intersect.cpp" />
+    <ClCompile Include="Components\Input\Controller.cpp" />
+    <ClCompile Include="Objects\Functional\PlayerCircle.cpp" />
+    <ClCompile Include="Renders\RasterizerState.cpp" />
+    <ClCompile Include="Components\Util\FollowObject.cpp" />
+    <ClCompile Include="Objects\Functional\Obstacle.cpp" />
+    <ClCompile Include="Objects\Functional\Coin.cpp" />
+    <ClCompile Include="Objects\Functional\Effect\EffectEmitter.cpp" />
+    <ClCompile Include="Objects\Functional\Effect\Particle\AfterImage.cpp" />
+    <ClCompile Include="Systems\ScoreManager.cpp" />
+    <ClCompile Include="Objects\Functional\CollisionObject.cpp" />
+    <ClCompile Include="Objects\Functional\Util\ObjectContainer.cpp" />
+    <ClCompile Include="Components\Health.cpp" />
+    <ClCompile Include="ScrollObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
@@ -301,33 +223,6 @@
     </Filter>
     <Filter Include="Scenes">
       <UniqueIdentifier>{7cc27709-e575-44dd-ac30-f2374bdb917b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Collision">
-      <UniqueIdentifier>{658cc19c-9299-421f-8154-3e9ea25412b4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Graphic">
-      <UniqueIdentifier>{6ab4e8d2-7b52-4912-9747-13719bd8ad05}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Input">
-      <UniqueIdentifier>{1caacde4-f8e7-4f83-861c-4cc72299930e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Util">
-      <UniqueIdentifier>{0889180f-ad29-45ec-bd09-415284d0c469}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Objects\Functional">
-      <UniqueIdentifier>{5259e8a5-541b-434d-88d6-c4ec3ab5dc0e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Objects\Geometry">
-      <UniqueIdentifier>{b10449df-228a-4ea0-8e8f-49323673529a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Objects\Functional\Effect">
-      <UniqueIdentifier>{0ed5cbee-298f-432f-9b95-ad2c1b4529f1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Objects\Functional\Util">
-      <UniqueIdentifier>{c2606d69-6e06-4baf-b416-ca82ac565d3f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Objects\Functional\Effect\Particle">
-      <UniqueIdentifier>{ea275471-5067-4479-98bd-7ba3b5e26b6c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
