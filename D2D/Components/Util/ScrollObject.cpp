@@ -11,6 +11,10 @@
 ScrollObject::ScrollObject(const string& name)
 	:Component(name)
 {
+	reSpawnPosMin = Vector2(WIN_DEFAULT_WIDTH + 300.f, 200.f); //위치 재설정 시 랜덤한 위치의 최소값
+	reSpawnPosMax = Vector2(WIN_DEFAULT_WIDTH + 1000.f, 400.f); //위치 재설정 시 랜덤한 위치의 최대값
+
+	//Component Precache
 	transform = GetOwner()->GetTransform(); //owner의 Transform 컴포넌트 precache
 }
 
@@ -19,14 +23,16 @@ void ScrollObject::Update()
 {
 	SUPER::Update();
 
-	if (transform == nullptr) return; //Transform 컴포넌트가 없다면 위치 조정 불가능
-	if (scrollSpeed.LengthSquared() < epsilon) return; //scroll 스피드가 0이라면 스크롤 불필요
-	if (!doScroll) return; //스크롤 비활성화 상태라면 스크롤 불필요
+	if (transform == nullptr) return;
+	if (!doScroll) return;
 
-	transform->SetPosition(transform->GetPosition() + Vector2(scrollSpeed.x * DELTA, scrollSpeed.y * DELTA)); //현재 위치에 스크롤 속도만큼 이동
-	scrollSpeed += scrollAcceleration * DELTA; //가속도 적용
+	if (scrollSpeed.LengthSquared() < epsilon);
+		transform->SetPosition(transform->GetPosition() + Vector2(scrollSpeed.x * DELTA, scrollSpeed.y * DELTA)); //현재 위치에 스크롤 속도만큼 이동
 
-	if (doRespawnWhenOfScreen) //화면 밖으로 나갔을 때 위치 재설정이 활성화 상태라면
+	if (scrollAcceleration.LengthSquared() >= epsilon)
+		scrollSpeed += scrollAcceleration * DELTA; //가속도 적용
+
+	if (doRespawn)
 	{
 		auto position = transform->GetPosition();
 		auto scale = transform->GetScale();
@@ -56,7 +62,7 @@ void ScrollObject::Update()
 
 void ScrollObject::ResetPosition()
 {
-	if (transform == nullptr) return; //Transform 컴포넌트가 없다면 위치 조정 불가능
+	if (transform == nullptr) return;
 	if (reSpawnPosMin.x > reSpawnPosMax.x || reSpawnPosMin.y > reSpawnPosMax.y) return; //랜덤 위치 범위가 이상하다면 위치 조정 불가능
 
 	if (reSpawnPosMin == reSpawnPosMax) //랜덤 위치 범위가 하나의 점이라면 Random::Range를 사용할 필요 없이 그 점으로 위치 조정
