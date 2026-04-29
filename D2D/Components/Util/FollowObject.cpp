@@ -5,13 +5,13 @@
 FollowObject::FollowObject(int followPosition, int followScale, bool followRotation, float delayTime, const string& name)
 	: Component(name), followPosition(followPosition), followScale(followScale), followRotation(followRotation), followDelayTime(delayTime)
 {
-	if (this->GetOwner()->GetTransform() != nullptr) //owner의 Transform 컴포넌트가 유효하다면
+	if (this->GetOwner()->GetTransform() != nullptr)
 		ownerTransform = this->GetOwner()->GetTransform();
 }
 
 void FollowObject::doFollowWith(shared_ptr<Transform> target)
 {
-	if (target != nullptr) //target의 Transform 컴포넌트가 유효하다면
+	if (target != nullptr)
 	{
 		followingObject = target;
 	}

@@ -1,6 +1,7 @@
 #pragma
 #include "Objects/Geometry/ColorCircle.h"
 
+//ToDo : Jump와 Controlloer 컴포넌트 구현 (컴포넌트에서 키를 누르면 owner에게 신호 전달하는 형태)
 class PlayerCircle : public ColorCircle
 {
 public:
@@ -10,31 +11,12 @@ public:
 	void Update();
 	void Render();
 
-	void Damege(int damege, float immute_time);
-	void Heal(int amount);
-	void Dead();
-	bool isDead() const { return dead; };
-
-	void SetImmute(float time) { immuteTime = time; };
-	bool GetImmuteEnd_Dirty() const { return immuteEnd_Dirty; }
-	bool isImmute();
-	void ImmuteEnd();
-
 	void AddFeverGauge(float amount) { feverGauge += amount; if (feverGauge > 100) feverGauge = 100; }
 	float GetFeverGauge() const { return feverGauge; }
 	bool GetInFever() const { return inFever; };
 	void StartFever(float time);
 
-	int GetMaxHealth() const { return maxHealth; }
-	int GetCurHealth() const { return curHealth; }
-
 private:
-	unsigned int maxHealth = 3;
-	unsigned int curHealth = maxHealth;
-	float immuteTime = 0.f; //현재 남은 무적 시간
-	Color origianlColor = GREEN; //무적 시간이 끝나고 돌아갈 색상
-	Color damegeColor = RED; //데미지를 입었을시 바꿀 색상
-	bool dead = false;
 
 	float feverTime = 5.f; //피버의 지속시간
 	float feverGauge = 0.f; //피버의 게이지 (0~100)

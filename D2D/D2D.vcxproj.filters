@@ -104,6 +104,8 @@
     <ClInclude Include="Objects\Functional\Util\ObjectContainer.h" />
     <ClInclude Include="Components\Health.h" />
     <ClInclude Include="ScrollObject.h" />
+    <ClInclude Include="Components\Util\ScrollObject.h" />
+    <ClInclude Include="Components\System\Health.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -195,6 +197,8 @@
     <ClCompile Include="Objects\Functional\Util\ObjectContainer.cpp" />
     <ClCompile Include="Components\Health.cpp" />
     <ClCompile Include="ScrollObject.cpp" />
+    <ClCompile Include="Components\Util\ScrollObject.cpp" />
+    <ClCompile Include="Components\System\Health.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
