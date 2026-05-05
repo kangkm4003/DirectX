@@ -4,6 +4,7 @@
 
 void Jump::Update()
 {
+	SUPER::Update();
 	float dt = DELTA;
 
 	const auto& transform = owner->GetTransform();
@@ -15,7 +16,7 @@ void Jump::Update()
 	}
 }
 
-void Jump::doJump(float amount)
+void Jump::DoJump(float amount)
 {
 	if (curJumpCount <= maxJumpCount)
 	{
@@ -30,4 +31,9 @@ void Jump::Land()
 	speed = 0;
 	onAir = false;
 	curJumpCount = 1;
+}
+
+void Jump::onKeyDown()
+{
+	DoJump(jumpAmount);
 }

@@ -156,7 +156,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Components\Collision\CircleCollider.cpp" />
-    <ClCompile Include="Components\System\Health.cpp" />
+    <ClCompile Include="Components\Input\KeyMapping.cpp" />
+    <ClCompile Include="Components\System\HealthAndFever.cpp" />
     <ClCompile Include="Components\Util\FollowObject.cpp" />
     <ClCompile Include="Components\Graphic\Material.cpp" />
     <ClCompile Include="Components\Input\Jump.cpp" />
@@ -185,7 +186,8 @@
     <ClCompile Include="ScrollObject.cpp" />
     <ClInclude Include="Components\Collision\CircleCollider.h" />
     <ClInclude Include="Components\Component.h" />
-    <ClInclude Include="Components\System\Health.h" />
+    <ClInclude Include="Components\Input\KeyMapping.h" />
+    <ClInclude Include="Components\System\HealthAndFever.h" />
     <ClInclude Include="Components\Util\FollowObject.h" />
     <ClInclude Include="Components\Graphic\MeshRenderer.h" />
     <ClInclude Include="Components\Graphic\Material.h" />

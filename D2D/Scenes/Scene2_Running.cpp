@@ -87,13 +87,6 @@ void Scene2::Init()
 
 	AddObject(objects);
 
-	//Component cache
-	playerCircleCollider = playerCircle->GetComponent<CircleCollider>("CircleCollider");
-	playerBoxCollider = playerCircle->GetComponent<BoxCollider>("BoxCollider");
-	playerCircleJump = playerCircle->GetComponent<Jump>("Jump");
-	floorCollider = floor->GetComponent<BoxCollider>("BoxCollider");
-	//
-
 	playerCircleJump->SetMaxJumpCount(2);
 }
 
@@ -115,18 +108,6 @@ void Scene2::Update()
 			floor->GetTransform()->GetPosition().y + floor->GetTransform()->GetScale().y * 0.5 + playerCircle->GetTransform()->GetScale().y * 0.5) //착지 했을때 바닥에 박히는것을 방지하기 위해 위치 재조정
 		);
 	}
-
-	//점프
-	if (INPUT->Down(VK_SPACE))
-		playerCircle->GetComponent<Jump>("Jump")->doJump(800);
-
-	// 피버 모드 활성화
-	if (INPUT->Down('Z'))
-		if (playerCircle->GetFeverGauge() >= 100.f)
-		{
-			playerCircle->StartFever(10.f);
-			startFeverEvent();
-		}
 
 	//장해물들 왼쪽으로 이동
 	for (const auto& obj : objects->members)

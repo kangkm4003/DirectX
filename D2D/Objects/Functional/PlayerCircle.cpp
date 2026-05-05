@@ -7,28 +7,39 @@
 #include "Components/Graphic/MeshRenderer.h"
 #include "Components/Transform.h"
 #include "Components/Input/Jump.h"
+#include "Components/System/Health.h"
 
 #include "Utilities/Random.h"
 #include "Utilities/GeometryHelper.h"
 
+//ToDo: Health 시스템을 만들되 Material 및 mesh 변경은 PlayerCircle 에서 실행하게 만들기
+
 PlayerCircle::PlayerCircle(Vector2 position, Vector2 scale, Color color, UINT segments)
-	: ColorCircle (position, scale, color, segments)
+	: CollisionObject(position, scale, 0)
 {
-	AddComponent(make_shared<CircleCollider>());
-	AddComponent(make_unique<BoxCollider>());
-	AddComponent(make_shared<Jump>());
+	//Component Precache
+	material = make_shared<Material>(color, 0);
+	meshRenderer = make_shared<MeshRenderer>();
+	circleCollider = make_shared<CircleCollider>();
+	boxCollider = make_shared<BoxCollider>();
+	jump = make_shared<Jump>();
+	health = make_shared<Health>();
+
+	//Component Setup
+	meshRenderer->SetMesh(GeometryHelper::CreateColorCircle(segments)); //원으로 만들기 위해 MeshRenderer에 원 메쉬 설정
+	meshRenderer->SetShaderSet(SHADERS->GetShader(L"./_Shaders/Vertex.hlsl", Vertex::descs));
+	jump->maxJumpCount = 2;
+
+	//Component Registration
+	AddComponent(circleCollider);
+	AddComponent(boxCollider);
+	AddComponent(health);
+	AddComponent(jump);
 }
 
 void PlayerCircle::Update()
 {
 	SUPER::Update();
-
-	// 피버 모드 활성화
-	if (INPUT->Down('Z'))
-	if (GetFeverGauge() >= 100.f)
-	{
-		StartFever(10.f);
-	}
 }
 
 void PlayerCircle::Render()
@@ -47,13 +58,12 @@ void PlayerCircle::Render()
 	}
 }
 
-void PlayerCircle::StartFever(float time)
+void PlayerCircle::onCollision(shared_ptr<Collider> target)
 {
-	feverGauge = 0.f;
-	inFever = true;
+	GetComponent<Material>("Material")->SetColor(damegeColor);
+}
 
-	SetImmute(10.f); //플레이어에게 10초 무적 추가
-	immuteEnd_Dirty = true;
-	GetComponent<MeshRenderer>("MeshRenderer")->SetMesh(GeometryHelper::CreateRectangle()); //사각형으로 매시 변경
-	GetTransform()->SetScale(Vector2(200));
+void PlayerCircle::DoJump(float amount)
+{
+	jump->DoJump(amount);
 }

@@ -1,28 +1,31 @@
 #pragma
-#include "Objects/Geometry/ColorCircle.h"
+#include "Objects/Functional/CollisionObject.h"
 
 //ToDo : Jump와 Controlloer 컴포넌트 구현 (컴포넌트에서 키를 누르면 owner에게 신호 전달하는 형태)
-class PlayerCircle : public ColorCircle
+class PlayerCircle : public CollisionObject
 {
 public:
 	PlayerCircle(Vector2 position, Vector2 scale, Color color = RED, UINT segments = 50);
 	~PlayerCircle() override = default;
 
-	void Update();
-	void Render();
+	void Update() override;
+	void Render() override;
 
-	void AddFeverGauge(float amount) { feverGauge += amount; if (feverGauge > 100) feverGauge = 100; }
-	float GetFeverGauge() const { return feverGauge; }
-	bool GetInFever() const { return inFever; };
-	void StartFever(float time);
+	void onCollision(shared_ptr<Collider> target) override; //충돌했을 때의 행동
+
+	void DoJump(float amount);
 
 private:
 
-	float feverTime = 5.f; //피버의 지속시간
-	float feverGauge = 0.f; //피버의 게이지 (0~100)
-	float feverColorTime = 0.05f; //피버상태일시 색상이 바뀌는 속도(초)
-	float feverColorTimer = 0.f; //피버상태일때 최근 색상이 바뀌고 경과한 시간
-	bool inFever = false; //현재 피버 상태인지에 대한 여부
-
 	bool immuteEnd_Dirty = false; //플레이어의 무적 상태 종료 이벤트를 종료 직후 1회만 실행하기 위한 변수값
+	Color damegeColor = RED; //데미지를 받았을시 바뀔 색상
+	//Component Precache
+private:
+	shared_ptr<class Material> material;
+	shared_ptr<class MeshRenderer> meshRenderer;
+	shared_ptr<class CircleCollider> circleCollider;
+	shared_ptr<class BoxCollider> boxCollider;
+	shared_ptr<class Jump> jump;
+	shared_ptr<class Health> health;
+
 };

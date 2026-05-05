@@ -105,7 +105,8 @@
     <ClInclude Include="Components\Health.h" />
     <ClInclude Include="ScrollObject.h" />
     <ClInclude Include="Components\Util\ScrollObject.h" />
-    <ClInclude Include="Components\System\Health.h" />
+    <ClInclude Include="Components\System\HealthAndFever.h" />
+    <ClInclude Include="Components\Input\KeyMapping.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -198,7 +199,8 @@
     <ClCompile Include="Components\Health.cpp" />
     <ClCompile Include="ScrollObject.cpp" />
     <ClCompile Include="Components\Util\ScrollObject.cpp" />
-    <ClCompile Include="Components\System\Health.cpp" />
+    <ClCompile Include="Components\System\HealthAndFever.cpp" />
+    <ClCompile Include="Components\Input\KeyMapping.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
