@@ -35,5 +35,6 @@ void Jump::Land()
 
 void Jump::onKeyDown()
 {
+	SUPER::onKeyDown();
 	DoJump(jumpAmount);
 }
