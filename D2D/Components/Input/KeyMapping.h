@@ -5,8 +5,9 @@ class KeyMapping : public Component
 {
 public:
 	KeyMapping(const string& name = "KeyMapping")
-		: Component(name)
-	{}
+		: Component(name) 
+	{
+	}
 
 	void Update() override;
 	void Render() override;
