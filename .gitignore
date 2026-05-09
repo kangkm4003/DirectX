@@ -364,6 +364,7 @@ FodyWeavers.xsd
 
 # vcpkg
 vcpkg_installed/
-/D2D/Components
+# /D2D/Components
 /.gitignore
 /.gitignore
+/D2D/Components/Util/Timer.cpp

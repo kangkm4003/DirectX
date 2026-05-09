@@ -107,6 +107,10 @@
     <ClInclude Include="Components\Util\ScrollObject.h" />
     <ClInclude Include="Components\System\HealthAndFever.h" />
     <ClInclude Include="Components\Input\KeyMapping.h" />
+    <ClInclude Include="Components\System\Health.h" />
+    <ClInclude Include="Components\Input\Fever.h" />
+    <ClInclude Include="Components\Graphic\Flickering.h" />
+    <ClInclude Include="Utilities\Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -196,11 +200,14 @@
     <ClCompile Include="Systems\ScoreManager.cpp" />
     <ClCompile Include="Objects\Functional\CollisionObject.cpp" />
     <ClCompile Include="Objects\Functional\Util\ObjectContainer.cpp" />
-    <ClCompile Include="Components\Health.cpp" />
     <ClCompile Include="ScrollObject.cpp" />
     <ClCompile Include="Components\Util\ScrollObject.cpp" />
     <ClCompile Include="Components\System\HealthAndFever.cpp" />
     <ClCompile Include="Components\Input\KeyMapping.cpp" />
+    <ClCompile Include="Components\System\Health.cpp" />
+    <ClCompile Include="Components\Input\Fever.cpp" />
+    <ClCompile Include="Components\Graphic\Flickering.cpp" />
+    <ClCompile Include="Utilities\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">

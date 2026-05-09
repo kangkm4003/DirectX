@@ -156,15 +156,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Components\Collision\CircleCollider.cpp" />
+    <ClCompile Include="Components\Graphic\Flickering.cpp" />
+    <ClCompile Include="Components\Input\Fever.cpp" />
     <ClCompile Include="Components\Input\KeyMapping.cpp" />
     <ClCompile Include="Components\System\HealthAndFever.cpp" />
+    <ClCompile Include="Components\System\Health.cpp" />
     <ClCompile Include="Components\Util\FollowObject.cpp" />
     <ClCompile Include="Components\Graphic\Material.cpp" />
     <ClCompile Include="Components\Input\Jump.cpp" />
     <ClCompile Include="Components\Collision\BoxCollider.cpp" />
     <ClCompile Include="Components\Input\Controller.cpp" />
-    <ClCompile Include="Components\Health.cpp" />
     <ClCompile Include="Components\Util\ScrollObject.cpp" />
+    <ClCompile Include="Utilities\Timer.cpp" />
     <ClCompile Include="Objects\Functional\Coin.cpp" />
     <ClCompile Include="Objects\Functional\Effect\EffectEmitter.cpp" />
     <ClCompile Include="Objects\Functional\Effect\Particle\AfterImage.cpp" />
@@ -186,8 +189,11 @@
     <ClCompile Include="ScrollObject.cpp" />
     <ClInclude Include="Components\Collision\CircleCollider.h" />
     <ClInclude Include="Components\Component.h" />
+    <ClInclude Include="Components\Graphic\Flickering.h" />
+    <ClInclude Include="Components\Input\Fever.h" />
     <ClInclude Include="Components\Input\KeyMapping.h" />
     <ClInclude Include="Components\System\HealthAndFever.h" />
+    <ClInclude Include="Components\System\Health.h" />
     <ClInclude Include="Components\Util\FollowObject.h" />
     <ClInclude Include="Components\Graphic\MeshRenderer.h" />
     <ClInclude Include="Components\Graphic\Material.h" />
@@ -197,6 +203,7 @@
     <ClInclude Include="Components\Input\Controller.h" />
     <ClInclude Include="Components\Health.h" />
     <ClInclude Include="Components\Util\ScrollObject.h" />
+    <ClInclude Include="Utilities\Timer.h" />
     <ClInclude Include="Objects\Functional\Coin.h" />
     <ClInclude Include="Objects\Functional\Effect\EffectEmitter.h" />
     <ClInclude Include="Objects\Functional\Effect\Particle\AfterImage.h" />
