@@ -1,6 +1,7 @@
 #pragma once
 #include "Components/Component.h"
 
+//Todo: 나중에 이거 컴포넌트화 하기
 class Timer
 {
 public:
