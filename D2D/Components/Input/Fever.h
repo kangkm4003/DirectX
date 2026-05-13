@@ -8,12 +8,12 @@ public:
 	Fever(float startFeverGauge = 0.f, float feveringTime = 10.f, const string& name = "Fever");
 
 	void Update() override;
-	void Render() override;
-
-	void onKeyDown();
 
 	void SetFeveringTime(float value) { feveringTime = value; }
 	bool GetinFever() const { return inFever; }
+
+protected:
+	void onKeyDown() override;
 
 private:
 	float colorChangingTime = 0.1f; //N초 마다 색상 변경
@@ -34,4 +34,5 @@ private:
 private:
 	shared_ptr<class Material> material;
 	shared_ptr<class MeshRenderer> meshRenderer;
+	shared_ptr<class Health> health;
 };

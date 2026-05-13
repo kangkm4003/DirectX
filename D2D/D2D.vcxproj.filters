@@ -43,9 +43,6 @@
     <ClInclude Include="Renders\Resources\GlobalBuffers.h">
       <Filter>Renders\Resources</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Geometry\ColorRect.h">
-      <Filter>Objects</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\Object.h">
       <Filter>Objects</Filter>
     </ClInclude>
@@ -92,7 +89,6 @@
     <ClInclude Include="Utilities\Random.h" />
     <ClInclude Include="Scenes\Scene1_Intersect.h" />
     <ClInclude Include="Components\Input\Controller.h" />
-    <ClInclude Include="Objects\Functional\PlayerCircle.h" />
     <ClInclude Include="Renders\RasterizerState.h" />
     <ClInclude Include="Components\Util\FollowObject.h" />
     <ClInclude Include="Objects\Functional\Obstacle.h" />
@@ -111,6 +107,8 @@
     <ClInclude Include="Components\Input\Fever.h" />
     <ClInclude Include="Components\Graphic\Flickering.h" />
     <ClInclude Include="Utilities\Timer.h" />
+    <ClInclude Include="Objects\Geometry\ColorRect.h" />
+    <ClInclude Include="Objects\Functional\PlayerCircle.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -148,9 +146,6 @@
     </ClCompile>
     <ClCompile Include="Renders\Shaders\VertexShader.cpp">
       <Filter>Renders\Shaders</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Geometry\ColorRect.cpp">
-      <Filter>Objects</Filter>
     </ClCompile>
     <ClCompile Include="Objects\Object.cpp">
       <Filter>Objects</Filter>
@@ -190,7 +185,6 @@
     <ClCompile Include="Utilities\Random.cpp" />
     <ClCompile Include="Scenes\Scene1_Intersect.cpp" />
     <ClCompile Include="Components\Input\Controller.cpp" />
-    <ClCompile Include="Objects\Functional\PlayerCircle.cpp" />
     <ClCompile Include="Renders\RasterizerState.cpp" />
     <ClCompile Include="Components\Util\FollowObject.cpp" />
     <ClCompile Include="Objects\Functional\Obstacle.cpp" />
@@ -208,6 +202,8 @@
     <ClCompile Include="Components\Input\Fever.cpp" />
     <ClCompile Include="Components\Graphic\Flickering.cpp" />
     <ClCompile Include="Utilities\Timer.cpp" />
+    <ClCompile Include="Objects\Geometry\ColorRect.cpp" />
+    <ClCompile Include="Objects\Functional\PlayerCircle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">

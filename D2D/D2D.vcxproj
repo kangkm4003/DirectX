@@ -167,6 +167,8 @@
     <ClCompile Include="Components\Collision\BoxCollider.cpp" />
     <ClCompile Include="Components\Input\Controller.cpp" />
     <ClCompile Include="Components\Util\ScrollObject.cpp" />
+    <ClCompile Include="Objects\Functional\PlayerCircle.cpp" />
+    <ClCompile Include="Objects\Geometry\ColorRect.cpp" />
     <ClCompile Include="Utilities\Timer.cpp" />
     <ClCompile Include="Objects\Functional\Coin.cpp" />
     <ClCompile Include="Objects\Functional\Effect\EffectEmitter.cpp" />
@@ -176,7 +178,6 @@
     <ClCompile Include="Objects\Geometry\ColorCircle.cpp" />
     <ClCompile Include="Objects\Geometry\WireCircle.cpp" />
     <ClCompile Include="Objects\Line.cpp" />
-    <ClCompile Include="Objects\Functional\PlayerCircle.cpp" />
     <ClCompile Include="Objects\Functional\Obstacle.cpp" />
     <ClCompile Include="Renders\RasterizerState.cpp" />
     <ClCompile Include="Scenes\Scene2_Running.cpp" />
@@ -203,18 +204,18 @@
     <ClInclude Include="Components\Input\Controller.h" />
     <ClInclude Include="Components\Health.h" />
     <ClInclude Include="Components\Util\ScrollObject.h" />
+    <ClInclude Include="Objects\Functional\PlayerCircle.h" />
+    <ClInclude Include="Objects\Geometry\ColorRect.h" />
     <ClInclude Include="Utilities\Timer.h" />
     <ClInclude Include="Objects\Functional\Coin.h" />
     <ClInclude Include="Objects\Functional\Effect\EffectEmitter.h" />
     <ClInclude Include="Objects\Functional\Effect\Particle\AfterImage.h" />
     <ClInclude Include="Objects\Functional\CollisionObject.h" />
     <ClInclude Include="Objects\Functional\Util\ObjectContainer.h" />
-    <ClInclude Include="Objects\Geometry\ColorRect.h" />
     <ClInclude Include="Objects\Object.h" />
     <ClInclude Include="Objects\Geometry\ColorCircle.h" />
     <ClInclude Include="Objects\Geometry\WireCircle.h" />
     <ClInclude Include="Objects\Line.h" />
-    <ClInclude Include="Objects\Functional\PlayerCircle.h" />
     <ClInclude Include="Objects\Functional\Obstacle.h" />
     <ClInclude Include="Renders\IA\IndexBuffer.h" />
     <ClInclude Include="Renders\IA\InputLayout.h" />
@@ -250,7 +251,6 @@
   <ItemGroup>
     <ClCompile Include="Components\Graphic\MeshRenderer.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Objects\Geometry\ColorRect.cpp" />
     <ClCompile Include="Objects\Object.cpp" />
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="Renders\IA\IndexBuffer.cpp" />

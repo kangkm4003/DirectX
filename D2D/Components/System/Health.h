@@ -4,10 +4,7 @@
 class Health : public Component
 {
 public:
-	Health(const string& name = "Health")
-		: Component(name)
-	{
-	}
+	Health(const string& name = "Health") :Component(name) {}
 
 	void Update();
 

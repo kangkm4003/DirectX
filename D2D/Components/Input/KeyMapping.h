@@ -15,10 +15,10 @@ public:
 	void SetMappingKey(int key) { curMappedKey = key; }
 	int GetMappingKey() { return curMappedKey; }
 
+
+protected:
 	virtual void onKeyDown() {}
 	virtual void onKeyUp() {}
 	virtual void onKeyPress() {}
-
-protected:
 	unsigned int curMappedKey;
 };

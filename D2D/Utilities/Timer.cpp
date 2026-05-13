@@ -16,7 +16,7 @@ void Timer::Update()
 		curTimer -= DELTA * timeRate;
 	else if (curTimer < epsilon) //타이머 종료
 	{
-		//if (endFunc) endFunc(); //타이머 종료 함수 호출 
+		//endFunc();
 		curTimer = 0.f;
 		completed = true;
 		//if (curLoops != -1) //타이머가 무한 반복이 아니라면 루프 횟수 1회 차감
@@ -28,7 +28,7 @@ void Timer::Update()
 	}
 }
 
-void Timer::StartTimer(float value)
+void Timer::Start(float value)
 {
 	if (value > 0) startTimer = value;
 	else if (value == 0) startTimer = 1; //loops 값을 0으로 잘못 입력 했을시에 대한 안전장치
@@ -40,6 +40,7 @@ void Timer::StartTimer(float value)
 
 void Timer::Stop() //멤버값 초기화로 타이머 종료
 {
+	completed = false;
 	paused = true;
 	startTimer = 0.f;
 	curTimer = 0.f;

@@ -16,7 +16,7 @@ public:
 
 	void ClearTargets() { targets.clear(); targetTransforms.clear(); } //부딛힐 대상 리스트 초기화
 
-	virtual void onCollision(shared_ptr<Collider> target) = 0; //target과 충돌했을 때의 실행할 함수 콜백.
+	virtual void onCollision(shared_ptr<Collider> target, shared_ptr<Transform> targetTransform) = 0; //target과 충돌했을 때의 실행할 함수 콜백.
 
 	float calculationDistance = 500.f; //충돌 계산을 시작할 거리. 이보다 멀리 있는 대상과는 충돌 계산을 하지 않음. 단위는 픽셀
 protected:
